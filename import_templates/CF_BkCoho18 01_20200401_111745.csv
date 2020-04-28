@@ -1,0 +1,100 @@
+Person Name=CF,,,,,,,,,,,,
+FRAM Run Name=BkCoho18 01,,,,,,,,,,,,
+FRAM Run ID=385,,,,,,,,,,,,
+FRAM DB Name=C:\Users\obrienm\Desktop\git_src\PSC-FRAM-Admin\fram db\devloping BK2018 - test2.mdb,,,,,,,,,,,,
+-------------------------------------------------------------,,,,,,,,,,,,
+fram.fishery.name,fram.fishery.id,fram.time.step,fishery.flag,nonselective.catch,msf.catch,cnr.mortalities,mark.release.rate,mark.missid.rate,unmark.missid.rate,mark.incidental.rate,comment.cnr,comment.catch
+No Calif Cst Terminal Catch,1,5,2,0,0,0,0,0,0,0,,
+Fort Bragg Sport,3,1,2,0,0,36,0,0,0,0,CNR Model,
+Fort Bragg Sport,3,2,2,0,0,27,0,0,0,0,CNR Model,
+Fort Bragg Sport,3,3,2,0,0,6,0,0,0,0,CNR Model,
+Fort Bragg Sport,3,4,2,0,0,0,0,0,0,0,CNR Model,
+Fort Bragg Troll,4,1,2,0,0,0,0,0,0,0,TIM Model,
+Fort Bragg Troll,4,2,2,0,0,33,0,0,0,0,TIM Model,
+Fort Bragg Troll,4,3,2,0,0,49,0,0,0,0,TIM Model,
+Fort Bragg Troll,4,4,2,0,0,0,0,0,0,0,TIM Model,
+KMZ Sport,5,1,2,0,0,126,0,0,0,0,CNR Model,
+KMZ Sport,5,2,2,0,0,38,0,0,0,0,CNR Model,
+KMZ Sport,5,3,2,0,0,15,0,0,0,0,CNR Model,
+KMZ Sport,5,4,2,0,0,0,0,0,0,0,CNR Model,
+KMZ Troll,6,1,2,0,0,293,0,0,0,0,TIM Model,
+KMZ Troll,6,2,2,0,0,50,0,0,0,0,TIM Model,
+KMZ Troll,6,3,2,0,0,56,0,0,0,0,TIM Model,
+KMZ Troll,6,4,2,0,0,0,0,0,0,0,TIM Model,
+KMZ Troll,6,5,2,0,0,0,0,0,0,0,TIM Model,
+So Calif. Sport,7,1,2,0,0,17,0,0,0,0,CNR Model,
+So Calif. Sport,7,2,2,0,0,24,0,0,0,0,CNR Model,
+So Calif. Sport,7,3,2,0,0,4,0,0,0,0,CNR Model,
+So Calif. Sport,7,4,2,0,0,1,0,0,0,0,CNR Model,
+So Calif. Troll,8,1,2,0,0,0,0,0,0,0,TIM Model,
+So Calif. Troll,8,2,2,0,0,3,0,0,0,0,TIM Model,
+So Calif. Troll,8,3,2,0,0,6,0,0,0,0,TIM Model,
+So Calif. Troll,8,4,2,0,0,1,0,0,0,0,TIM Model,
+So Ore Coast Terminal Catch,9,5,2,0,0,82,0,0,0,0,Esc. * .10 contact rate * .10 HM,
+Ore Private Hat Term Catch,10,5,1,0,0,0,0,0,0,0,,
+So Mid Ore Coast Term Catch,11,5,2,211,0,441,0,0,0,0,(Catch OPITT)(Esc. * .10 contact rate * .10 HM),(Catch OPITT)(Esc. * .10 contact rate * .10 HM)
+No Mid Ore Coast Term Catch,12,5,2,0,0,220,0,0,0,0,(Catch OPITT)(Esc. * .10 contact rate * .10 HM),(Catch OPITT)(Esc. * .10 contact rate * .10 HM)
+North Ore Coast Term Catch,13,5,2,0,0,80,0,0,0,0,(Catch OPITT)(Esc. * .10 contact rate * .10 HM),(Catch OPITT)(Esc. * .10 contact rate * .10 HM)
+Brookings Sport,15,1,2,0,0,35,0.14,0.06,0.02,0.05,(Catch Review A tables) CNR Model,(Catch Review A tables) CNR Model
+Brookings Sport,15,2,2,0,0,114,0.14,0.06,0.02,0.05,(Catch Review A tables) CNR Model,(Catch Review A tables) CNR Model
+Brookings Sport,15,3,2,0,0,97,0.14,0.06,0.02,0.05,(Catch Review A tables) CNR Model,(Catch Review A tables) CNR Model
+Brookings Sport,15,4,2,0,0,0,0.14,0.06,0.02,0.05,(Catch Review A tables) CNR Model,(Catch Review A tables) CNR Model
+Brookings Sport,15,5,2,0,0,1,0,0,0,0,(Catch Review A tables) CNR Model,(Catch Review A tables) CNR Model
+Brookings Troll,16,1,2,0,0,15,0,0,0,0,(Catch Review A tables) TIM Model,(Catch Review A tables) TIM Model
+Brookings Troll,16,2,2,0,0,18,0,0,0,0,(Catch Review A tables) TIM Model,(Catch Review A tables) TIM Model
+Brookings Troll,16,3,2,0,0,2,0,0,0,0,,(Catch Review A tables) TIM Model
+Brookings Troll,16,4,2,0,0,0,0,0,0,0,(Catch Review A tables) TIM Model,(Catch Review A tables) TIM Model
+Newport Sport,17,1,8,0,2,22,0.14,0.06,0.02,0.05,(Catch Review A tables) CNR Model,(Catch Review A tables) CNR Model
+Newport Sport,17,2,8,0,2125,0,0.14,0.06,0.02,0.05,(Catch Review A tables) CNR Model,(Catch Review A tables) CNR Model
+Newport Sport,17,3,8,0,6042,0,0.14,0.06,0.02,0.05,(Catch Review A tables) CNR Model,(Catch Review A tables) CNR Model
+Newport Sport,17,4,2,3095,0,100,0.14,0.06,0.02,0.05,(Catch Review A tables) CNR Model,(Catch Review A tables) CNR Model
+Newport Troll,18,1,2,0,0,105,0,0,0,0,(Catch Review A tables) TIM Model,(Catch Review A tables) TIM Model
+Newport Troll,18,2,2,0,0,102,0,0,0,0,(Catch Review A tables) TIM Model,(Catch Review A tables) TIM Model
+Newport Troll,18,3,2,0,0,246,0,0,0,0,(Catch Review A tables) TIM Model,(Catch Review A tables) TIM Model
+Newport Troll,18,4,2,0,0,10,0,0,0,0,(Catch Review A tables) TIM Model,(Catch Review A tables) TIM Model
+Coos Bay Sport,19,1,8,0,4,39,0.14,0.06,0.02,0.05,(Catch Review A tables) CNR Model,(Catch Review A tables) CNR Model
+Coos Bay Sport,19,2,8,0,579,0,0.14,0.06,0.02,0.05,(Catch Review A tables) CNR Model,(Catch Review A tables) CNR Model
+Coos Bay Sport,19,3,8,0,887,0,0.14,0.06,0.02,0.05,(Catch Review A tables) CNR Model,(Catch Review A tables) CNR Model
+Coos Bay Sport,19,4,2,2983,0,97,0.14,0.06,0.02,0.05,(Catch Review A tables) CNR Model,(Catch Review A tables) CNR Model
+Coos Bay Troll,20,1,2,0,0,128,0,0,0,0,(Catch Review A tables) TIM Model,(Catch Review A tables) TIM Model
+Coos Bay Troll,20,2,2,0,0,31,0,0,0,0,(Catch Review A tables) TIM Model,(Catch Review A tables) TIM Model
+Coos Bay Troll,20,3,2,0,0,22,0,0,0,0,(Catch Review A tables) TIM Model,(Catch Review A tables) TIM Model
+Coos Bay Troll,20,4,2,0,0,2,0,0,0,0,(Catch Review A tables) TIM Model,(Catch Review A tables) TIM Model
+Tillamook Sport,21,1,8,0,25,15,0.14,0.06,0.02,0.05,(Catch Review A tables) CNR Model,(Catch Review A tables) CNR Model
+Tillamook Sport,21,2,8,0,274,0,0.14,0.06,0.02,0.05,(Catch Review A tables) CNR Model,(Catch Review A tables) CNR Model
+Tillamook Sport,21,3,8,0,1652,0,0.14,0.06,0.02,0.05,(Catch Review A tables) CNR Model,(Catch Review A tables) CNR Model
+Tillamook Sport,21,4,2,858,0,100,0.14,0.06,0.02,0.05,(Catch Review A tables) CNR Model,(Catch Review A tables) CNR Model
+Tillamook Troll,22,1,2,0,0,41,0,0,0,0,(Catch Review A tables) TIM Model,(Catch Review A tables) TIM Model
+Tillamook Troll,22,2,2,0,0,3,0,0,0,0,(Catch Review A tables) TIM Model,(Catch Review A tables) TIM Model
+Tillamook Troll,22,3,2,0,0,16,0,0,0,0,(Catch Review A tables) TIM Model,(Catch Review A tables) TIM Model
+Tillamook Troll,22,4,2,0,0,3,0,0,0,0,(Catch Review A tables) TIM Model,(Catch Review A tables) TIM Model 
+-------------------------------------------------------------,,,,,,,,,,,,
+fram.stock.name,fram.stock.id,escapement.flag,target.escapement,recruit.scalar,comment,,,,,,,
+Oregon North Coast Hatchery UnMarked,177,0,0,0.0076,,,,,,,,
+Oregon North Coast Hatchery Marked,178,2,848,0.0575,OPI Table 1i,,,,,,,
+Oregon North Coast Wild UnMarked,179,1,7952,0.944,OPITT Handouts,,,,,,,
+Oregon North Coast Wild Marked,180,0,0,0,,,,,,,,
+Oregon North-Mid Coast Hatchery UnMarked,181,0,0,0.0076,,,,,,,,
+Oregon North-Mid Coast Hatchery Marked,182,2,3,0.0575,OPI Table 1i,,,,,,,
+Oregon North-Mid Coast Wild UnMarked,183,1,22038,0.944,OPITT Handouts,,,,,,,
+Oregon North-Mid Coast Wild Marked,184,0,0,0,,,,,,,,
+Oregon South-Mid Coast Hatchery UnMarked,185,0,0,0.0076,,,,,,,,
+Oregon South-Mid Coast Hatchery Marked,186,2,211,0.0575,OPI Table 1i + Winch. Hatch,,,,,,,
+Oregon South-Mid Coast Wild UnMarked,187,1,44070,0.944,OPITT Handouts,,,,,,,
+Oregon South-Mid Coast Wild Marked,188,0,0,0,,,,,,,,
+Oregon Anadromous Hatchery UnMarked,189,0,0,0,,,,,,,,
+Oregon Anadromous Hatchery Marked,190,0,0,0,,,,,,,,
+Oregon Aqua-Foods Hatchery UnMarked,191,0,0,0,,,,,,,,
+Oregon Aqua-Foods Hatchery Marked,192,0,0,0,,,,,,,,
+Oregon South Coast Hatchery UnMarked,193,1,0,0.2491,,,,,,,,
+Oregon South Coast Hatchery Marked,194,1,254,0.1804,OPI Table 1i,,,,,,,
+Oregon South Coast Wild UnMarked,195,1,8226,0.2148,OPITT Handouts,,,,,,,
+Oregon South Coast Wild Marked,196,0,0,0,,,,,,,,
+California North Coast Hatchery UnMarked,197,1,682,0.2491,OPI Table 1i,,,,,,,
+California North Coast Hatchery Marked,198,1,0,0.1804,,,,,,,,
+California North Coast Wild UnMarked,199,0,0,0.2148,,,,,,,,
+California North Coast Wild Marked,200,0,0,0,,,,,,,,
+California Central Coast Hatchery UnMarked,201,0,0,1,,,,,,,,
+California Central Coast Hatchery Marked,202,0,0,1,,,,,,,,
+California Central Coast Wild UnMarked,203,0,0,1,,,,,,,,
+California Central Coast Wild Marked,204,0,0,0, ,,,,,,,

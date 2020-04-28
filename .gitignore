@@ -1,0 +1,43 @@
+# History files
+.Rhistory
+.Rapp.history
+
+# Session Data files
+.RData
+.Renviron
+
+# Example code in package build process
+*-Ex.R
+
+# RStudio files
+.Rproj.user/
+
+# produced vignettes
+vignettes/*.html
+vignettes/*.pdf
+
+# OAuth2 token, see https://github.com/hadley/httr/releases/tag/v0.3
+.httr-oauth
+
+#Exclude final reports
+report/
+
+#Exclude import files
+import files/
+
+#Do no include anything in the FRAM DB folder or MS Access databases, this is usually specific data
+fram db/
+*.mdb
+*.laccdb
+*.ldb
+*.accdb
+
+# Log files from running scripts
+*.log
+
+!/bin/*.dll
+!/bin/*.exe
+.Rproj.user
+
+# no pdfs
+*.pdf

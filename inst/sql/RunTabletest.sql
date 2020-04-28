@@ -1,0 +1,3 @@
+SELECT *
+FROM RunID
+WHERE RunID.SpeciesName = "${SPECIESNAME}"

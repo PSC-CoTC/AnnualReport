@@ -1,0 +1,2 @@
+DELETE FROm NonRetention
+WHERE RunID=${RUNID} AND FisheryID=${FISHERYID} AND TimeStep=${TIMESTEP};

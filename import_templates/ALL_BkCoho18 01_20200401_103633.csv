@@ -1,0 +1,739 @@
+Person Name::ALL
+FRAM Run Name::BkCoho18 01
+FRAM Run ID::385
+FRAM DB Name::C:\Users\obrienm\Desktop\git_src\PSC-FRAM-Admin\fram db\devloping BK2018 - test2.mdb
+-------------------------------------------------------------
+"fram.fishery.name","fram.fishery.id","fram.time.step","fishery.flag","nonselective.catch","msf.catch","cnr.mortalities","mark.release.rate","mark.missid.rate","unmark.missid.rate","mark.incidental.rate","comment.cnr","comment.catch"
+"No Calif Cst Terminal Catch",1,5,2,0,0,0,0,0,0,0,"",""
+"Fort Bragg Sport",3,1,2,0,0,36,0,0,0,0,"CNR Model",""
+"Fort Bragg Sport",3,2,2,0,0,27,0,0,0,0,"CNR Model",""
+"Fort Bragg Sport",3,3,2,0,0,6,0,0,0,0,"CNR Model",""
+"Fort Bragg Sport",3,4,2,0,0,0,0,0,0,0,"CNR Model",""
+"Fort Bragg Troll",4,1,2,0,0,0,0,0,0,0,"TIM Model",""
+"Fort Bragg Troll",4,2,2,0,0,33,0,0,0,0,"TIM Model",""
+"Fort Bragg Troll",4,3,2,0,0,49,0,0,0,0,"TIM Model",""
+"Fort Bragg Troll",4,4,2,0,0,0,0,0,0,0,"TIM Model",""
+"KMZ Sport",5,1,2,0,0,126,0,0,0,0,"CNR Model",""
+"KMZ Sport",5,2,2,0,0,38,0,0,0,0,"CNR Model",""
+"KMZ Sport",5,3,2,0,0,15,0,0,0,0,"CNR Model",""
+"KMZ Sport",5,4,2,0,0,0,0,0,0,0,"CNR Model",""
+"KMZ Troll",6,1,2,0,0,293,0,0,0,0,"TIM Model",""
+"KMZ Troll",6,2,2,0,0,50,0,0,0,0,"TIM Model",""
+"KMZ Troll",6,3,2,0,0,56,0,0,0,0,"TIM Model",""
+"KMZ Troll",6,4,2,0,0,0,0,0,0,0,"TIM Model",""
+"KMZ Troll",6,5,2,0,0,0,0,0,0,0,"TIM Model",""
+"So Calif. Sport",7,1,2,0,0,17,0,0,0,0,"CNR Model",""
+"So Calif. Sport",7,2,2,0,0,24,0,0,0,0,"CNR Model",""
+"So Calif. Sport",7,3,2,0,0,4,0,0,0,0,"CNR Model",""
+"So Calif. Sport",7,4,2,0,0,1,0,0,0,0,"CNR Model",""
+"So Calif. Troll",8,1,2,0,0,0,0,0,0,0,"TIM Model",""
+"So Calif. Troll",8,2,2,0,0,3,0,0,0,0,"TIM Model",""
+"So Calif. Troll",8,3,2,0,0,6,0,0,0,0,"TIM Model",""
+"So Calif. Troll",8,4,2,0,0,1,0,0,0,0,"TIM Model",""
+"So Ore Coast Terminal Catch",9,5,2,0,0,82,0,0,0,0,"Esc. * .10 contact rate * .10 HM",""
+"Ore Private Hat Term Catch",10,5,1,0,0,0,0,0,0,0,"",""
+"So Mid Ore Coast Term Catch",11,5,2,211,0,441,0,0,0,0,"(Catch OPITT)(Esc. * .10 contact rate * .10 HM)","(Catch OPITT)(Esc. * .10 contact rate * .10 HM)"
+"No Mid Ore Coast Term Catch",12,5,2,0,0,220,0,0,0,0,"(Catch OPITT)(Esc. * .10 contact rate * .10 HM)","(Catch OPITT)(Esc. * .10 contact rate * .10 HM)"
+"North Ore Coast Term Catch",13,5,2,0,0,80,0,0,0,0,"(Catch OPITT)(Esc. * .10 contact rate * .10 HM)","(Catch OPITT)(Esc. * .10 contact rate * .10 HM)"
+"Brookings Sport",15,1,2,0,0,35,0.14,0.06,0.02,0.05,"(Catch Review A tables) CNR Model","(Catch Review A tables) CNR Model"
+"Brookings Sport",15,2,2,0,0,114,0.14,0.06,0.02,0.05,"(Catch Review A tables) CNR Model","(Catch Review A tables) CNR Model"
+"Brookings Sport",15,3,2,0,0,97,0.14,0.06,0.02,0.05,"(Catch Review A tables) CNR Model","(Catch Review A tables) CNR Model"
+"Brookings Sport",15,4,2,0,0,0,0.14,0.06,0.02,0.05,"(Catch Review A tables) CNR Model","(Catch Review A tables) CNR Model"
+"Brookings Sport",15,5,2,0,0,1,0,0,0,0,"(Catch Review A tables) CNR Model","(Catch Review A tables) CNR Model"
+"Brookings Troll",16,1,2,0,0,15,0,0,0,0,"(Catch Review A tables) TIM Model","(Catch Review A tables) TIM Model"
+"Brookings Troll",16,2,2,0,0,18,0,0,0,0,"(Catch Review A tables) TIM Model","(Catch Review A tables) TIM Model"
+"Brookings Troll",16,3,2,0,0,2,0,0,0,0,,"(Catch Review A tables) TIM Model"
+"Brookings Troll",16,4,2,0,0,0,0,0,0,0,"(Catch Review A tables) TIM Model","(Catch Review A tables) TIM Model"
+"Newport Sport",17,1,8,0,2,22,0.14,0.06,0.02,0.05,"(Catch Review A tables) CNR Model","(Catch Review A tables) CNR Model"
+"Newport Sport",17,2,8,0,2125,0,0.14,0.06,0.02,0.05,"(Catch Review A tables) CNR Model","(Catch Review A tables) CNR Model"
+"Newport Sport",17,3,8,0,6042,0,0.14,0.06,0.02,0.05,"(Catch Review A tables) CNR Model","(Catch Review A tables) CNR Model"
+"Newport Sport",17,4,2,3095,0,100,0.14,0.06,0.02,0.05,"(Catch Review A tables) CNR Model","(Catch Review A tables) CNR Model"
+"Newport Troll",18,1,2,0,0,105,0,0,0,0,"(Catch Review A tables) TIM Model","(Catch Review A tables) TIM Model"
+"Newport Troll",18,2,2,0,0,102,0,0,0,0,"(Catch Review A tables) TIM Model","(Catch Review A tables) TIM Model"
+"Newport Troll",18,3,2,0,0,246,0,0,0,0,"(Catch Review A tables) TIM Model","(Catch Review A tables) TIM Model"
+"Newport Troll",18,4,2,0,0,10,0,0,0,0,"(Catch Review A tables) TIM Model","(Catch Review A tables) TIM Model"
+"Coos Bay Sport",19,1,8,0,4,39,0.14,0.06,0.02,0.05,"(Catch Review A tables) CNR Model","(Catch Review A tables) CNR Model"
+"Coos Bay Sport",19,2,8,0,579,0,0.14,0.06,0.02,0.05,"(Catch Review A tables) CNR Model","(Catch Review A tables) CNR Model"
+"Coos Bay Sport",19,3,8,0,887,0,0.14,0.06,0.02,0.05,"(Catch Review A tables) CNR Model","(Catch Review A tables) CNR Model"
+"Coos Bay Sport",19,4,2,2983,0,97,0.14,0.06,0.02,0.05,"(Catch Review A tables) CNR Model","(Catch Review A tables) CNR Model"
+"Coos Bay Troll",20,1,2,0,0,128,0,0,0,0,"(Catch Review A tables) TIM Model","(Catch Review A tables) TIM Model"
+"Coos Bay Troll",20,2,2,0,0,31,0,0,0,0,"(Catch Review A tables) TIM Model","(Catch Review A tables) TIM Model"
+"Coos Bay Troll",20,3,2,0,0,22,0,0,0,0,"(Catch Review A tables) TIM Model","(Catch Review A tables) TIM Model"
+"Coos Bay Troll",20,4,2,0,0,2,0,0,0,0,"(Catch Review A tables) TIM Model","(Catch Review A tables) TIM Model"
+"Tillamook Sport",21,1,8,0,25,15,0.14,0.06,0.02,0.05,"(Catch Review A tables) CNR Model","(Catch Review A tables) CNR Model"
+"Tillamook Sport",21,2,8,0,274,0,0.14,0.06,0.02,0.05,"(Catch Review A tables) CNR Model","(Catch Review A tables) CNR Model"
+"Tillamook Sport",21,3,8,0,1652,0,0.14,0.06,0.02,0.05,"(Catch Review A tables) CNR Model","(Catch Review A tables) CNR Model"
+"Tillamook Sport",21,4,2,858,0,100,0.14,0.06,0.02,0.05,"(Catch Review A tables) CNR Model","(Catch Review A tables) CNR Model"
+"Tillamook Troll",22,1,2,0,0,41,0,0,0,0,"(Catch Review A tables) TIM Model","(Catch Review A tables) TIM Model"
+"Tillamook Troll",22,2,2,0,0,3,0,0,0,0,"(Catch Review A tables) TIM Model","(Catch Review A tables) TIM Model"
+"Tillamook Troll",22,3,2,0,0,16,0,0,0,0,"(Catch Review A tables) TIM Model","(Catch Review A tables) TIM Model"
+"Tillamook Troll",22,4,2,0,0,3,0,0,0,0,"(Catch Review A tables) TIM Model","(Catch Review A tables) TIM Model"
+"Col. Rvr. Buoy 10 Sport",23,2,1,0,0,0,0,0,0,0,,""
+"Col. Rvr. Buoy 10 Sport",23,3,1,0,0,0,0,0,0,0,,""
+"Col. Rvr. Buoy 10 Sport",23,4,8,0,25000,0,0.14,0.06,0.02,0.05,,""
+"Col. Rvr. Buoy 10 Sport",23,5,1,0,0,0,0,0,0,0,,""
+"Col. Rvr. Lower R Sport",24,5,1,407.3035,0,0,0,0,0,0,,""
+"Col. Rvr. Lower R Net",25,4,1,0,0,0,0,0,0,0,,""
+"Col. Rvr. Lower R Net",25,5,1,75238.8094,0,0,0,0,0,0,,""
+"Col. Rvr. Youngs Bay Net",26,4,1,0,0,0,0,0,0,0,,""
+"Col. Rvr. Youngs Bay Net",26,5,1,14451.369,0,0,0,0,0,0,,""
+"Col. Rvr. Ore Trib Spt",27,5,1,1310.1415,0,0,0,0,0,0,,""
+"Clackamas R Sport",28,5,1,374.8501,0,0,0,0,0,0,,""
+"Sandy R Sport",29,5,1,703.9296,0,0,0,0,0,0,,""
+"Col. Rvr. Wash Trib Spt",30,5,1,3258.2876,0,0,0,0,0,0,,""
+"Col. Rvr. Sport Above Bonneville",31,5,1,0,0,0,0,0,0,0,,""
+"Col. Rvr. Net Above Bonneville",32,4,1,0,0,0,0,0,0,0,,""
+"Col. Rvr. Net Above Bonneville",32,5,1,0,0,0,0,0,0,0,,""
+"WA Area 1 & Astoria Sport",33,1,8,0,993,0,0.14,0.06,0.02,0.05,,""
+"WA Area 1 & Astoria Sport",33,2,8,0,4473,0,0.14,0.06,0.02,0.05,,""
+"WA Area 1 & Astoria Sport",33,3,8,0,14677,0,0.14,0.06,0.02,0.05,,""
+"WA Area 1 & Astoria Sport",33,4,8,0,857,0,0.14,0.06,0.02,0.05,,""
+"WA Area 1 & Astoria Troll",34,1,2,0,0,1490,0,0,0,0,,""
+"WA Area 1 & Astoria Troll",34,2,8,0,606,0,0.26,0.06,0.02,0.05,,""
+"WA Area 1 & Astoria Troll",34,3,8,0,544,0,0.26,0.06,0.02,0.05,,""
+"WA Area 1 & Astoria Troll",34,4,8,0,1038,0,0.26,0.06,0.02,0.05,,""
+"WA Area 1 & Astoria Troll",34,5,1,0,0,0,0,0,0,0,,""
+"WA Area 2 Non-Treaty Troll",35,1,2,0,0,860,0,0,0,0,,""
+"WA Area 2 Non-Treaty Troll",35,2,8,0,669,0,0.26,0.06,0.02,0.05,,""
+"WA Area 2 Non-Treaty Troll",35,3,8,0,743,0,0.26,0.06,0.02,0.05,,""
+"WA Area 2 Non-Treaty Troll",35,4,8,0,672,0,0.26,0.06,0.02,0.05,,""
+"WA Area 2 Treaty Troll",36,1,2,0,0,2,0,0,0,0,,""
+"WA Area 2 Treaty Troll",36,2,2,62,0,0,0,0,0,0,,""
+"WA Area 2 Treaty Troll",36,3,2,140,0,0,0,0,0,0,,""
+"WA Area 2 Treaty Troll",36,4,2,70,0,0,0,0,0,0,,""
+"WA Area 2 Sport",37,1,8,0,0,0,0.14,0.06,0.02,0.05,,""
+"WA Area 2 Sport",37,2,8,0,6140,0,0.14,0.06,0.02,0.05,,""
+"WA Area 2 Sport",37,3,8,0,8556,0,0.14,0.06,0.02,0.05,,""
+"WA Area 2 Sport",37,4,8,0,844,0,0.14,0.06,0.02,0.05,,""
+"WA Area 3 Non-Treaty Troll",38,1,2,0,0,194,0,0,0,0,,""
+"WA Area 3 Non-Treaty Troll",38,2,8,0,313,0,0.26,0.06,0.02,0.05,,""
+"WA Area 3 Non-Treaty Troll",38,3,8,0,659,0,0.26,0.06,0.02,0.05,,""
+"WA Area 3 Non-Treaty Troll",38,4,8,0,244,0,0.26,0.06,0.02,0.05,,""
+"WA Area 3 Treaty Troll",39,1,2,0,0,16,0,0,0,0,,""
+"WA Area 3 Treaty Troll",39,2,2,1017,0,0,0,0,0,0,,""
+"WA Area 3 Treaty Troll",39,3,2,2166,0,0,0,0,0,0,,""
+"WA Area 3 Treaty Troll",39,4,2,535,0,0,0,0,0,0,,""
+"WA Area 3 Sport",40,1,8,0,24,0,0.14,0.06,0.02,0.05,,""
+"WA Area 3 Sport",40,2,8,0,172,0,0.14,0.06,0.02,0.05,,""
+"WA Area 3 Sport",40,3,8,0,827,0,0.14,0.06,0.02,0.05,,""
+"WA Area 3 Sport",40,4,8,0,67,0,0.14,0.06,0.02,0.05,,""
+"WA Area 4 Sport",41,1,8,0,121,0,0.14,0.06,0.02,0.05,,""
+"WA Area 4 Sport",41,2,8,0,2206,0,0.14,0.06,0.02,0.05,,""
+"WA Area 4 Sport",41,3,8,0,1947,0,0.14,0.06,0.02,0.05,,""
+"WA Area 4 Sport",41,4,8,0,95,0,0.14,0.06,0.02,0.05,,""
+"WA Area 4/4B Non-Treaty Troll",42,1,2,0,0,57,0,0,0,0,,""
+"WA Area 4/4B Non-Treaty Troll",42,2,8,0,21,0,0.26,0.06,0.02,0.05,,""
+"WA Area 4/4B Non-Treaty Troll",42,3,8,0,50,0,0.26,0.06,0.02,0.05,,""
+"WA Area 4/4B Non-Treaty Troll",42,4,8,0,42,0,0.26,0.06,0.02,0.05,,""
+"WA Area 4/4B Non-Treaty Troll",42,5,2,0,0,0,0,0,0,0,,""
+"WA Area 4/4B Treaty Troll",43,1,2,0,0,84,0,0,0,0,,""
+"WA Area 4/4B Treaty Troll",43,2,2,1338,0,0,0,0,0,0,,""
+"WA Area 4/4B Treaty Troll",43,3,2,4744,0,0,0,0,0,0,,""
+"WA Area 4/4B Treaty Troll",43,4,2,2428,0,0,0,0,0,0,,""
+"WA Area 4/4B Treaty Troll",43,5,2,0,0,3,0,0,0,0,,""
+"WA Area 5-6-6C Troll",44,1,2,39,0,0,0,0,0,0,,""
+"WA Area 5-6-6C Troll",44,2,2,14,0,0,0,0,0,0,,""
+"WA Area 5-6-6C Troll",44,3,2,149,0,0,0,0,0,0,,""
+"WA Area 5-6-6C Troll",44,4,2,81,0,0,0,0,0,0,,""
+"WA Area 5-6-6C Troll",44,5,2,0,0,1,0,0,0,0,,""
+"Willapa Bay Sport (2.1)",45,5,2,2837,0,0,0,0,0,0,,""
+"Willapa Tributary Sport",46,5,2,2329,0,0,0,0,0,0,,""
+"Willapa Bay & FW Trib Net",47,3,2,0,0,0,0,0,0,0,,""
+"Willapa Bay & FW Trib Net",47,4,2,2113,0,0,0,0,0,0,,""
+"Willapa Bay & FW Trib Net",47,5,2,3290,0,0,0,0,0,0,,""
+"Grays Harbor Sport (2.2)",48,3,2,0,0,0,0,0,0,0,,""
+"Grays Harbor Sport (2.2)",48,4,2,181,0,0,0,0,0,0,,""
+"Grays Harbor Sport (2.2)",48,5,2,390,0,0,0,0,0,0,,""
+"South Grays Harbor Sport",49,5,2,16,0,0,0,0,0,0,,""
+"Grays Harbor Estuary Net",50,1,2,0,0,0,0,0,0,0,,""
+"Grays Harbor Estuary Net",50,4,2,0,0,0,0,0,0,0,,""
+"Grays Harbor Estuary Net",50,5,2,1487,0,0,0,0,0,0,,""
+"Humptulips R Sport",51,5,2,1653,0,0,0,0,0,0,,""
+"Lower Chehalis R Net",52,4,2,2644,0,0,0,0,0,0,,""
+"Lower Chehalis R Net",52,5,2,5144,0,0,0,0,0,0,,""
+"Chehalis R Sport",54,5,2,3184,0,0,0,0,0,0,,""
+"Humptulips R Net",55,5,2,2111,0,0,0,0,0,0,,""
+"Upper Chehalis R Net",56,5,2,1436,0,0,0,0,0,0,,""
+"Wynochee R Sport",58,5,2,0,0,0,0,0,0,0,,""
+"Hoquiam R Sport",59,5,2,0,0,0,0,0,0,0,,""
+"Wishkah R Sport",60,5,2,0,0,0,0,0,0,0,,""
+"Satsop R Sport",61,5,2,0,0,0,0,0,0,0,,""
+"Quinault R Net",63,1,2,0,0,0,0,0,0,0,,""
+"Quinault R Net",63,2,2,0,0,0,0,0,0,0,,""
+"Quinault R Net",63,3,2,0,0,0,0,0,0,0,,""
+"Quinault R Net",63,4,2,13609,0,0,0,0,0,0,,""
+"Quinault R Net",63,5,2,17896,0,0,0,0,0,0,,""
+"Queets R Sport",65,5,2,205,0,0,0,0,0,0,,""
+"Clearwater R Sport",66,5,2,0,0,0,0,0,0,0,,""
+"Salmon R Sport (Queets)",67,5,2,0,0,0,0,0,0,0,,""
+"Queets R Net",68,3,2,0,0,0,0,0,0,0,,""
+"Queets R Net",68,4,2,6349,0,0,0,0,0,0,,""
+"Queets R Net",68,5,2,463,0,0,0,0,0,0,,""
+"Queets R C&S",69,5,2,0,0,0,0,0,0,0,,""
+"Quillayute R Sport",70,5,2,1650,0,0,0,0,0,0,,""
+"Quillayute R Net",71,4,2,1195,0,0,0,0,0,0,,""
+"Quillayute R Net",71,5,2,4201,0,0,0,0,0,0,,""
+"Quillayute R C&S",72,5,2,0,0,0,0,0,0,0,,""
+"Hoh R Sport",73,5,2,479,0,0,0,0,0,0,,""
+"Hoh R Net",74,4,2,150,0,0,0,0,0,0,,""
+"Hoh R Net",74,5,2,2048,0,0,0,0,0,0,,""
+"Hoh R C&S",75,5,2,0,0,0,0,0,0,0,,""
+"Makah Freshwater Net",77,5,1,3328.257,0,0,0,0,0,0,,""
+"WA Area 4B-5-6C Non-Treaty Net",80,1,2,0,0,0,0,0,0,0,,""
+"WA Area 4B-5-6C Non-Treaty Net",80,2,2,0,0,0,0,0,0,0,,""
+"WA Area 4B-5-6C Non-Treaty Net",80,3,2,0,0,0,0,0,0,0,,""
+"WA Area 4B-5-6C Non-Treaty Net",80,4,2,0,0,0,0,0,0,0,,""
+"WA Area 4B-5-6C Non-Treaty Net",80,5,2,0,0,0,0,0,0,0,,""
+"WA Area 4B-5-6C Treaty Net",81,1,2,0,0,0,0,0,0,0,,""
+"WA Area 4B-5-6C Treaty Net",81,2,2,62,0,0,0,0,0,0,,""
+"WA Area 4B-5-6C Treaty Net",81,3,2,517,0,0,0,0,0,0,,""
+"WA Area 4B-5-6C Treaty Net",81,4,2,25,0,0,0,0,0,0,,""
+"WA Area 4B-5-6C Treaty Net",81,5,2,667,0,0,0,0,0,0,,""
+"6D Non-Treaty Net (Dungeness Bay & R)",82,4,2,582.2809,0,0,0,0,0,0,,""
+"6D Non-Treaty Net (Dungeness Bay & R)",82,5,2,1772.0812,0,0,0,0,0,0,,""
+"6D Treaty Net (Dungeness Bay & R)",83,4,2,485.8474,0,0,0,0,0,0,,""
+"6D Treaty Net (Dungeness Bay & R)",83,5,2,703.2002,0,0,0,0,0,0,,""
+"Elwha R Net",84,5,2,0,0,0,0,0,0,0,,""
+"West JDF Straits Trib Net",85,5,2,0,0,0,0,0,0,0,,""
+"WA Area 7-7A Non-Treaty Net",87,2,2,0,0,2,0,0,0,0,,""
+"WA Area 7-7A Non-Treaty Net",87,3,28,17,3,198,1e-04,1e-04,1e-04,1e-04,,""
+"WA Area 7-7A Non-Treaty Net",87,4,28,56,88,786,1e-04,1e-04,1e-04,1e-04,,""
+"WA Area 7-7A Non-Treaty Net",87,5,2,655,0,2098,0,0,0,0,,""
+"WA Area 7-7A Treaty Net",88,2,2,0,0,0,0,0,0,0,,""
+"WA Area 7-7A Treaty Net",88,3,28,529,1,0,1e-04,1e-04,1e-04,1e-04,,""
+"WA Area 7-7A Treaty Net",88,4,28,1329,10,0,1e-04,1e-04,1e-04,1e-04,,""
+"WA Area 7-7A Treaty Net",88,5,28,6969,100,0,1e-04,1e-04,1e-04,1e-04,,""
+"West JDF Straits Trib Sport",90,5,2,0,0,0,0,0,0,0,,""
+"WA Area 5 Sport (Sekiu)",91,1,2,0,0,1,0,0,0,0,,""
+"WA Area 5 Sport (Sekiu)",91,2,7,5299,2564.2275,0,0.07,0.12,0.01,0.05,,""
+"WA Area 5 Sport (Sekiu)",91,3,7,12654,5927.4825,0,0.07,0.12,0.01,0.05,,""
+"WA Area 5 Sport (Sekiu)",91,4,7,21479,9993.913,0,0.07,0.12,0.01,0.05,,""
+"WA Area 5 Sport (Sekiu)",91,5,2,0,0,0,0.07,0.14,0.01,0.05,,""
+"WA Area 6 Sport (Port Angeles)",92,1,2,0,0,7,0,0,0,0,,""
+"WA Area 6 Sport (Port Angeles)",92,2,7,117,52.0071,0,0.07,0.16,0.02,0.05,,""
+"WA Area 6 Sport (Port Angeles)",92,3,7,849,381.3507,0,0.07,0.16,0.02,0.05,,""
+"WA Area 6 Sport (Port Angeles)",92,4,7,1616,679.4994,0,0.07,0.16,0.02,0.05,,""
+"WA Area 6 Sport (Port Angeles)",92,5,2,0,0,0,0,0,0,0,,""
+"WA Area 7 Sport (San Juan Islands)",93,1,2,0,0,0,0,0,0,0,,""
+"WA Area 7 Sport (San Juan Islands)",93,2,2,114,0,0,0,0,0,0,,""
+"WA Area 7 Sport (San Juan Islands)",93,3,2,268,202.3492,0,0.07,0.06,0.04,0.05,,""
+"WA Area 7 Sport (San Juan Islands)",93,4,2,956,956,0,0.07,0.06,0.04,0.05,,""
+"WA Area 7 Sport (San Juan Islands)",93,5,2,0,810,0,0.07,0.06,0.04,0.05,,""
+"Dungeness R Sport",94,5,8,1058,1042,0,0.1,0.15,0.08,0.05,,""
+"Elwha R Sport",95,5,2,0,0,0,0,0,0,0,,""
+"WA Area 7B-7C-7D Non-Treaty Net",96,3,2,0,0,0,0,0,0,0,,""
+"WA Area 7B-7C-7D Non-Treaty Net",96,4,2,4866.3599,0,0,0,0,0,0,,""
+"WA Area 7B-7C-7D Non-Treaty Net",96,5,2,405.4433,0,0,0,0,0,0,,""
+"WA Area 7B-7C-7D Treaty Net",97,3,2,0,0,0,0,0,0,0,,""
+"WA Area 7B-7C-7D Treaty Net",97,4,2,16191.5776,0,0,0,0,0,0,,""
+"WA Area 7B-7C-7D Treaty Net",97,5,2,2133.6192,0,0,0,0,0,0,,""
+"Nooksack R Net",98,5,2,17220.8093,0,0,0,0,0,0,,""
+"Nooksack R Sport",99,5,2,1975,2218,0,0.1,0.15,0.08,0.05,,""
+"Samish R Sport",100,5,2,182,0,0,0,0,0,0,,""
+"WA Area 8 Non-Treaty Net (Skagit)",101,3,2,0,0,0,0,0,0,0,,""
+"WA Area 8 Non-Treaty Net (Skagit)",101,4,2,0,0,0,0,0,0,0,,""
+"WA Area 8 Non-Treaty Net (Skagit)",101,5,2,0,0,0,0,0,0,0,,""
+"WA Area 8 Treaty Net (Skagit)",102,3,2,0,0,0,0,0,0,0,,""
+"WA Area 8 Treaty Net (Skagit)",102,4,2,235.7375,0,0,0,0,0,0,,""
+"WA Area 8 Treaty Net (Skagit)",102,5,2,150.9529,0,0,0,0,0,0,,""
+"Skagit R Net",103,5,2,7815.7649,0,0,0,0,0,0,,""
+"Skagit River Test Net",104,5,2,1215.4225,0,0,0,0,0,0,,""
+"Swinomish Channel Net",105,5,2,0,0,0,0,0,0,0,,""
+"WA Area 8.1 Sport (Skagit Bay)",106,1,2,0,0,0,0,0,0,0,,""
+"WA Area 8.1 Sport (Skagit Bay)",106,2,2,0,0,0,0,0,0,0,,""
+"WA Area 8.1 Sport (Skagit Bay)",106,3,2,331,0,0,0,0,0,0,,""
+"WA Area 8.1 Sport (Skagit Bay)",106,4,2,1700,0,0,0,0,0,0,,""
+"WA Area 8.1 Sport (Skagit Bay)",106,5,2,0,0,1,0,0,0,0,,""
+"WA Area 9 Sport (Admirality Inlet)",107,1,7,3,1.043,2,0.07,0.39,0.05,0.05,,""
+"WA Area 9 Sport (Admirality Inlet)",107,2,7,1362,336.6517,0,0.07,0.39,0.05,0.05,,""
+"WA Area 9 Sport (Admirality Inlet)",107,3,7,3241,1328.6292,0,0.07,0.39,0.05,0.05,,""
+"WA Area 9 Sport (Admirality Inlet)",107,4,7,28622,9541.5481,0,0.07,0.39,0.05,0.05,,""
+"WA Area 9 Sport (Admirality Inlet)",107,5,2,0,0,0,0.07,0.15,0.08,0.05,,""
+"Skagit R Sport",108,5,2,2127.385,0,0,0,0,0,0,,""
+"WA Area 8A Non-Treaty Net",109,3,2,0,0,0,0,0,0,0,,""
+"WA Area 8A Non-Treaty Net",109,4,2,62.4997,0,0,0,0,0,0,,""
+"WA Area 8A Non-Treaty Net",109,5,2,0,0,0,0,0,0,0,,""
+"WA Area 8A Treaty Net",110,3,2,0,0,0,0,0,0,0,,""
+"WA Area 8A Treaty Net",110,4,2,10718.1198,0,0,0,0,0,0,,""
+"WA Area 8A Treaty Net",110,5,2,6664.3496,0,0,0,0,0,0,,""
+"WA Area 8D Non-Treaty Net (Tulalip Bay)",111,4,2,182.6139,0,0,0,0,0,0,,""
+"WA Area 8D Non-Treaty Net (Tulalip Bay)",111,5,2,334.9971,0,150,0,0,0,0,,""
+"WA Area 8D Treaty Net (Tulalip Bay)",112,4,2,16536.5041,0,0,0,0,0,0,,""
+"WA Area 8D Treaty Net (Tulalip Bay)",112,5,2,8404.3549,0,0,0,0,0,0,,""
+"Stillaguamish R Net",113,5,2,1600,0,0,0,0,0,0,,""
+"Snohomish R Net",114,5,2,0,0,0,0,0,0,0,,""
+"WA Area 8.2 Sport (Everett)",115,1,2,1,0,1,0,0,0,0,,""
+"WA Area 8.2 Sport (Everett)",115,2,2,4,0,0,0,0,0,0,,""
+"WA Area 8.2 Sport (Everett)",115,3,2,479,56.3551,0,0.07,0.15,0.08,0.05,,""
+"WA Area 8.2 Sport (Everett)",115,4,2,5699,37.5478,0,0.07,0.15,0.08,0.05,,""
+"WA Area 8.2 Sport (Everett)",115,5,2,4,0,2,0,0,0,0,,""
+"Stillaguamish R Sport",116,5,2,0,0,16,0,0,0,0,,""
+"Snohomish R Sport",117,5,2,4143,1777,0,0.1,0.15,0.08,0.05,,""
+"WA Area 10 Sport (Seattle)",118,1,2,356,127.398,0,0.07,0.49,0.03,0.05,,""
+"WA Area 10 Sport (Seattle)",118,2,2,1490,622.7909,0,0.07,0.49,0.03,0.05,,""
+"WA Area 10 Sport (Seattle)",118,3,2,2505,1020.5954,0,0.07,0.49,0.03,0.05,,""
+"WA Area 10 Sport (Seattle)",118,4,2,9861,4054.2287,0,0.07,0.49,0.03,0.05,,""
+"WA Area 10 Sport (Seattle)",118,5,2,1517,583.1338,0,0.07,0.49,0.03,0.05,,""
+"WA Area 10 Non-Treaty Net (Seattle)",119,3,2,0,0,0,0,0,0,0,,""
+"WA Area 10 Non-Treaty Net (Seattle)",119,4,2,45.0269,0,0,0,0,0,0,,""
+"WA Area 10 Non-Treaty Net (Seattle)",119,5,2,246.6467,0,0,0,0,0,0,,""
+"WA Area 10 Treaty Net (Seattle)",120,3,2,0,0,0,0,0,0,0,,""
+"WA Area 10 Treaty Net (Seattle)",120,4,2,2046,0,0,0,0,0,0,,""
+"WA Area 10 Treaty Net (Seattle)",120,5,2,597.5,0,0,0,0,0,0,,""
+"WA Area 10A Non-Treaty Net (Elliott Bay)",121,4,2,0,0,0,0,0,0,0,,""
+"WA Area 10A Non-Treaty Net (Elliott Bay)",121,5,2,0,0,0,0,0,0,0,,""
+"WA Area 10A Treaty Net (Elliott Bay)",122,4,2,1229.7042,0,0,0,0,0,0,,""
+"WA Area 10A Treaty Net (Elliott Bay)",122,5,2,55.2262,0,0,0,0,0,0,,""
+"WA Area 10E Non-Treaty Net (East Kitsap)",123,4,2,0,0,0,0.07,0.15,0.08,0.05,,""
+"WA Area 10E Non-Treaty Net (East Kitsap)",123,5,2,0,0,0,0,0,0,0,,""
+"WA Area 10E Treaty Net (East Kitsap)",124,4,2,213.3886,0,0,0,0,0,0,,""
+"WA Area 10E Treaty Net (East Kitsap)",124,5,2,323.793,0,0,0,0,0,0,,""
+"WA Area 10F-G Treaty Net (Lake Union)",125,3,2,0,0,0,0,0,0,0,,""
+"WA Area 10F-G Treaty Net (Lake Union)",125,4,2,2965.9986,0,0,0,0,0,0,,""
+"WA Area 10F-G Treaty Net (Lake Union)",125,5,2,1499.1254,0,0,0,0,0,0,,""
+"Green/Duwamish R Net",126,5,2,17856.4824,0,0,0,0,0,0,,""
+"Green/Duwamish R Sport",127,5,2,3042,0,0,0,0,0,0,,""
+"Lk Wash/Sammamish/Tribs Spt",128,5,2,260.2,0,0,0,0,0,0,,""
+"WA Area 11 Sport (Tacoma)",129,1,2,19,13.6882,11,0.07,0.15,0.08,0.05,,""
+"WA Area 11 Sport (Tacoma)",129,2,2,104,79.9575,0,0.07,0.15,0.08,0.05,,""
+"WA Area 11 Sport (Tacoma)",129,3,2,464,300.6549,0,0.07,0.15,0.08,0.05,,""
+"WA Area 11 Sport (Tacoma)",129,4,2,1635,1212.3733,0,0.07,0.15,0.08,0.05,,""
+"WA Area 11 Sport (Tacoma)",129,5,2,348,267.6206,0,0.07,0.15,0.08,0.05,,""
+"WA Area 11 Non-Treaty Net (E/W Pass)",130,4,2,0,0,0,0,0,0,0,,""
+"WA Area 11 Non-Treaty Net (E/W Pass)",130,5,2,64.3661,0,0,0,0,0,0,,""
+"WA Area 11 Treaty Net (E/W Pass)",131,4,2,174,0,0,0,0,0,0,,""
+"WA Area 11 Treaty Net (E/W Pass)",131,5,2,87,0,0,0,0,0,0,,""
+"WA Area 11A Non-Treaty Net (Comm. Bay)",132,4,2,0,0,0,0,0,0,0,,""
+"WA Area 11A Non-Treaty Net (Comm. Bay)",132,5,2,0,0,0,0,0,0,0,,""
+"WA Area 11A Treaty Net (Comm. Bay)",133,4,2,115.4966,0,0,0,0,0,0,,""
+"WA Area 11A Treaty Net (Comm. Bay)",133,5,2,128.7393,0,0,0,0,0,0,,""
+"Puyallup R Net",134,5,2,3495.6796,0,0,0,0,0,0,,""
+"Puyallup R Sport",135,5,2,4207,0,0,0,0,0,0,,""
+"WAArea 13 Marine Sport",136,1,8,6,6,0,0.07,0.39,0.1,0.05,,""
+"WAArea 13 Marine Sport",136,2,8,5,5,0,0.07,0.39,0.1,0.05,,""
+"WAArea 13 Marine Sport",136,3,8,13,13,0,0.07,0.39,0.1,0.05,,""
+"WAArea 13 Marine Sport",136,4,8,208,208,0,0.07,0.39,0.1,0.05,,""
+"WAArea 13 Marine Sport",136,5,8,190,190,0,0.07,0.39,0.1,0.05,,""
+"Area 13 Non-Treaty Net (So Puget Sound)",137,4,2,0,0,0,0,0,0,0,,""
+"Area 13 Non-Treaty Net (So Puget Sound)",137,5,2,0,0,0,0,0,0,0,,""
+"Area 13 Treaty Net (So Puget Sound)",138,4,2,28.0425,0,0,0,0,0,0,,""
+"Area 13 Treaty Net (So Puget Sound)",138,5,2,16.2018,0,0,0,0,0,0,,""
+"Area 13C Non-Treaty Net (Chambers Bay)",139,4,2,0,0,0,0,0,0,0,,""
+"Area 13C Non-Treaty Net (Chambers Bay)",139,5,2,0,0,0,0,0,0,0,,""
+"Area 13C Treaty Net (Chambers Bay)",140,4,2,0,0,0,0,0,0,0,,""
+"Area 13C Treaty Net (Chambers Bay)",140,5,2,0,0,0,0,0,0,0,,""
+"Area 13A Non-Treaty Net (Carr Inlet)",141,4,2,0,0,0,0,0,0,0,,""
+"Area 13A Non-Treaty Net (Carr Inlet)",141,5,2,0,0,0,0,0,0,0,,""
+"Area 13A Treaty Net (Carr Inlet)",142,4,2,394.1921,0,0,0,0,0,0,,""
+"Area 13A Treaty Net (Carr Inlet)",142,5,2,275.0162,0,0,0,0,0,0,,""
+"Area 13D Non-Treaty Net",143,4,2,0,0,0,0,0,0,0,,""
+"Area 13D Non-Treaty Net",143,5,2,0,0,0,0,0,0,0,,""
+"Area 13D Treaty Net",144,4,2,3544.6301,0,0,0,0,0,0,,""
+"Area 13D Treaty Net",144,5,2,6752.0338,0,0,0,0,0,0,,""
+"Area 13F-13K Non-Treaty Net",145,5,2,0,0,0,0,0,0,0,,""
+"Area 13F-13K Treaty Net",146,5,2,425,0,0,0,0,0,0,,""
+"Nisqually R Net",147,5,2,334.5777,0,0,0,0,0,0,,""
+"McAllister Creek Net",148,5,2,0,0,0,0,0,0,0,,""
+"13D-13K Trib Sport",149,5,2,224.2,0,0,0,0,0,0,,""
+"Nisqually R Sport",150,5,2,0,0,0,0,0,0,0,,""
+"Deschutes R Sport",151,5,2,0,0,0,0,0,0,0,,""
+"Area 12 Marine Sport",152,3,2,977,0,0,0,0,0,0,,""
+"Area 12 Marine Sport",152,4,2,1496,0,0,0,0,0,0,,""
+"Area 12 Marine Sport",152,5,2,324,0,0,0,0,0,0,,""
+"Area 12-12B Hood Canal Non-Treaty Net",153,3,2,0,0,0,0,0,0,0,,""
+"Area 12-12B Hood Canal Non-Treaty Net",153,4,2,0,0,0,0,0,0,0,,""
+"Area 12-12B Hood Canal Non-Treaty Net",153,5,2,7231.4149,0,0,0,0,0,0,,""
+"Area 12-12B Hood Canal Treaty Net",154,3,2,0,0,0,0,0,0,0,,""
+"Area 12-12B Hood Canal Treaty Net",154,4,2,1198.368,0,0,0,0,0,0,,""
+"Area 12-12B Hood Canal Treaty Net",154,5,2,6896.153,0,46,0,0,0,0,,""
+"Area 9/9A Non-Treaty Net",155,4,2,2255.285,0,0,0,0,0,0,,""
+"Area 9/9A Non-Treaty Net",155,5,2,364.1448,0,0,0,0,0,0,,""
+"Area 9/9A Treaty Net (On Res)",156,4,2,8839.6738,0,0,0,0,0,0,,""
+"Area 9/9A Treaty Net (On Res)",156,5,2,942.7731,0,108,0,0,0,0,,""
+"Area 12A Non-Treaty Net (Quilcene Bay)",157,4,2,1055.8565,0,0,0,0,0,0,,""
+"Area 12A Non-Treaty Net (Quilcene Bay)",157,5,2,0,0,0,0,0,0,0,,""
+"Area 12A Treaty Net (Quilcene Bay)",158,4,2,6004.7086,0,0,0,0,0,0,,""
+"Area 12A Treaty Net (Quilcene Bay)",158,5,2,713.3058,0,0,0,0,0,0,,""
+"Area 12C-12D Non-Treaty Net (SE Hood Canal)",159,4,2,0,0,50,0,0,0,0,,""
+"Area 12C-12D Non-Treaty Net (SE Hood Canal)",159,5,2,4.4168,0,0,0,0,0,0,,""
+"Area 12C-12D Treaty Net (SE Hood Canal)",160,4,2,18.2974,0,0,0,0,0,0,,""
+"Area 12C-12D Treaty Net (SE Hood Canal)",160,5,2,3867.3596,0,0,0,0,0,0,,""
+"Skokomish R Net",161,5,2,2358.4764,0,0,0,0,0,0,,""
+"Quilcene R Net",162,5,2,1200,0,0,0,0,0,0,,""
+"12, 12B Trib FW Sport",163,5,2,0,0,0,0,0,0,0,,""
+"12A Trib FW Sport",164,5,2,2883.0541,0,0,0,0,0,0,,""
+"12C, 12D Trib FW Sport",165,5,2,99.2,0,0,0,0,0,0,,""
+"Skokomish R Sport",166,5,2,0,0,0,0,0,0,0,,""
+"Lower Fraser R Term Catch",167,5,2,3491,0,0,0,0,0,0,,""
+"Upper Fraser R Term Catch",168,5,2,485,0,0,0,0,0,0,,""
+"Lower Fraser River Sport",169,1,1,0,0,0,0.26,0.03,0.02,0.05,,""
+"Lower Fraser River Sport",169,2,1,0,0,0,0.26,0.03,0.02,0.05,,""
+"Lower Fraser River Sport",169,3,1,0,0,0,0.26,0.03,0.02,0.05,,""
+"Lower Fraser River Sport",169,4,1,0,0,24,0.26,0.03,0.02,0.05,,""
+"Lower Fraser River Sport",169,5,7,0,282.4711,185,0.26,0.03,0.02,0.05,,""
+"Johnstone Strait Troll",170,1,1,0,0,0,0.26,0.03,0.02,0.05,,""
+"Johnstone Strait Troll",170,2,1,0,0,0,0.26,0.03,0.02,0.05,,""
+"Johnstone Strait Troll",170,3,1,0,0,0,0.26,0.03,0.02,0.05,,""
+"Johnstone Strait Troll",170,4,1,0,0,0,0.26,0.03,0.02,0.05,,""
+"Johnstone Strait Troll",170,5,1,0,0,0,0.26,0.03,0.02,0.05,,""
+"BC Northern Troll",171,1,1,0,0,1000,0,0,0,0,,""
+"BC Northern Troll",171,2,1,145268.5945,0,1394,0,0,0,0,,""
+"BC Northern Troll",171,3,1,46188.6989,0,7,0,0,0,0,,""
+"BC Northern Troll",171,4,1,10627.826,0,9,0,0,0,0,,""
+"BC Northern Troll",171,5,1,0,0,0,0,0,0,0,,""
+"BC North Central Troll",172,1,1,0,0,0,0,0,0,0,,""
+"BC North Central Troll",172,2,1,0,0,0,0,0,0,0,,""
+"BC North Central Troll",172,3,1,3130.2106,0,0,0,0,0,0,,""
+"BC North Central Troll",172,4,1,0,0,0,0,0,0,0,,""
+"BC South Central Troll",173,1,1,0,0,0,0,0,0,0,,""
+"BC South Central Troll",173,2,1,0,0,0,0,0,0,0,,""
+"BC South Central Troll",173,3,1,0,0,0,0,0,0,0,,""
+"BC South Central Troll",173,4,1,0,0,0,0,0,0,0,,""
+"NW Vancouver Island Troll",174,1,1,0,0,9,0.26,0.03,0.02,0.05,,""
+"NW Vancouver Island Troll",174,2,7,0,155.6181,162,0.26,0.03,0.02,0.05,,""
+"NW Vancouver Island Troll",174,3,7,0,4.5445,237,0.26,0.03,0.02,0.05,,""
+"NW Vancouver Island Troll",174,4,7,0,74.5602,109,0.26,0.03,0.02,0.05,,""
+"SW Vancouver Island Troll",175,1,7,0,0.7453,0,0.26,0.03,0.02,0.05,,""
+"SW Vancouver Island Troll",175,2,7,0,19.4232,0,0.26,0.03,0.02,0.05,,""
+"SW Vancouver Island Troll",175,3,7,0,209.8425,85,0.26,0.03,0.02,0.05,,""
+"SW Vancouver Island Troll",175,4,7,0,411.2509,46,0.26,0.03,0.02,0.05,,""
+"Georgia Straits Troll",176,1,1,0,0,0,0.26,0.03,0.02,0.05,,""
+"Georgia Straits Troll",176,2,1,0,0,0,0.26,0.03,0.02,0.05,,""
+"Georgia Straits Troll",176,3,1,0,0,0,0.26,0.03,0.02,0.05,,""
+"Georgia Straits Troll",176,4,1,0,0,0,0.26,0.03,0.02,0.05,,""
+"Georgia Straits Troll",176,5,1,0,0,0,0.26,0.03,0.02,0.05,,""
+"BC Juan de Fuca Troll",177,2,1,0,0,0,0.26,0.03,0.02,0.05,,""
+"BC Juan de Fuca Troll",177,3,1,0,0,0,0.26,0.03,0.02,0.05,,""
+"BC Juan de Fuca Troll",177,4,1,0,0,0,0.26,0.03,0.02,0.05,,""
+"BC Northern Net",178,1,1,0,0,0,0,0,0,0,,""
+"BC Northern Net",178,2,1,712.3864,0,1043,0,0,0,0,,""
+"BC Northern Net",178,3,1,29036.2704,0,614,0,0,0,0,,""
+"BC Northern Net",178,4,1,8489.1783,0,39,0,0,0,0,,""
+"BC Northern Net",178,5,1,0,0,0,0,0,0,0,,""
+"BC Central Net",179,2,1,0,0,0,0,0,0,0,,""
+"BC Central Net",179,3,1,0,0,0,0,0,0,0,,""
+"BC Central Net",179,4,1,0,0,0,0,0,0,0,,""
+"BC Central Net",179,5,1,0,0,0,0,0,0,0,,""
+"NW Vancouver Island Net",180,4,1,0,0,0,0.05,0.03,0.02,0.05,,""
+"NW Vancouver Island Net",180,5,1,0,0,24,0.05,0.03,0.02,0.05,,""
+"SW Vancouver Island Net",181,1,1,0,0,1,0.05,0.03,0.02,0.05,,""
+"SW Vancouver Island Net",181,2,1,0,0,35,0.05,0.03,0.02,0.05,,""
+"SW Vancouver Island Net",181,3,1,0,0,4,0.05,0.03,0.02,0.05,,""
+"SW Vancouver Island Net",181,4,1,0,0,1117,0.05,0.03,0.02,0.05,,""
+"SW Vancouver Island Net",181,5,1,0,0,60,0.05,0.03,0.02,0.05,,""
+"Johnstone Straits Net",182,2,1,0,0,0,0.05,0.03,0.02,0.05,,""
+"Johnstone Straits Net",182,3,1,0,0,0,0.05,0.03,0.02,0.05,,""
+"Johnstone Straits Net",182,4,1,0,0,0,0.05,0.03,0.02,0.05,,""
+"Johnstone Straits Net",182,5,1,0,0,440,0.05,0.03,0.02,0.05,,""
+"Georgia Straits Net",183,2,1,0,0,0,0.05,0.03,0.02,0.05,,""
+"Georgia Straits Net",183,3,1,0,0,0,0.05,0.03,0.02,0.05,,""
+"Georgia Straits Net",183,4,1,0,0,0,0.05,0.03,0.02,0.05,,""
+"Georgia Straits Net",183,5,1,0,0,90,0.05,0.03,0.02,0.05,,""
+"Fraser R Gill Net",184,2,1,0,0,0,0,0,0,0,,""
+"Fraser R Gill Net",184,3,1,20.3735,0,70,0,0,0,0,,""
+"Fraser R Gill Net",184,4,1,11.8984,0,264,0,0,0,0,,""
+"Fraser R Gill Net",184,5,1,0,0,0,0,0,0,0,,""
+"BC Juan de Fuca Net",185,1,1,0,0,0,0.05,0.03,0.02,0.05,,""
+"BC Juan de Fuca Net",185,2,1,0,0,0,0.05,0.03,0.02,0.05,,""
+"BC Juan de Fuca Net",185,3,1,0,0,0,0.05,0.03,0.02,0.05,,""
+"BC Juan de Fuca Net",185,4,1,0,0,0,0.05,0.03,0.02,0.05,,""
+"BC Juan de Fuca Net",185,5,1,0,0,0,0.05,0.03,0.02,0.05,,""
+"Johnstone Strait Sport",186,1,7,0,76.5582,0,0.05,0.03,0.02,0.05,,""
+"Johnstone Strait Sport",186,2,7,0,1406.7051,0,0.05,0.03,0.02,0.05,,""
+"Johnstone Strait Sport",186,3,7,0,977.6576,0,0.05,0.03,0.02,0.05,,""
+"BC Northern Sport",187,1,1,8111.8445,0,279,0,0,0,0,,""
+"BC Northern Sport",187,2,1,34208.7059,0,1080,0,0,0,0,,""
+"BC Northern Sport",187,3,1,26406.3147,0,982,0,0,0,0,,""
+"BC Northern Sport",187,4,1,3179.7567,0,210,0,0,0,0,,""
+"BC Central Sport",188,1,1,134.7528,0,0,0,0,0,0,,""
+"BC Central Sport",188,2,1,1514.0397,0,0,0.05,0.03,0.02,0.05,,""
+"BC Central Sport",188,3,1,6853.5349,0,0,0.05,0.03,0.02,0.05,,""
+"BC Central Sport",188,4,1,559.8321,0,0,0,0,0,0,,""
+"BC Juan de Fuca Sport",189,1,7,0,75.6817,0,0.05,0.03,0.02,0.05,,""
+"BC Juan de Fuca Sport",189,2,7,0,205.0642,0,0.05,0.03,0.02,0.05,,""
+"BC Juan de Fuca Sport",189,3,7,0,1640.9116,0,0.05,0.03,0.02,0.05,,""
+"BC Juan de Fuca Sport",189,4,7,0,3009.9526,0,0.05,0.03,0.02,0.05,,""
+"BC Juan de Fuca Sport",189,5,1,0,0,0,0.05,0.03,0.02,0.05,,""
+"West Coast Vanc Is Sport",190,1,17,459.8605,344.3209,194,0.05,0.03,0.02,0.05,,""
+"West Coast Vanc Is Sport",190,2,17,4611.4849,1381.2932,1609,0.05,0.03,0.02,0.05,,""
+"West Coast Vanc Is Sport",190,3,17,7684.0261,1373.0759,1065,0.05,0.03,0.02,0.05,,""
+"West Coast Vanc Is Sport",190,4,17,2714.8833,213.3342,249,0.05,0.03,0.02,0.05,,""
+"North Georgia Straits Sport",191,1,7,0,509.0058,0,0.05,0.03,0.02,0.05,,""
+"North Georgia Straits Sport",191,2,7,0,2291.318,0,0.05,0.03,0.02,0.05,,""
+"North Georgia Straits Sport",191,3,7,0,1327.3078,0,0.05,0.03,0.02,0.05,,""
+"North Georgia Straits Sport",191,4,7,0,2145.4031,0,0.05,0.03,0.02,0.05,,""
+"North Georgia Straits Sport",191,5,1,0,0,0,0.05,0.03,0.02,0.05,,""
+"South Georgia Straits Sport",192,1,7,0,324.0225,0,0.05,0.03,0.02,0.05,,""
+"South Georgia Straits Sport",192,2,7,0,413.2915,0,0.05,0.03,0.02,0.05,,""
+"South Georgia Straits Sport",192,3,7,0,265.8154,0,0.05,0.03,0.02,0.05,,""
+"South Georgia Straits Sport",192,4,7,0,325.4531,0,0.05,0.03,0.02,0.05,,""
+"South Georgia Straits Sport",192,5,1,0,0,0,0.05,0.03,0.02,0.05,,""
+"SEAK Southwest Troll",194,1,1,6465.8978,0,0,0,0,0,0,,""
+"SEAK Southwest Troll",194,2,1,147299.8859,0,0,0,0,0,0,,""
+"SEAK Southwest Troll",194,3,1,111865.338,0,0,0,0,0,0,,""
+"SEAK Southwest Troll",194,4,1,12368.8394,0,0,0,0,0,0,,""
+"SEAK Southeast Troll",195,1,1,2337.0922,0,0,0,0,0,0,,""
+"SEAK Southeast Troll",195,2,1,48795.9678,0,0,0,0,0,0,,""
+"SEAK Southeast Troll",195,3,1,66486.2078,0,0,0,0,0,0,,""
+"SEAK Southeast Troll",195,4,1,49706.206,0,0,0,0,0,0,,""
+"SEAK Northwest Troll",196,1,1,11103.9797,0,0,0,0,0,0,,""
+"SEAK Northwest Troll",196,2,1,328218.1634,0,0,0,0,0,0,,""
+"SEAK Northwest Troll",196,3,1,414292.8292,0,0,0,0,0,0,,""
+"SEAK Northwest Troll",196,4,1,158607.1086,0,0,0,0,0,0,,""
+"SEAK Northeast Troll",197,1,1,1698.7583,0,0,0,0,0,0,,""
+"SEAK Northeast Troll",197,2,1,52005.8162,0,0,0,0,0,0,,""
+"SEAK Northeast Troll",197,3,1,54783.8928,0,0,0,0,0,0,,""
+"SEAK Northeast Troll",197,4,1,13088.2812,0,0,0,0,0,0,,""
+"Southeast Alaska Net",198,1,1,4053.9472,0,0,0,0,0,0,,""
+"Southeast Alaska Net",198,2,1,104251.7622,0,0,0,0,0,0,,""
+"Southeast Alaska Net",198,3,1,420536.0543,0,0,0,0,0,0,,""
+"Southeast Alaska Net",198,4,1,425241.2223,0,0,0,0,0,0,,""
+"Southeast Alaska Net",198,5,2,0,0,0,0,0,0,0,,"" 
+-------------------------------------------------------------
+"fram.stock.name","fram.stock.id","escapement.flag","target.escapement","recruit.scalar","comment"
+"Nooksack River Wild UnMarked",1,0,0,1.7587,
+"Nooksack River Wild Marked",2,0,0,0,
+"Kendall Creek Hatchery UnMarked",3,0,0,0,
+"Kendall Creek Hatchery Marked",4,0,0,0,
+"Skookum Creek Hatchery UnMarked",5,0,0,0.0112,
+"Skookum Creek Hatchery Marked",6,0,0,0.5805,
+"Lummi Ponds Hatchery UnMarked",7,0,0,0.0105,
+"Lummi Ponds Hatchery Marked",8,0,0,0.5053,
+"Bellingham Bay Net Pens UnMarked",9,0,0,0,
+"Bellingham Bay Net Pens Marked",10,0,0,0,
+"Samish River Wild UnMarked",11,0,0,0.0501,
+"Samish River Wild Marked",12,0,0,0,
+"Area 7/7A Independent Wild UnMarked",13,0,0,1.0173,
+"Area 7/7A Independent Wild Marked",14,0,0,0,
+"Whatcom Creek Hatchery UnMarked",15,0,0,0,
+"Whatcom Creek Hatchery Marked",16,0,0,0,
+"Skagit River Wild UnMarked",17,0,0,0.692,
+"Skagit River Wild Marked",18,0,0,0,
+"Skagit River Hatchery UnMarked",19,0,0,0.1414,
+"Skagit River Hatchery Marked",20,0,0,0.6812,
+"Baker (Skagit) Hatchery UnMarked",21,0,0,0,
+"Baker (Skagit) Hatchery Marked",22,0,0,0.8843,
+"Baker (Skagit) Wild UnMarked",23,0,0,0.4785,
+"Baker (Skagit) Wild Marked",24,0,0,0,
+"Swinomish Channel Hatchery UnMarked",25,0,0,0,
+"Swinomish Channel Hatchery Marked",26,0,0,0,
+"Oak Harbor Net Pens UnMarked",27,0,0,0,
+"Oak Harbor Net Pens Marked",28,0,0,0,
+"Stillaguamish River Wild UnMarked",29,0,0,0.9125,
+"Stillaguamish River Wild Marked",30,0,0,0,
+"Stillaguamish River Hatchery UnMarked",31,0,0,0,
+"Stillaguamish River Hatchery Marked",32,0,0,0,
+"Tulalip Hatchery UnMarked",33,0,0,0.0047,
+"Tulalip Hatchery Marked",34,0,0,0.66,
+"Snohomish River Wild UnMarked",35,0,0,0.6331,
+"Snohomish River Wild Marked",36,0,0,0,
+"Snohomish River Hatchery UnMarked",37,0,0,0.0911,
+"Snohomish River Hatchery Marked",38,0,0,0.203,
+"Area 8A Net Pens UnMarked",39,0,0,0,
+"Area 8A Net Pens Marked",40,0,0,0,
+"Port Gamble Net Pens UnMarked",41,0,0,0.009,
+"Port Gamble Net Pens Marked",42,0,0,0.7242,
+"Port Gamble Bay Wild UnMarked",43,0,0,6.0436,
+"Port Gamble Bay Wild Marked",44,0,0,0,
+"Area 12/12B Wild UnMarked",45,0,0,1.0928,
+"Area 12/12B Wild Marked",46,0,0,0,
+"Quilcene Hatchery UnMarked",47,0,0,0.5194,
+"Quilcene Hatchery Marked",48,0,0,2.4623,
+"Quilcene Bay Net Pens UnMarked",49,0,0,0,
+"Quilcene Bay Net Pens Marked",50,0,0,0,
+"Area 12A Wild UnMarked",51,0,0,0.1515,
+"Area 12A Wild Marked",52,0,0,0,
+"Hoodsport Hatchery UnMarked",53,0,0,0,
+"Hoodsport Hatchery Marked",54,0,0,0,
+"Area 12C/12D Wild UnMarked",55,0,0,1.1168,
+"Area 12C/12D Wild Marked",56,0,0,0,
+"George Adams Hatchery UnMarked",57,0,0,0.1933,
+"George Adams Hatchery Marked",58,0,0,1.1407,
+"Skokomish River Wild UnMarked",59,0,0,0.1427,
+"Skokomish River Wild Marked",60,0,0,0,
+"Area 13B Miscellaneous Wild UnMarked",61,0,0,0.09,
+"Area 13B Miscellaneous Wild Marked",62,0,0,0,
+"Deschutes River (WA) Wild UnMarked",63,0,0,0.007,
+"Deschutes River (WA) Wild Marked",64,0,0,0,
+"South Puget Sound Net Pens UnMarked",65,0,0,0.001,
+"South Puget Sound Net Pens Marked",66,0,0,0.081,
+"Nisqually River Hatchery UnMarked",67,0,0,1e-04,
+"Nisqually River Hatchery Marked",68,0,0,0.0795,
+"Nisqually River Wild UnMarked",69,0,0,0.0702,
+"Nisqually River Wild Marked",70,0,0,0,
+"Fox Island Net Pens UnMarked",71,0,0,0,
+"Fox Island Net Pens Marked",72,0,0,0,
+"Minter Creek Hatchery UnMarked",73,0,0,9e-04,
+"Minter Creek Hatchery Marked",74,0,0,0.1223,
+"Area 13 Miscellaneous Wild UnMarked",75,0,0,0.09,
+"Area 13 Miscellaneous Wild Marked",76,0,0,0,
+"Chambers Creek Hatchery UnMarked",77,0,0,0,
+"Chambers Creek Hatchery Marked",78,0,0,0,
+"Area 13 Miscellaneous Hatchery UnMarked",79,0,0,0,
+"Area 13 Miscellaneous Hatchery Marked",80,0,0,0,
+"Area 13A Miscellaneous Wild UnMarked",81,0,0,0.09,
+"Area 13A Miscellaneous Wild Marked",82,0,0,0,
+"Puyallup River Hatchery UnMarked",83,0,0,0.0133,
+"Puyallup River Hatchery Marked",84,0,0,0.2072,
+"Puyallup River Wild UnMarked",85,0,0,0.1766,
+"Puyallup River Wild Marked",86,0,0,0,
+"Area 11 Hatchery UnMarked",87,0,0,0,
+"Area 11 Hatchery Marked",88,0,0,0,
+"Area 11 Miscellaneous Wild UnMarked",89,0,0,0.18,
+"Area 11 Miscellaneous Wild Marked",90,0,0,0,
+"Area 10E Hatchery UnMarked",91,0,0,0,
+"Area 10E Hatchery Marked",92,0,0,0,
+"Area 10E Miscellaneous Wild UnMarked",93,0,0,0.18,
+"Area 10E Miscellaneous Wild Marked",94,0,0,0,
+"Green River Hatchery UnMarked",95,0,0,0.0217,
+"Green River Hatchery Marked",96,0,0,0.6091,
+"Green River Wild UnMarked",97,0,0,0.2901,
+"Green River Wild Marked",98,0,0,0,
+"Lake Washington Hatchery UnMarked",99,0,0,0.0135,
+"Lake Washington Hatchery Marked",100,0,0,0.2531,
+"Lake Washington Wild UnMarked",101,0,0,0.0991,
+"Lake Washington Wild Marked",102,0,0,0,
+"Area 10 Hatchery UnMarked",103,0,0,0,
+"Area 10 Hatchery Marked",104,0,0,0,
+"Area 10 Miscellaneous Wild UnMarked",105,0,0,0.18,
+"Area 10 Miscellaneous Wild Marked",106,0,0,0,
+"Dungeness River Wild UnMarked",107,0,0,0.3319,
+"Dungeness River Wild Marked",108,0,0,0,
+"Dungeness Hatchery UnMarked",109,0,0,0.0032,
+"Dungeness Hatchery Marked",110,0,0,1.634,
+"Elwha River Wild UnMarked",111,0,0,0.8463,
+"Elwha River Wild Marked",112,0,0,0,
+"Elwha Hatchery UnMarked",113,0,0,0,
+"Elwha Hatchery Marked",114,0,0,0.0498,
+"East JDF Miscellaneous Wild UnMarked",115,0,0,0.2933,
+"East JDF Miscellaneous Wild Marked",116,0,0,0,
+"West JDF Miscellaneous Wild UnMarked",117,0,0,0.6679,
+"West JDF Miscellaneous Wild Marked",118,0,0,0,
+"Port Angeles Net Pens UnMarked",119,0,0,0,
+"Port Angeles Net Pens Marked",120,0,0,0,
+"Area 9 Miscellaneous Wild UnMarked",121,0,0,0,
+"Area 9 Miscellaneous Wild Marked",122,0,0,0,
+"Makah Coastal Wild UnMarked",123,0,0,0,
+"Makah Coastal Wild Marked",124,0,0,0,
+"Makah Coastal Hatchery UnMarked",125,0,0,0,
+"Makah Coastal Hatchery Marked",126,0,0,1.1378,
+"Quillayute River Summer Natural UnMarked",127,0,0,1.294,
+"Quillayute River Summer Natural Marked",128,0,0,0,
+"Quillayute River Summer Hatchery UnMarked",129,0,0,0,
+"Quillayute River Summer Hatchery Marked",130,0,0,0.48,
+"Quillayute River Fall Natural UnMarked",131,0,0,0.9453,
+"Quillayute River Fall Natural Marked",132,0,0,0,
+"Quillayute River Fall Hatchery UnMarked",133,0,0,0.6561,
+"Quillayute River Fall Hatchery Marked",134,0,0,3.6291,
+"Hoh River Wild UnMarked",135,0,0,0.8419,
+"Hoh River Wild Marked",136,0,0,0,
+"Hoh River Hatchery UnMarked",137,0,0,0,
+"Hoh River Hatchery Marked",138,0,0,0,
+"Queets River Fall Natural UnMarked",139,0,0,0.6861,
+"Queets River Fall Natural Marked",140,0,0,0,
+"Queets River Fall Hatchery UnMarked",141,0,0,0.1189,
+"Queets River Fall Hatchery Marked",142,0,0,0.6877,
+"Queets River Suppl. Hatchery UnMarked",143,0,0,0,
+"Queets River Suppl. Hatchery Marked",144,0,0,0,
+"Quinault River Fall Natural UnMarked",145,0,0,4.1451,
+"Quinault River Fall Natural Marked",146,0,0,0,
+"Quinault River Fall Hatchery UnMarked",147,0,0,0,
+"Quinault River Fall Hatchery Marked",148,0,0,2.182,
+"Chehalis River Wild UnMarked",149,0,0,0.8069,
+"Chehalis River Wild Marked",150,0,0,0,
+"Chehalis River Hatchery UnMarked",151,0,0,0.0738,
+"Chehalis River Hatchery Marked",152,0,0,1.4324,
+"Humptulips River Wild UnMarked",153,0,0,0.6689,
+"Humptulips River Wild Marked",154,0,0,0,
+"Humptulips River Hatchery UnMarked",155,0,0,0.0045,
+"Humptulips River Hatchery Marked",156,0,0,0.5423,
+"Grays Harbor Miscellaneous Wild UnMarked",157,0,0,1.6302,
+"Grays Harbor Miscellaneous Wild Marked",158,0,0,0,
+"Grays Harbor Net Pens UnMarked",159,0,0,0,
+"Grays Harbor Net Pens Marked",160,0,0,1.5409,
+"Willapa Bay Natural UnMarked",161,0,0,1.1484,
+"Willapa Bay Natural Marked",162,0,0,0,
+"Willapa Bay Hatchery UnMarked",163,0,0,0.0235,
+"Willapa Bay Hatchery Marked",164,0,0,0.3957,
+"Columbia River Early Hatchery UnMarked",165,0,0,0.1407,
+"Columbia River Early Hatchery Marked",166,0,0,0.4083,
+"Youngs Bay Hatchery UnMarked",167,0,0,0.1407,
+"Youngs Bay Hatchery Marked",168,0,0,0.4083,
+"Lower Col R Oregon Wild UnMarked",169,0,0,1.3316,
+"Lower Col R Oregon Wild Marked",170,0,0,0,
+"Wash Early Wild UnMarked",171,0,0,0.4232,
+"Wash Early Wild Marked",172,0,0,0,
+"Wash Late Wild UnMarked",173,0,0,0.2466,
+"Wash Late Wild Marked",174,0,0,0,
+"Columbia River Late Hatchery UnMarked",175,0,0,0.0065,
+"Columbia River Late Hatchery Marked",176,0,0,0.395,
+"Oregon North Coast Hatchery UnMarked",177,0,0,0.0076,""
+"Oregon North Coast Hatchery Marked",178,2,848,0.0575,"OPI Table 1i"
+"Oregon North Coast Wild UnMarked",179,1,7952,0.944,"OPITT Handouts"
+"Oregon North Coast Wild Marked",180,0,0,0,""
+"Oregon North-Mid Coast Hatchery UnMarked",181,0,0,0.0076,""
+"Oregon North-Mid Coast Hatchery Marked",182,2,3,0.0575,"OPI Table 1i"
+"Oregon North-Mid Coast Wild UnMarked",183,1,22038,0.944,"OPITT Handouts"
+"Oregon North-Mid Coast Wild Marked",184,0,0,0,""
+"Oregon South-Mid Coast Hatchery UnMarked",185,0,0,0.0076,""
+"Oregon South-Mid Coast Hatchery Marked",186,2,211,0.0575,"OPI Table 1i + Winch. Hatch"
+"Oregon South-Mid Coast Wild UnMarked",187,1,44070,0.944,"OPITT Handouts"
+"Oregon South-Mid Coast Wild Marked",188,0,0,0,""
+"Oregon Anadromous Hatchery UnMarked",189,0,0,0,""
+"Oregon Anadromous Hatchery Marked",190,0,0,0,""
+"Oregon Aqua-Foods Hatchery UnMarked",191,0,0,0,""
+"Oregon Aqua-Foods Hatchery Marked",192,0,0,0,""
+"Oregon South Coast Hatchery UnMarked",193,1,0,0.2491,""
+"Oregon South Coast Hatchery Marked",194,1,254,0.1804,"OPI Table 1i"
+"Oregon South Coast Wild UnMarked",195,1,8226,0.2148,"OPITT Handouts"
+"Oregon South Coast Wild Marked",196,0,0,0,""
+"California North Coast Hatchery UnMarked",197,1,682,0.2491,"OPI Table 1i"
+"California North Coast Hatchery Marked",198,1,0,0.1804,""
+"California North Coast Wild UnMarked",199,0,0,0.2148,""
+"California North Coast Wild Marked",200,0,0,0,""
+"California Central Coast Hatchery UnMarked",201,0,0,1,""
+"California Central Coast Hatchery Marked",202,0,0,1,""
+"California Central Coast Wild UnMarked",203,0,0,1,""
+"California Central Coast Wild Marked",204,0,0,0,""
+"Georgia Strait Mainland Hatchery UnMarked",205,0,0,0,
+"Georgia Strait Mainland Hatchery Marked",206,0,0,0.1514,
+"Georgia Strait Mainland Wild UnMarked",207,0,0,0.0392,
+"Georgia Strait Mainland Wild Marked",208,0,0,0,
+"Georgia Strait Vanc. Isl. Hatchery UnMarked",209,0,0,0.0022,
+"Georgia Strait Vanc. Isl. Hatchery Marked",210,0,0,0.0182,
+"Georgia Strait Vanc. Isl. Wild UnMarked",211,0,0,0.0392,
+"Georgia Strait Vanc. Isl. Wild Marked",212,0,0,0,
+"Johnstone Strait Hatchery UnMarked",213,0,0,0.001,
+"Johnstone Strait Hatchery Marked",214,0,0,0.0468,
+"Johnstone Strait Wild UnMarked",215,0,0,0.0392,
+"Johnstone Strait Wild Marked",216,0,0,0,
+"SW Vancouver Island Hatchery UnMarked",217,0,0,0,
+"SW Vancouver Island Hatchery Marked",218,0,0,0.2935,
+"SW Vancouver Island Wild UnMarked",219,0,0,0.0252,
+"SW Vancouver Island Wild Marked",220,0,0,0,
+"NW Vancouver Island Hatchery UnMarked",221,0,0,0,
+"NW Vancouver Island Hatchery Marked",222,0,0,1.0533,
+"NW Vancouver Island Wild UnMarked",223,0,0,0.0252,
+"NW Vancouver Island Wild Marked",224,0,0,0,
+"Lower Fraser River Hatchery UnMarked",225,0,0,0,
+"Lower Fraser River Hatchery Marked",226,0,0,0.2279,
+"Lower Fraser River Wild UnMarked",227,0,0,0.2279,
+"Lower Fraser River Wild Marked",228,0,0,0,
+"Upper Fraser River Hatchery UnMarked",229,0,0,0.0094,
+"Upper Fraser River Hatchery Marked",230,0,0,0.0297,
+"Upper Fraser River Wild UnMarked",231,0,0,0.3211,
+"Upper Fraser River Wild Marked",232,0,0,0,
+"BC Central Coast Hatchery/Wild UnMarked",233,0,0,0.8147,
+"BC Central Coast Hatchery/Wild Marked",234,0,0,0,
+"BC North Coast Hatchery/Wild UnMarked",235,0,0,2.737,
+"BC North Coast Hatchery/Wild Marked",236,0,0,0.1144,
+"Trans Boundary Hatchery/Wild UnMarked",237,0,0,2.737,
+"Trans Boundary Hatchery/Wild Marked",238,0,0,0.1144,
+"Alaska Northern Inside Hat/Wild UnMarked",239,0,0,1.9,
+"Alaska Northern Inside Hat/Wild Marked",240,0,0,0.1,
+"Alaska Northern Outside Hat/Wild UnMarked",241,0,0,1.9,
+"Alaska Northern Outside Hat/Wild Marked",242,0,0,0.1,
+"Alaska Southern Inside Hat/Wild UnMarked",243,0,0,1.9,
+"Alaska Southern Inside Hat/Wild Marked",244,0,0,0.1,
+"Alaska Southern Outside Hat/Wild UnMarked",245,0,0,1.9,
+"Alaska Southern Outside Hat/Wild Marked",246,0,0,0.1, 

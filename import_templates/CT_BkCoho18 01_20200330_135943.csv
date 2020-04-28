@@ -1,0 +1,12 @@
+Person Name:CT
+FRAM Run Name:BkCoho18 01
+FRAM Run ID:385
+FRAM DB Name:C:\Users\obrienm\Desktop\git_src\PSC-FRAM-Admin\fram db\devloping BK2018 - test.mdb
+-------------------------------------------------------------
+"fram.stock.name","fram.stock.id","escapement.flag","target.escapement","recruit.scalar","comment"
+"Quilcene Hatchery UnMarked",47,0,0,0.5194,
+"Quilcene Hatchery Marked",48,0,0,2.4623,
+"Makah Coastal Hatchery UnMarked",125,0,0,0,
+"Makah Coastal Hatchery Marked",126,0,0,1.1378,
+"Quinault River Fall Hatchery UnMarked",147,0,0,0,
+"Quinault River Fall Hatchery Marked",148,0,0,2.182, 

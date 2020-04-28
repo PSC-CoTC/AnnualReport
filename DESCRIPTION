@@ -1,0 +1,12 @@
+Package: CotcAnnualReport
+Type: Package
+Title: Writes the Annual Report using a pre and post season FRAM DB.  
+Version: 1.0.0
+Author: Michael O'Brien, Nick Komick
+Maintainer: Michael O'Brien <michael.o'brien@dfo-mpo.gc.ca>
+Description: First step is to creat the import templates.  After the scientists have updated their templates
+    the data is imported into a FRAM DB, checking the flags etc. for problems.  Then the report tables are produced.
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.0

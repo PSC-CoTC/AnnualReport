@@ -1,0 +1,25 @@
+ID,group.code,psc.fishery.id,psc.fishery.name,psc.fishery.order
+1,BC,1,BC No/Cent Troll,1
+2,BC,2,BC No/Cent Net,2
+3,BC,3,BC No/Cent Sport,3
+4,BC,4,BC WCVI Troll,4
+5,BC,5,BC WCVI Net,5
+6,BC,6,BC WCVI Sport,6
+7,BC,7,BC JnstStr Net & Trl,7
+8,BC,8,BC JnstStr Sport,8
+9,BC,9,BC GeoStr Spt & Trl,9
+10,BC,10,BC GeoStr Net,10
+11,BC,11,BC JDF Sport,11
+12,BC,12,BC JDF Net & Trl,12
+13,BC,13,BC Fraser Net,13
+60,BC,60,BC Fraser FW & Spt,14
+15,Southern U.S.,16,WA Ocn Troll,15
+16,Southern U.S.,17,WA Ocn Sport,16
+17,Southern U.S.,18,SOF All,17
+18,Southern U.S.,19,US JDF All,18
+19,Southern U.S.,20,SanJnIsl Net,19
+20,Southern U.S.,21,SanJnIsl Sport,20
+21,Southern U.S.,22,PS Sport (8-13),21
+22,Southern U.S.,23,PS Net (8-13),22
+23,Southern U.S.,24,FW Net & Sport,23
+14,,15,SEAK All,24
