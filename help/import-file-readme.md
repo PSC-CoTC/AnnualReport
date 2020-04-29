@@ -6,9 +6,9 @@ This document describes how to create import file templates and import data into
 
 Import files can initially be created from an existing FRAM model run, typically the post-season run.  As the FRAM database name, run name, and run ID are within the import file template, the files must be created from the same run database and model run that the catch values are to be updated.  You can use the template file to update values within another model run, but the header information within the import template file must be modified
 
-Use the R function **createImportFiles(fram.db.name = NA, fram.run.name, report.dir = "./import_files/",  data.dir = "./csv/")**
+Use the R function **createImportFiles(fram.db.name = NA, fram.run.name, report.dir = "./import_files/",  data.dir = "./csv/")**\
 *`fram.db.name`: defaults to NA which prompts a selection screen allowing you to select the FRAM database from which you would like to create the import files.  You can also set the path manually relative to your current working directory (using "\\" or "/" in the path name) 
-* fram.run.name: character string of the FRAM run name from the fram database that you will use.  
+* `fram.run.name`: character string of the FRAM run name from the fram database that you will use.  
 *`report.dir`: the directory where the import templates will be saved
 *`data.dir`: the directory where the person 'PersonFramFisheries.csv' and 'PersonFramStocks.csv' are saved.  This tell the code who is respsonsible for which stock/ fishery
 
@@ -46,16 +46,17 @@ Escapement Flag | Description
 
 Once the import files have been updated, they can be imported back into the model run through the R function:
 
-importFramTemplates(template_file = NA, validate.catch = TRUE, validate.fisheries = TRUE, validate.mark.info = TRUE, validate.stocks = TRUE, validate.escapment.flags = TRUE, data.dir = "./csv/")
-*template_file: defaults to NA allowing the user to select the file through a selection screen
-*validate.: Usually keep as TRUE.  makes sure flags make sense (see below).
+importFramTemplates(template_file = NA, validate.catch = TRUE, validate.fisheries = TRUE, validate.mark.info = TRUE, validate.stocks = TRUE, validate.escapment.flags = TRUE, data.dir = "./csv/")\
+
+*`template_file`: defaults to NA allowing the user to select the file through a selection screen
+*`validate.`: Usually keep as TRUE.  makes sure flags make sense (see below).
 *`data.dir`: the directory where the person 'PersonFramFisheries.csv' and 'PersonFramStocks.csv' are saved.  This tell the code who is respsonsible for which stock/ fishery
 
 Note: The import file is validated for use as a post-season catch data set for backward FRAM.  This mainly consists of checking fishery flags against non-selective and mark selective catch.
 
 ## Validation of Post-Season Catch Values
 
-As part of importing post-season catch value files, several validation steps are run against the file.  The validation steps are all configurable using a TRUE/FALSE flag within the `"config\import_post_season_config.r"` file.  The following validation steps are carried out.
+As part of importing post-season catch value files, several validation steps are run against the file.  The validation steps are all configurable using a TRUE/FALSE flag within the `"config/import_post_season_config.r"` file.  The following validation steps are carried out.
 
 Validation Config Variable | Description 
 ------------ | -------------

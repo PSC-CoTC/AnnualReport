@@ -3,19 +3,19 @@
 This document describes how to configure and run the Coho Technical Committee Annual Reporting Tool.  Remember to first import the updated post-season template .csv files
 
 The write the annual report run the R function:
-**writeAnnualReport(run.year, post.season.run.name, pre.season.run.name,
-                              post.season.fram.db = NA,
-                              post.season.tamm = NA,
-                              post.season.tamm.fishery.ref = "./csv/TammFisheryQueetsRef.csv",
-                              post.season.tamm.esc.ref = "./csv/TammEscQueetsRef.csv",
-                              pre.season.fram.db = NA,
-                              pre.season.tamm = NA,
-                              pre.season.tamm.fishery.ref = "./csv/TammFisheryFullRef.csv",
-                              pre.season.tamm.esc.ref = "./csv/TammEscFullRef.csv",
-                              template.dir = "./templates/",
-                              report.dir = "./report/",
-                              data.dir = "./csv/",
-                              combine.GS = NA)
+**writeAnnualReport(run.year, post.season.run.name, pre.season.run.name,\
+                              post.season.fram.db = NA,\
+                              post.season.tamm = NA,\
+                              post.season.tamm.fishery.ref = "./csv/TammFisheryQueetsRef.csv",\
+                              post.season.tamm.esc.ref = "./csv/TammEscQueetsRef.csv",\
+                              pre.season.fram.db = NA,\
+                              pre.season.tamm = NA,\
+                              pre.season.tamm.fishery.ref = "./csv/TammFisheryFullRef.csv",\
+                              pre.season.tamm.esc.ref = "./csv/TammEscFullRef.csv",\
+                              template.dir = "./templates/",\
+                              report.dir = "./report/",\
+                              data.dir = "./csv/",\
+                              combine.GS = NA)**
 						
 
 As you can see it requires post season versions of the FRAM database and the TAMM files.  The run.names need to be set.  If others are left as NA then a selection dialog will be prompted, otherwise set the path manually. Be sure the use the same FRAM db that the updated imported templates were imported to
