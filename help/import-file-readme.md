@@ -7,10 +7,10 @@ This document describes how to create import file templates and import data into
 Import files can initially be created from an existing FRAM model run, typically the post-season run.  As the FRAM database name, run name, and run ID are within the import file template, the files must be created from the same run database and model run that the catch values are to be updated.  You can use the template file to update values within another model run, but the header information within the import template file must be modified
 
 Use the R function **createImportFiles(fram.db.name = NA, fram.run.name, report.dir = "./import_files/",  data.dir = "./csv/")**\
-*`fram.db.name`: defaults to NA which prompts a selection screen allowing you to select the FRAM database from which you would like to create the import files.  You can also set the path manually relative to your current working directory (using "\\" or "/" in the path name) 
+* `fram.db.name`: defaults to NA which prompts a selection screen allowing you to select the FRAM database from which you would like to create the import files.  You can also set the path manually relative to your current working directory (using "\\" or "/" in the path name) 
 * `fram.run.name`: character string of the FRAM run name from the fram database that you will use.  
-*`report.dir`: the directory where the import templates will be saved
-*`data.dir`: the directory where the person 'PersonFramFisheries.csv' and 'PersonFramStocks.csv' are saved.  This tell the code who is respsonsible for which stock/ fishery
+* `report.dir`: the directory where the import templates will be saved
+* `data.dir`: the directory where the person 'PersonFramFisheries.csv' and 'PersonFramStocks.csv' are saved.  This tell the code who is respsonsible for which stock/ fishery
 
 ## Modify Import Files
 
