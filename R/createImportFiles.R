@@ -14,7 +14,7 @@
 #'
 #' @export
 
-createImportFiles <- function(fram.db.name = NA, fram.run.name, report.dir = "./import_files/",  data.dir = "./csv/"){
+createImportFiles <- function(fram.run.name, fram.db.name = NA, report.dir = "./import_files/",  data.dir = "./csv/"){
 
 
   if(version$arch != "i386"){

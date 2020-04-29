@@ -46,9 +46,15 @@ writeAnnualReport <- function(run.year, post.season.run.name, pre.season.run.nam
                               combine.GS = NA) {
 
 
-#
-#   cat(header)
-#   cat("\n")
+
+
+  if (is.na(post.season.fram.db)){
+    post.season.fram.db <- choose.files(caption = "choose POSTSEASON FRAM DB")
+  }
+
+  if (is.na(pre.season.fram.db)){
+    pre.season.fram.db <- choose.files(caption = "choose PRESEASON FRAM DB")
+  }
 
   if (is.na(pre.season.tamm)) {
     pre.season.tamm <- choose.files(caption = "choose PRESEASON tamm")
