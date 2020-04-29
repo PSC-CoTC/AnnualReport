@@ -48,9 +48,9 @@ Once the import files have been updated, they can be imported back into the mode
 
 importFramTemplates(template_file = NA, validate.catch = TRUE, validate.fisheries = TRUE, validate.mark.info = TRUE, validate.stocks = TRUE, validate.escapment.flags = TRUE, data.dir = "./csv/")\
 
-*`template_file`: defaults to NA allowing the user to select the file through a selection screen
-*`validate.`: Usually keep as TRUE.  makes sure flags make sense (see below).
-*`data.dir`: the directory where the person 'PersonFramFisheries.csv' and 'PersonFramStocks.csv' are saved.  This tell the code who is respsonsible for which stock/ fishery
+* `template_file`: defaults to NA allowing the user to select the file through a selection screen
+* `validate.`: Usually keep as TRUE.  makes sure flags make sense (see below).
+* `data.dir`: the directory where the person 'PersonFramFisheries.csv' and 'PersonFramStocks.csv' are saved.  This tell the code who is respsonsible for which stock/ fishery
 
 Note: The import file is validated for use as a post-season catch data set for backward FRAM.  This mainly consists of checking fishery flags against non-selective and mark selective catch.
 
