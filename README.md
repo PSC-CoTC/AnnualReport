@@ -12,7 +12,7 @@ I also recommend getting R-studio to assist with building packages and just gene
 
 ## Help Files
 
-I will be adding the helpfiles soon!
+See the help files in the help folder!
 
 ## Instructions If You Do Not Use GIT
 
