@@ -5,16 +5,16 @@
 \title{Create Import Files}
 \usage{
 createImportFiles(
-  fram.db.name = NA,
   fram.run.name,
+  fram.db.name = NA,
   report.dir = "./import_files/",
   data.dir = "./csv/"
 )
 }
 \arguments{
-\item{fram.db.name}{.mdb file that contains the preason runs}
-
 \item{fram.run.name}{Preseason run name to use to}
+
+\item{fram.db.name}{.mdb file that contains the preason runs}
 
 \item{report.dir}{the path where the import files are written to}
 

@@ -153,9 +153,7 @@ getFramRunInfo <- function (fram.db.conn, fram.run.name) {
 #'
 getFramStocks <- function (fram.db.conn) {
 
-  data <- getFramData(fram.db.conn, sql_file_name = kFramStockSqlFilename,
-                      package_name = packageName(parent.frame()))
-  # package_name = "CotcAnnualReport")
+  data <- getFramData(fram.db.conn, sql_file_name = kFramStockSqlFilename)
   return (data)
 }
 
@@ -168,9 +166,7 @@ getFramStocks <- function (fram.db.conn) {
 #'
 getFramFisheries <- function (fram.db.conn) {
 
-  data <- getFramData(fram.db.conn, sql_file_name = kFramFisherySqlFilename,
-                      package_name = packageName(parent.frame()))
-  # package_name = "CotcAnnualReport")
+  data <- getFramData(fram.db.conn, sql_file_name = kFramFisherySqlFilename)
   return (data)
 }
 
