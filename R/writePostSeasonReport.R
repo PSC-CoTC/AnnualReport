@@ -164,10 +164,11 @@ writeAnnualReport <- function(run.year, post.season.run.name, pre.season.run.nam
 
   WriteCsv(file = "report/fishery_mortalities.csv", fishery_morts)
 
+  output_file_name <- paste0(run.year, "_", "annualreport", "_", GetTimeStampText(), ".pdf")
 
   system.file("AnnualReport.rmd", package = packageName()) %>%
     rmarkdown::render(.,
-                      output_file = "annualreport.pdf", output_dir = getwd())
+                      output_file = output_file_name, output_dir = report.dir)
 
 
 }
