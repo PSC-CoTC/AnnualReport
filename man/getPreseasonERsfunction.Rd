@@ -2,7 +2,7 @@
 % Please edit documentation in R/preseasonExport.R
 \name{getPreseasonERsfunction}
 \alias{getPreseasonERsfunction}
-\title{Writes .pdf document of the annual report}
+\title{Writes of preseaon FRAM data}
 \usage{
 getPreseasonERsfunction(
   run.year,
@@ -36,16 +36,8 @@ getPreseasonERsfunction(
 
 \item{data.dir}{folder containing the reference .csv files}
 
-\item{post.season.run.name}{Run name of the post season run fron the RunID table}
-
-\item{post.season.fram.db}{Fram DB containing the post season run.  Deafaults to NA which prompts a selection to dialog}
-
-\item{post.season.tamm}{Tamm excel file containing the post season data. Deafaults to NA which prompts a selection to dialog}
-
-\item{post.season.tamm.fishery.ref}{Fishery references for post season TAMM file}
-
-\item{post.season.tamm.esc.ref}{Escapement reference of post season TAMM}
+\item{combine.GS}{logical if GS MUs should be combined}
 }
 \description{
-Writes .pdf document of the annual report
+Writes of preseaon FRAM data
 }
