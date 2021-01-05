@@ -71,7 +71,7 @@ writeAnnualReport <- function(run.year, post.season.run.name, pre.season.run.nam
   }
 
   if(is.na(combine.GS)) {
-    combine.GS <- if_else(run.year >= 2020, TRUE, FALSE)
+    combine.GS <- if_else(run.year >= 2019, TRUE, FALSE)
   }
 
 

@@ -137,9 +137,9 @@ getFramRunTable <- function (fram.db.conn, species.name = kCohoSpeciesName) {
 getFramRunInfo <- function (fram.db.conn, fram.run.name) {
   params <- list(RUNNAME=fram.run.name)
   data <- getFramData(fram.db.conn, sql_file_name = kFramRunInfoSqlFilename,
-                      params =   params <- list(RUNNAME=fram.run.name),
-                      package_name = packageName(parent.frame()))
-  # package_name = "CotcAnnualReport")
+                      params =  params,
+                      # package_name = packageName(parent.frame()))
+  package_name = "CotcAnnualReport")
   return (data)
 }
 

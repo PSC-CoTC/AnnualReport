@@ -26,8 +26,8 @@ options(knitr.table.format = 'latex', knitr.kable.NA = '')
 
 ```
 
-**Pre-season DB:** `r pre.season.fram.db`, **Pre-season DB:** `r pre.season.run.name` \newline
-**Pre-season DB:** `r post.season.fram.db`, **Pre-season DB:** `r post.season.run.name`
+**Pre-season DB:** `r pre.season.fram.db`, **Pre-season run name:** `r pre.season.run.name` \newline
+**Post-season DB:** `r post.season.fram.db`, **Post-season run name:** `r post.season.run.name`
 
  **Table 1: Summary of the `r run.year` return of natural spawning Coho Management Units.**
                     Total exploitation rate (ER) represents the sum of US and Canadian exploitation rates on each
