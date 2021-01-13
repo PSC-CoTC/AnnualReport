@@ -24,7 +24,7 @@ You will requrie:
 
 * `run.year`: The numeric year corresponding to the preseason run you are ecporting data for.  Found in FRAM table "RunID" under "RunYear".
 
-* ` pre.season.tamm`: preseason TAMM .xlsx file corresponding to the correct preseaon model run. Defaults to NA, which prompts a selection screen allowing the user to select the file.  Can be manually set by specifing the file location relative to your current working directory (using "\\" or "/" in the path) 
+* ` pre.season.tamm`: preseason TAMM .xlsx file corresponding to the correct preseaon model run. Defaults to NA, which prompts a selection screen allowing the user to select the file.  Can be manually set by specifing the file location relative to your current working directory (using "\\\\" or "/" in the path) 
 
 * ` pre.season.tamm.fishery.ref, pre.season.tamm.esc.ref, template.dir, report.dir,  data.dir`: Files and directories that area needed for the function to run.  Should be included in this package and default to standard values, but can be set manually if folder structure has been changed.  Note that the "./report/" directory will have to be created prior to running the function if it does not exist
 
