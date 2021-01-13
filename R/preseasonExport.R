@@ -125,7 +125,7 @@ getPreseasonERs <- function(run.year,
   addWorksheet(wb, "Run_info")
   writeData(wb, "Run_info", run.info)
 
-  file.name <- paste0(".//report//preseaon_export_",pre.season.run.name, "_", GetTimeStampText() ,".xlsx")
+  file.name <- paste0(".//report//preseason_export_",pre.season.run.name, "_", GetTimeStampText() ,".xlsx")
 
   saveWorkbook(wb =  wb, file = file.name)
 
