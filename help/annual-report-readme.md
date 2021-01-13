@@ -4,9 +4,9 @@ This document describes how to configure and run the Coho Technical Committee An
 
 The write the annual report run the R function:
 
-	writeAnnualReport(run.year, post.season.run.name, pre.season.run.name,\
-                              post.season.fram.db = NA,\
-                              post.season.tamm = NA,\
+	writeAnnualReport(run.year, post.season.run.name, pre.season.run.name,
+                              post.season.fram.db = NA,
+                              post.season.tamm = NA,
                               post.season.tamm.fishery.ref = "./csv/TammFisheryQueetsRef.csv",\
                               post.season.tamm.esc.ref = "./csv/TammEscQueetsRef.csv",\
                               pre.season.fram.db = NA,\

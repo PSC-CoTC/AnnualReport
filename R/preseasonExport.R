@@ -25,7 +25,7 @@
 
 
 
-getPreseasonERsfunction <- function(run.year,
+getPreseasonERs <- function(run.year,
                         pre.season.run.name,
                         pre.season.fram.db = NA,
                         pre.season.tamm = NA,
@@ -104,7 +104,7 @@ getPreseasonERsfunction <- function(run.year,
   min.run.year <- min(er.table$run.year)
 
 
-  mort.stock.list <- CompilePscData(fram.db.conn = pre.season.db.conn, run.name = run.name, run.year = 2018, psc.data.list = psc.data.list, tamm.data.list = pre.tamm.list,  report.dir = "./report/", combine.GS = TRUE)
+  mort.stock.list <- CompilePscData(fram.db.conn = pre.season.db.conn, run.name = run.name, run.year = run.year, psc.data.list = psc.data.list, tamm.data.list = pre.tamm.list,  report.dir = report.dir, combine.GS = combine.GS)
 
   mort <- mort.stock.list$fishery.mortality
   stocks <- mort.stock.list$stock.summary

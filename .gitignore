@@ -24,6 +24,7 @@ report/
 
 #Exclude import files
 import files/
+import_templates
 
 #Do no include anything in the FRAM DB folder or MS Access databases, this is usually specific data
 fram db/
