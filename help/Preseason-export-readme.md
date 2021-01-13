@@ -2,7 +2,11 @@
 
 You can export the data from a preseason FRAM model run using the following R function:
 
+<<<<<<< HEAD
  `*getPreseasonERs*(pre.season.fram.db = NA,
+=======
+** `getPreseasonERs(pre.season.fram.db = NA,
+>>>>>>> 9a7ce1c449f5cd0c6b6925453fa4fba4a2716489
                    pre.season.run.name,
                    run.year,
                    pre.season.tamm = NA,
@@ -11,7 +15,11 @@ You can export the data from a preseason FRAM model run using the following R fu
                    template.dir = "./templates/",
                    report.dir = "./report/",
                    data.dir = "./csv/",
+<<<<<<< HEAD
                    combine.GS = TRUE)`
+=======
+                   combine.GS = TRUE)`**
+>>>>>>> 9a7ce1c449f5cd0c6b6925453fa4fba4a2716489
 
                         
 You will requrie:
