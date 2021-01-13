@@ -3,7 +3,7 @@
 You can export the data from a preseason FRAM model run using the following R function:
 
 
- `*getPreseasonERs*(pre.season.fram.db = NA,
+ `getPreseasonERs(pre.season.fram.db = NA,
                    pre.season.run.name,
                    run.year,
                    pre.season.tamm = NA,
