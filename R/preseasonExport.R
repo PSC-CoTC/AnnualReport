@@ -14,9 +14,11 @@
 #'
 #' @importFrom RODBC odbcConnectAccess odbcClose
 #' @importFrom rmarkdown render
-#' @importFrom dplyr mutate_if bind_rows rename first group_by summarise ungroup if_else
+#' @importFrom dplyr mutate_if bind_rows rename first group_by summarise ungroup if_else select arrange
+#' @importFrom tidyr pivot_wider
 #' @importFrom magrittr %>%
 #' @importFrom readxl read_excel
+#' @importFrom tidyselect everything
 #'
 #' @export
 #'
@@ -91,7 +93,9 @@ getPreseasonERs <- function(run.year,
 
   fishery.mortality <- left_join(fishery.mortality, escapement, by=c("fram.run.id", "run.year", "fram.stock.id")) %>%
     mutate(cohort.age.3 = total.fishery.mortality + escapement) %>%
-    mutate(fishery.er = fishery.mortality / cohort.age.3)
+    mutate(fishery.er = fishery.mortality / cohort.age.3) %>%
+    left_join(fisheries, by=c("fram.fishery.id"))
+
 
 
   if(exists("er.table")){
@@ -100,15 +104,37 @@ getPreseasonERs <- function(run.year,
     er.table <- fishery.mortality
   }
 
+  er.table <- er.table %>%
+    select(fram.run.id:fram.stock.id, fram.stock.name, fram.fishery.long.name, everything()) %>%
+    select(-fram.fishery.name)
+
   max.run.year <- max(er.table$run.year)
   min.run.year <- min(er.table$run.year)
 
 
-  mort.stock.list <- CompilePscData(fram.db.conn = pre.season.db.conn, run.name = run.name, run.year = run.year, psc.data.list = psc.data.list, tamm.data.list = pre.tamm.list,  report.dir = report.dir, combine.GS = combine.GS)
+  pre.season.data <- CompilePscData(fram.db.conn = pre.season.db.conn, run.name = run.name, run.year = run.year, psc.data.list = psc.data.list, tamm.data.list = pre.tamm.list,  report.dir = report.dir, combine.GS = combine.GS)
 
-  mort <- mort.stock.list$fishery.mortality
-  stocks <- mort.stock.list$stock.summary
-  run.info <- mort.stock.list$run.info
+  mort <- pre.season.data$fishery.mortality %>%
+    arrange(psc.stock.order, psc.fishery.order) %>%
+    mutate(group.code = if_else(psc.fishery.name == "SEAK All", "SEAK", group.code))
+
+  mort_country <- mort %>%
+    group_by(psc.stock.name, group.code) %>%
+    mutate(group.code = if_else(group.code == "Southern U.S.", "SUSA", group.code)) %>%
+    summarise(fishery.mortality = sum(fishery.mortality),
+              er = sum(er)) %>%
+    ungroup() %>%
+    pivot_wider(., names_from = group.code, values_from = c(fishery.mortality, er), names_sep = ".")
+
+
+  stocks <- pre.season.data$stock.summary %>%
+    left_join(mort_country, by = c("psc.stock.name")) %>%
+    select(psc.stock.id:run.year, cohort, escapement,
+           "fishery.mortality.total"=fishery.mortality, fishery.mortality.BC, fishery.mortality.SUSA,  fishery.mortality.SEAK,
+           er.total = er, er.BC,  er.SUSA, er.SEAK,
+           everything())
+
+  run.info <- pre.season.data$run.info
 
 
   file.name <- paste0(report.dir, "preseason_Fishery_ERs_", min.run.year, "-", max.run.year, "_", GetTimeStampText(), ".xlsx")
@@ -125,7 +151,7 @@ getPreseasonERs <- function(run.year,
   addWorksheet(wb, "Run_info")
   writeData(wb, "Run_info", run.info)
 
-  file.name <- paste0(".//report//preseason_export_",pre.season.run.name, "_", GetTimeStampText() ,".xlsx")
+  file.name <- paste0(".//report//preseason_export_", pre.season.run.name, "_", GetTimeStampText() ,".xlsx")
 
   saveWorkbook(wb =  wb, file = file.name)
 
