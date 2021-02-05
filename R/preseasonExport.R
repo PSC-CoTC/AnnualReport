@@ -17,8 +17,11 @@
 #' @importFrom dplyr mutate_if bind_rows rename first group_by summarise ungroup if_else select arrange
 #' @importFrom tidyr pivot_wider
 #' @importFrom magrittr %>%
+#' @importFrom kableExtra add_header_above column_spec landscape kable_styling footnote footnote_marker_symbol row_spec column_spec
 #' @importFrom readxl read_excel
+#' @importFrom scales percent
 #' @importFrom tidyselect everything
+#' @importFrom stringr str_replace
 #'
 #' @export
 #'
@@ -53,6 +56,7 @@ getPreseasonERs <- function(run.year,
 
   pre.season.db.conn <- odbcConnectAccess(pre.season.fram.db)
 
+  pre.season.db.name <- basename(pre.season.fram.db)
 
   fisheries <- getFramFisheries(pre.season.db.conn)
   fram.stocks <- getFramStocks(pre.season.db.conn)
@@ -154,5 +158,13 @@ getPreseasonERs <- function(run.year,
   file.name <- paste0(".//report//preseason_export_", pre.season.run.name, "_", GetTimeStampText() ,".xlsx")
 
   saveWorkbook(wb =  wb, file = file.name)
+
+
+  output_file_name <- paste0(run.year, "_", "Preseason_report", "_", GetTimeStampText(), ".pdf")
+
+  system.file("preseasonReport.Rmd", package = packageName()) %>%
+    rmarkdown::render(.,
+                      output_file = output_file_name, output_dir = report.dir)
+
 
 }

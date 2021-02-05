@@ -1,0 +1,117 @@
+---
+fontsize: 12pt
+geometry: "left=1.5cm,right=1.5cm, top=2cm, bottom=2.75cm"
+mainfont: Calibri Light
+output:
+  pdf_document:
+    includes:
+      in_header: header.tex
+    keep_tex: FALSE
+    latex_engine: xelatex
+  html_document:
+    df_print: paged
+classoption: landscape
+urlcolor: blue
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+options(knitr.table.format = 'latex', knitr.kable.NA = '')
+
+#load chunks from r script
+# knitr::read_chunk("AnnualReportChunks.R")
+
+
+```
+
+
+
+**Pre-season DB:** `r pre.season.db.name` , **Pre-season run name:** `r run.name`  \newline
+
+
+ **Table 1: Summary of the `r run.year` pre-season return of natural spawning Coho Management Units.**
+                    Total pre-season exploitation rate (ER) represents the sum of US and Canadian exploitation rates on each
+                    Management Unit (MU). Status (i.e., "L"ow, "M"oderate, "A"bundant) is based on cohort abundance.
+                    Pre-season status is based on agency forecasts of MU cohort abundance.
+                    The ER Cap on the Interior Fraser MU is 20% due to its Low MU status.
+                    ER Caps are not available for other Canadian MUs. ER Caps on each of the Inside US MUs
+                    (Skagit, Stillaguamish, Snohomish, Hood Canal, and US Strait JDF) are based on MU status,
+                    which is determined by cohort abundance. ER Caps on each of the Outside US MUs
+                    (Quillayute Fall, Queets, Hoh, Grays Harbor) are based on cohort abundance and the escapement goals
+                    for each MU. Outside US MUs are managed for an escapement range; the floor of the escapement range
+                    is used for MU status determination. Pre-season modelled ERs are the result of US and Canadian fishery
+                    planning processes. Cohort abundance is the ocean age-3 abundance and represents escapement plus fishery mortality,
+                    but not natural mortality.
+
+
+
+
+```{r firsttable, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+
+t1 <- CreateTable2(pre.season.data = pre.season.data, post.season.data = pre.season.data, run.year = run.year) %>%
+  select(-post.cap, -post.estd, -post.ocean.age, -post.status ,-post.estd, -post.escapement) %>%
+  mutate_if(colnames(.) %in% c("pre.cap", "pre.model",  "pre.escapement", "pre.ocean.age"), ~as.double(as.character(.))) %>%
+  mutate_if(colnames(.) %in% c("pre.cap", "pre.model"),  ~percent(.,accuracy = 0.1))
+
+table1form <- kable(t1, format = "latex", digits = c(0), format.args = list(big.mark =","), escape = T,
+                    col.names = c("Managment unit", "Status", "ER Cap", "ER Model", "Escapement", "Recruitment (Ocean Age-3)"), label = "GUYUYUYUYUY",
+                    booktabs = T, linesep = "") %>%
+  kableExtra::column_spec(6:6, "2.5cm") %>%
+  kable_styling(latex_options = "striped") %>%
+  add_header_above(c(" ", "Pre-Season" = 5))
+
+print(table1form)
+
+
+```
+
+
+\newpage 
+
+**Table 3: Pre-season summary exploitation rates, escapements, and cohort abundances for naturally spawning Coho MUs in `r run.year`.**
+
+
+```{r thirdtable, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+
+t3_per <- CreateTable3(pre.season.data) %>%
+    filter(psc.fishery.name %notin% c("escapement", "cohort")) %>%
+    mutate_if(is.numeric, ~percent(.,accuracy = 0.1, suffix = "\\%"))
+
+t3_cnt <-CreateTable3(pre.season.data)%>%
+  filter(psc.fishery.name %in% c("escapement", "cohort")) %>%
+  mutate_if(is.numeric, ~comma(.))
+
+
+t3_cnt_GS <- select(t3_cnt, c("psc.fishery.name", starts_with("Georgia")))
+
+t3_cnt_GS[1,2:ncol(t3_cnt_GS)] <- paste0(t3_cnt_GS[1,2:ncol(t3_cnt_GS)], footnote_marker_symbol(3))
+t3_cnt_GS[2,2:ncol(t3_cnt_GS)] <- paste0(t3_cnt_GS[2,2:ncol(t3_cnt_GS)], footnote_marker_symbol(2))
+
+t3_cnt_oth <- select(t3_cnt, -starts_with("Georgia")) %>%
+  mutate(`Lower Fraser` = if_else(psc.fishery.name == "escapement",
+                                  paste0(`Lower Fraser`, footnote_marker_symbol(1)," "),
+                                  paste0(`Lower Fraser`, footnote_marker_symbol(2))))
+
+t3_cnt <- left_join(t3_cnt_GS, t3_cnt_oth, "psc.fishery.name")
+
+
+t3 <- bind_rows(t3_per, t3_cnt) %>%
+  mutate(psc.fishery.name = str_replace(psc.fishery.name, "&", "\\\\&")) %>%
+  rename(`Fishery Name` = "psc.fishery.name") 
+
+
+table3form <-  kable(t3, escape = F, booktabs= T, linesep = "") %>%
+  kable_styling(latex_options = c("scale_down", "striped")) %>%
+  column_spec(1, bold = T) %>%
+  row_spec(c(13, 23, 25), background = "#e3e7fc") %>%
+  row_spec(0, bold = TRUE, background = "#e3e7fc" ) %>%
+  footnote(symbol = c("Modelled values of terminal run size occuring after lower Fraser in river fisheries", " Modelled values of terminal run size that are not directly estimated", "Modelled values that are not directly estimated"))
+
+
+print(table3form)
+
+```
+

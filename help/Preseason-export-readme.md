@@ -37,3 +37,7 @@ Exports a .xlsx file to the report.dir containing 4 tabs:
 * stock_summary: similar to annual report table 2
 * Run_info: meta data about the FRAM model run
 
+Exports a .pdf file to the report.dir with two summary tables:
+* A table of pre-season estimates of ER, escapement, and recruits (similar to table 1 of the annual report)
+* A table of fishery specific pre-season ERs for each MU (pre-season version of table 3 from the annual report)
+

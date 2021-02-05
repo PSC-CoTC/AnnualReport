@@ -66,6 +66,9 @@ table1form <- kable(t1, format = "latex", digits = c(0), format.args = list(big.
 
 print(table1form)
 
+
+
+
 ```
 
 \newpage 
