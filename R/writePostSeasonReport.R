@@ -18,12 +18,13 @@
 #'
 #' @importFrom RODBC odbcConnectAccess odbcClose
 #' @importFrom rmarkdown render
-#' @importFrom dplyr mutate_if bind_rows rename first group_by summarise ungroup if_else
+#' @importFrom dplyr mutate_if bind_rows rename first group_by summarise ungroup if_else filter slice
 #' @importFrom knitr kable
 #' @importFrom kableExtra add_header_above column_spec landscape kable_styling footnote footnote_marker_symbol row_spec
 #' @importFrom scales percent comma
 #' @importFrom stringr str_sub str_locate str_replace str_detect
 #' @importFrom readxl read_excel
+#' @importFrom tibble add_row
 #'
 #' @export
 #'
@@ -43,7 +44,9 @@ writeAnnualReport <- function(run.year, post.season.run.name, pre.season.run.nam
                               template.dir = "./templates/",
                               report.dir = "./report/",
                               data.dir = "./csv/",
-                              combine.GS = NA) {
+                              combine.GS = NA,
+                              big.bar.esc = 39434) {
+
 
 
 
@@ -74,6 +77,9 @@ writeAnnualReport <- function(run.year, post.season.run.name, pre.season.run.nam
     combine.GS <- if_else(run.year >= 2019, TRUE, FALSE)
   }
 
+
+  pre.season.db.name <- basename(pre.season.fram.db)
+  post.season.db.name <- basename(post.season.fram.db)
 
   psc.data.list <- loadPscData(data.dir)
 
@@ -166,9 +172,13 @@ writeAnnualReport <- function(run.year, post.season.run.name, pre.season.run.nam
 
   output_file_name <- paste0(run.year, "_", "annualreport", "_", GetTimeStampText(), ".pdf")
 
-  system.file("AnnualReport.rmd", package = packageName()) %>%
-    rmarkdown::render(.,
-                      output_file = output_file_name, output_dir = report.dir)
+  if(big.bar.esc<=0){
+    system.file("AnnualReport.rmd", package = packageName()) %>%
+      rmarkdown::render(., output_file = output_file_name, output_dir = report.dir)
+  }else{
+    system.file("AnnualReportBigBar.rmd", package = packageName()) %>%
+      rmarkdown::render(.,output_file = output_file_name, output_dir = report.dir)
+  }
 
 
 }

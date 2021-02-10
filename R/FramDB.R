@@ -340,7 +340,7 @@ updateTargetEscapement <- function (fram.db.conn, fram.run.id, escapement_df) {
     params <- list(RUNID = fram.run.id,
                    STOCKID = escapement_df$fram.stock.id[row_idx])
 
-    db_recruit <- getFramData(fram.db.conn, FramGetSingleRecruitScalar, params = params)
+    db_recruit <- getFramData(fram.db.conn, FramGetSingleRecruitScalar, params = params, package_name = "CotcAnnualReport")
 
     if(nrow(db_recruit) == 0) {
       db_recruit <- data.frame(recruit.scalar = as.numeric(NA))
@@ -354,8 +354,9 @@ updateTargetEscapement <- function (fram.db.conn, fram.run.id, escapement_df) {
       RS.error <- FALSE
 
       if(escapement_df$recruit.scalar[row_idx] == 0){
-        cat(sprintf("ERROR - '%s' recruit scalar set to update but recruit scalar set to 0",
+        cat(sprintf("ERROR - '%s' recruit scalar set to update but recruit scalar set to 0\n\n",
                     escapement_df$fram.stock.name[row_idx]))
+        RS.error <- TRUE
       }
 
       if(is.na(db_recruit$recruit.scalar)) {
@@ -385,11 +386,11 @@ updateTargetEscapement <- function (fram.db.conn, fram.run.id, escapement_df) {
           cat(sprintf("INFO - Recruit scalar being updated for '%s' \n\n",
                       escapement_df$fram.stock.name[row_idx]))
 
-          variables <- list(RUNID = fram.run.id,
+          params <- list(RUNID = fram.run.id,
                             STOCKID = escapement_df$fram.stock.id[row_idx],
                             RECRUITSCALAR = escapement_df$recruit.scalar[row_idx])
 
-          data <- RunSqlFile(fram.db.conn, FramUpdateRecruitScalars, variables)
+          data <- getFramData(fram.db.conn, FramUpdateRecruitScalars, params = params)
         }
       }
     }
@@ -418,7 +419,7 @@ updateTargetEscapement <- function (fram.db.conn, fram.run.id, escapement_df) {
     params <- list(RUNID = fram.run.id,
                       STOCKID = escapement_df$fram.stock.id[row_idx])
 
-    esc.data <- getFramData(fram.db.conn, FramGetSingleBackwardEsc, params = params)
+    esc.data <- getFramData(fram.db.conn, FramGetSingleBackwardEsc, params = params, package_name = "CotcAnnualReport")
 
 
     params <- list(RUNID = fram.run.id,
@@ -427,10 +428,10 @@ updateTargetEscapement <- function (fram.db.conn, fram.run.id, escapement_df) {
                       TARGETESCAPEMENT = target.escapement,
                       COMMENT=comment)
     if (nrow(esc.data) > 0) {
-      data <- getFramData(fram.db.conn, FramUpdateBackwardEsc, params  = params)
+      data <- getFramData(fram.db.conn, FramUpdateBackwardEsc, params  = params,  package_name = "CotcAnnualReport")
     } else {
       #Insert a new Backward FRAM Escapement Target row into the database.
-      data <- getFramData(fram.db.conn, FramInsertBackwardEsc, params = params)
+      data <- getFramData(fram.db.conn, FramInsertBackwardEsc, params = params,  package_name = "CotcAnnualReport")
     }
   }
 
@@ -567,4 +568,58 @@ loadPscData <- function(data.dir) {
                       psc.stock.map = psc.stock.map)
 
   return (result.list)
+}
+
+
+#' A helper function that loads an SQL script, updates the variables in the script to values provide and
+#' formats the resulting data by renames columns to common R style.
+#'
+#' @param db.conn An ODBC connection to the ODBC database
+#' @param file.name A file name that the SQL script is saved to
+#' @param variables An R list of variables, variable names in the list are matched to ones with the same name in
+#'       a format like %VARIABLENAME% (eg list(runid = 1) will replace %RUNID% in the SQL with 1)
+#'
+#' @return A data frame with query results
+#'
+#' @section EXCEPTIONS
+#'   If a variable type is found that the function can't handle (e.g. a vector), the script
+#'   will throw an exception.
+#'
+RunSqlFile <- function (db.conn, file.name, variables=NA) {
+
+  file.conn <- file(file.name, "r", blocking = FALSE)
+  sql.text <- paste(readLines(file.conn), collapse=" ")# empty
+  close(file.conn)
+
+  if (is.list(variables)) {
+    var.names <- names(variables)
+
+    for (var.idx in 1:length(var.names)) {
+      var.name <- var.names[var.idx]
+      var.value <- variables[[var.name]]
+      if (is.numeric(var.value)) {
+        if (is.na(var.value)) {
+          var.value <- "NULL"
+        }
+        sql.text <- gsub(paste0("%", var.name, "%"), var.value, sql.text, ignore.case=TRUE)
+      } else if (is.character(var.value) || is.factor(var.value)) {
+        sql.text <- gsub(paste0("%", var.name, "%"),
+                         paste0("'", as.character(var.value), "'"),
+                         sql.text,
+                         ignore.case=TRUE)
+      } else {
+        stop(sprintf("Unknown variable type '%s' for variable '%s' when converting in RunSqlFile", typeof(var.value), var.name))
+      }
+    }
+  }
+
+  unbound.variables <- gregexpr("%[a-z]*%", sql.text, ignore.case=TRUE)
+  if (unbound.variables[[1]] > 0) {
+    error.msg <- sprintf("Unbound variables found for the '%s' sql script \n", file.name)
+    stop(error.msg)
+  }
+
+  data <- sqlQuery(db.conn, sql.text)
+  data <- TranslateDbColumnNames(data)
+  return (data)
 }

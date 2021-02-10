@@ -27,7 +27,7 @@ options(knitr.table.format = 'latex', knitr.kable.NA = '')
 ```
 
 **Pre-season DB:** `r pre.season.db.name`, **Pre-season run name:** `r pre.season.run.name` \newline
-**Post-season DB:** `r post.season.db.name`, **Post-season run name:** `r post.season.run.name`
+**Post-season DB:** `r post.season.db.name`, **Post-season run name:** `r post.season.run.name` \newline
 
  **Table 1: Summary of the `r run.year` return of natural spawning Coho Management Units.**
                     Total exploitation rate (ER) represents the sum of US and Canadian exploitation rates on each
@@ -48,15 +48,59 @@ options(knitr.table.format = 'latex', knitr.kable.NA = '')
 
 ```{r firsttable, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 
-t1 <- annual.tbl.second %>%
-  mutate_if(colnames(.) %in% c("pre.cap", "pre.model", "post.cap", "post.estd", "pre.escapement", "post.escapement", "pre.ocean.age", "post.ocean.age"), ~as.double(as.character(.))) %>%
-  mutate_if(colnames(.) %in% c("pre.cap", "pre.model", "post.cap", "post.estd"),  ~percent(.,accuracy = 0.1))
 
-table1form <- kable(t1, format = "latex", digits = c(0), format.args = list(big.mark =","), escape = T,
+total.int.fr.esc <- filter(annual.tbl.second, management.unit == "Interior Fraser") %>%
+  .$post.escapement %>%
+  as.numeric()
+
+
+total.int.fr.ret <- filter(annual.tbl.second, management.unit == "Interior Fraser") %>%
+  .$post.ocean.age %>%
+  as.numeric()
+
+big.bar.morts <- total.int.fr.esc - big.bar.esc
+
+big.bar.t1 <- filter(annual.tbl.second, management.unit == "Interior Fraser") %>%
+  mutate(post.escapement = as.character(big.bar.esc)) %>%
+  mutate(post.ocean.age = as.numeric(post.ocean.age) - big.bar.morts) %>%
+  mutate(post.ocean.age = as.character(post.ocean.age)) %>%
+  mutate(post.estd = 1-(big.bar.esc/as.numeric(post.ocean.age))) %>%
+  mutate(post.estd = as.character(post.estd)) %>%
+  mutate(management.unit = "Interior Fraser without Big Bar")
+
+t1 <- annual.tbl.second %>%
+  tibble::add_row(big.bar.t1)%>%
+  mutate_if(colnames(.) %in% c("pre.cap", "pre.model", "post.cap", "post.estd", "pre.escapement", "post.escapement", "pre.ocean.age", "post.ocean.age"), ~as.double(as.character(.))) %>%
+  mutate_if(colnames(.) %in% c("pre.cap", "pre.model", "post.cap", "post.estd"),  ~percent(.,accuracy = 0.1)) %>%
+  slice(3, 1:2, 13, 4:12)
+
+# 
+# t1 <- annual.tbl.second %>%
+#   mutate_if(colnames(.) %in% c("pre.cap", "pre.model", "post.cap", "post.estd", "pre.escapement", "post.escapement", "pre.ocean.age", "post.ocean.age"), ~as.double(as.character(.))) %>%
+#   mutate_if(colnames(.) %in% c("pre.cap", "pre.model", "post.cap", "post.estd"),  ~percent(.,accuracy = 0.1)) %>%
+#   mutate(post.escapement = format(round(post.escapement, 0), big.mark = ",")) %>%
+#   mutate(post.escapement = if_else(management.unit == "Interior Fraser", paste(post.escapement, "*", sep = " "), as.character(post.escapement))) %>%
+#   mutate(post.escapement = if_else(management.unit == "Lower Fraser", " ", post.escapement)) %>%
+#   mutate(post.escapement = if_else(management.unit == "Georgia Strait", " ", post.escapement))
+
+
+
+
+
+
+
+# 
+# big.bar.footnote <- str_glue("The Big Bar land slide resulted in an estimated {round(total.int.fr.esc - big.bar.esc, 0)} Coho spawner mortalities, resulting in a surviving escapement of {big.bar.esc} for IFC. If the Big Bar mortalities were not included this would have resulted in a post season ER of {round((total.int.fr.rec-big.bar.esc)/(total.int.fr.rec-big.bar.morts),3)}")
+
+table1form <- kable(t1,  digits = c(0), format.args = list(big.mark =","), escape = T,
                     col.names = c("Managment unit", "Status", "Cap", "Model", "Status",  "Cap", "Estd", "Pre", "Post", "Pre", "Post"), label = "GUYUYUYUYUY",
-                    booktabs = T, linesep = "") %>%
-  kable_styling(latex_options = "striped") %>%
+                    booktabs = T, linesep = "", format = "latex") %>%
+  # kable_styling(latex_options = "striped") %>%
+  row_spec(c(seq(1, nrow(t1),2)), background = "gray!10") %>%
+  column_spec(1, width = "7em") %>%
+  row_spec(4, background = "#eff2b6") %>%
   add_header_above(c(" ", "Pre-Season total ER" = 3, "Post-Season total ER" = 3, "Escapement" = 2, "Recruitment\n(Ocean Age-3)" = 2))
+# footnote(symbol = c(big.bar.footnote), threeparttable = T)
 # column_spec(2, border_left = TRUE)%>%
 # column_spec(5, border_left = TRUE)%>%
 # column_spec(8, border_left = TRUE)%>%
@@ -81,13 +125,41 @@ Pre-season ERs reflect combined US and Canadian pre-season planning processes an
 ```{r secondtable, echo=FALSE, warning=FALSE, results='asis'}
  
 
+big.bar.returns <- as.numeric(big.bar.t1$post.ocean.age)
+
+ifc.us.er <- filter(annual.tbl.first, management.unit == "Interior Fraser") %>%
+  .$us.post.estd
+
+ifc.us.catch <- ifc.us.er*as.numeric(total.int.fr.ret)
+
+ifc.us.bigbar.er <- ifc.us.catch/big.bar.returns
+
+
+ifc.cdn.er <- filter(annual.tbl.first, management.unit == "Interior Fraser") %>%
+  .$cdn.post.estd
+
+ifc.cdn.catch <- ifc.cdn.er*as.numeric(total.int.fr.ret)
+
+ifc.cdn.bigbar.er <- ifc.cdn.catch/big.bar.returns
+
+big.bar.t2 <- filter(annual.tbl.first, management.unit == "Interior Fraser") %>%
+  mutate(us.post.estd = ifc.us.bigbar.er) %>%
+  mutate(us.post.unused = us.post.cap - us.post.estd) %>%
+  mutate(cdn.post.estd = ifc.cdn.bigbar.er) %>%
+  mutate(cdn.post.unused = cdn.post.cap - cdn.post.estd) %>%
+  mutate(management.unit  = "Interior Fraser without Big Bar")
+
+
 t2 <- annual.tbl.first %>%
+  tibble::add_row(big.bar.t2) %>%
   select(-cap.method) %>%
   mutate_if(is.numeric, ~percent(.,accuracy = 0.1, suffix = "\\%")) %>%
   mutate(us.pre.cap = if_else(management.unit %in% c("Skagit", "Stillaguamish", "Snohomish", "Hood Canal", "US Strait JDF", "Quillayute", "Hoh", "Queets", "Grays Harbor"), paste(us.pre.cap, footnote_marker_symbol(2, "latex",), sep = " "), us.pre.cap )) %>%
   mutate(us.post.cap = if_else(management.unit %in% c("Skagit", "Stillaguamish", "Snohomish", "Hood Canal", "US Strait JDF", "Quillayute", "Hoh", "Queets", "Grays Harbor"), paste(us.post.cap, footnote_marker_symbol(2, "latex"), sep = " "), us.post.cap )) %>%
   mutate(cdn.pre.cap = if_else(management.unit == "Interior Fraser", paste(cdn.pre.cap, footnote_marker_symbol(2, "latex"), sep = " "), cdn.pre.cap)) %>%
-  mutate(cdn.post.cap = if_else(management.unit == "Interior Fraser", paste(cdn.post.cap, footnote_marker_symbol(2, "latex"), sep = " "), cdn.post.cap))
+  mutate(cdn.post.cap = if_else(management.unit == "Interior Fraser", paste(cdn.post.cap, footnote_marker_symbol(2, "latex"), sep = " "), cdn.post.cap)) %>%
+  slice(3, 1:2, 13, 4:12)
+
 
 
 
@@ -105,13 +177,15 @@ us_skag_cap <- annual.tbl.first$us.pre.cap[annual.tbl.first$management.unit == "
 footnote2 <- str_glue("Contains the base cap ER plus the unused portion of the intercepting party's ER. For example in the preseason, Skagit includes US share plus the unused {cdn_skag_unused} Canadian allocation, totalling {us_skag_cap} total US allocation.")
 
 table2form <-  kable(t2, digits = 1,
-                     col.names = c("Managment unit", "Cap", "Model", "Unused", "Cap", "Estd", "Unused", "Cap", "Model", "Unused", "Cap", "Estd","Unused"), escape = F, linesep = "", booktabs = T) %>%
-  kable_styling(latex_options = "striped") %>%
+                     col.names = c("Managment unit", "Cap", "Model", "Unused", "Cap", "Estd", "Unused", "Cap", "Model", "Unused", "Cap", "Estd","Unused"), escape = F, linesep = "", booktabs = T, format = "latex") %>%
   # column_spec(2, border_left = TRUE)%>%
   # column_spec(5, border_left = TRUE)%>%
   # column_spec(8, border_left = TRUE)%>%
   # column_spec(11, border_left = TRUE)%>%
   # column_spec(13, border_right  = TRUE)%>%
+  row_spec(c(seq(1, nrow(t1),2)), background = "gray!10") %>%
+  column_spec(1, width = "7em") %>%
+  row_spec(4, background = "#eff2b6") %>%
   add_header_above(c(" ", "Pre-Season" = 3, "Post-Season" = 3, "Pre-season" = 3, "Post-Season" = 3))%>%
   add_header_above(c(" ", "Southern U.S.* Exploitation Rate" = 6, "Canadian Exploitation Rate" = 6)) %>%
   footnote(symbol = c("Southern U.S. is limited to US fisheries south of the Canadian border.", footnote2), threeparttable = T)
@@ -127,12 +201,14 @@ print(table2form)
 
 ```{r thirdtable, echo=FALSE, warning=FALSE, results='asis'}
 
- t3_per <- annual.tbl.third %>%
+t3_per <- annual.tbl.third %>%
   filter(psc.fishery.name %notin% c("escapement", "cohort")) %>%
-   mutate_if(is.numeric, ~percent(.,accuracy = 0.1, suffix = "\\%"))
+  mutate(`Interior Fraser without Big Bar` = (`Interior Fraser`*total.int.fr.ret)/big.bar.returns) %>%
+  mutate_if(is.numeric, ~percent(.,accuracy = 0.1, suffix = "\\%"))
 
 t3_cnt <- annual.tbl.third %>%
   filter(psc.fishery.name %in% c("escapement", "cohort")) %>%
+  mutate(`Interior Fraser without Big Bar` = c(big.bar.esc, big.bar.returns)) %>%
   mutate_if(is.numeric, ~comma(.))
 
 t3_cnt_GS <- select(t3_cnt, c("psc.fishery.name", starts_with("Georgia")))
@@ -150,17 +226,22 @@ t3_cnt <- left_join(t3_cnt_GS, t3_cnt_oth, "psc.fishery.name")
 
 t3 <- bind_rows(t3_per, t3_cnt) %>%
   mutate(psc.fishery.name = str_replace(psc.fishery.name, "&", "\\\\&")) %>%
-  rename(`Fishery Name` = "psc.fishery.name") 
+  rename(`Fishery Name` = "psc.fishery.name")  %>%
+  select(1, 4, 2, 3, 14, everything())
 
 
-table3form <-  kable(t3, escape = F, booktabs= T, linesep = "") %>%
-  kable_styling(latex_options = c("scale_down", "striped")) %>%
+table3form <-  kable(t3, escape = F, booktabs= T, linesep = "", col.names = c(names(t3)[1:4], linebreak("Interior Fraser\nwithout bigbar"), names(t3)[6:14])) %>%
+# table3form <-  kable(t3, escape = F, booktabs= T, linesep = "") %>%
+  kable_styling(latex_options = c("scale_down")) %>%
   column_spec(1, bold = T) %>%
+  row_spec(0, bold = TRUE) %>%
   row_spec(c(13, 23, 25), background = "#e3e7fc") %>%
-  row_spec(0, bold = TRUE, background = "#e3e7fc" ) %>%
+  row_spec(c(seq(2, nrow(t3),2)), background = "#d6d6d6") %>%
+  column_spec(5,background = "#eef58c") %>%
   footnote(symbol = c("Modelled values of terminal run size occuring after lower Fraser in river fisheries", " Modelled values of terminal run size that are not directly estimated", "Modelled values that are not directly estimated"))
 
-
+  
 print(table3form)
 
 ```
+

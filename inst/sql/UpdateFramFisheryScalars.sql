@@ -5,5 +5,5 @@ UPDATE FisheryScalers SET FisheryFlag= ${FISHERYFLAG},
                           MarkMisIDRate= ${MARKMISIDRATE},
                           UnMarkMisIDRate= ${UNMARKMISSIDRATE},
                           MarkIncidentalRate= ${MARKINCIDENTALRATE},
-                          Comment= ${COMMENT}
+                          Comment= '${COMMENT}'
 WHERE FisheryScalers.RunID= ${RUNID} AND FisheryScalers.FisheryID= ${FISHERYID} AND FisheryScalers.TimeStep= ${TIMESTEP};
