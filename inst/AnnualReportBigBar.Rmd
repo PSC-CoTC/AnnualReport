@@ -25,7 +25,7 @@ options(knitr.table.format = 'latex', knitr.kable.NA = '')
 
 
 ```
-
+\thispagestyle{empty}
 **Pre-season DB:** `r pre.season.db.name`, **Pre-season run name:** `r pre.season.run.name` \newline
 **Post-season DB:** `r post.season.db.name`, **Post-season run name:** `r post.season.run.name` \newline
 
@@ -58,7 +58,9 @@ total.int.fr.ret <- filter(annual.tbl.second, management.unit == "Interior Frase
   .$post.ocean.age %>%
   as.numeric()
 
-big.bar.morts <- total.int.fr.esc - big.bar.esc
+# big.bar.morts <- total.int.fr.esc - big.bar.esc
+
+big.bar.mort.txt <- format(round(big.bar.morts, 0), big.mark = ",")
 
 big.bar.t1 <- filter(annual.tbl.second, management.unit == "Interior Fraser") %>%
   mutate(post.escapement = as.character(big.bar.esc)) %>%
@@ -66,7 +68,7 @@ big.bar.t1 <- filter(annual.tbl.second, management.unit == "Interior Fraser") %>
   mutate(post.ocean.age = as.character(post.ocean.age)) %>%
   mutate(post.estd = 1-(big.bar.esc/as.numeric(post.ocean.age))) %>%
   mutate(post.estd = as.character(post.estd)) %>%
-  mutate(management.unit = "Interior Fraser without Big Bar")
+  mutate(management.unit = "Interior Fraser w/o Big Bar morts*")
 
 t1 <- annual.tbl.second %>%
   tibble::add_row(big.bar.t1)%>%
@@ -89,18 +91,21 @@ t1 <- annual.tbl.second %>%
 
 
 
-# 
-# big.bar.footnote <- str_glue("The Big Bar land slide resulted in an estimated {round(total.int.fr.esc - big.bar.esc, 0)} Coho spawner mortalities, resulting in a surviving escapement of {big.bar.esc} for IFC. If the Big Bar mortalities were not included this would have resulted in a post season ER of {round((total.int.fr.rec-big.bar.esc)/(total.int.fr.rec-big.bar.morts),3)}")
+# # 
+# big.bar.footnote <- str_glue("The Big Bar land slide resulted in an estimated {round(total.int.fr.esc - big.bar.esc, 0)} Coho spawner mortalities in 2019. Excluding these mortalities from the escapement estimate, results a surviving escapement of {big.bar.esc} for Interior Fraser Coho. Exploitation rates for Interior Fraser Coho without the Big Bar mortalities included in the escapement were calculated using the catch estimates from the backwards FRAM run that included the Big Bar mortalities divided by the escapement with the Big Bar mortalities removed.")
+
+# big.bar.footnote <- str_glue("The Big Bar land slide resulted in an estimated {big.bar.mort.txt} Coho spawner mortalities in 2019.  Two sets of estimates for the Interior Fraser Management Unit are reported in tables 1-3 using outputs from a single backwards FRAM run. The estimates that are not highlighted were computed using spawning escapement plus the estimated {big.bar.mort.txt} Big Bar passage mortalities. The estimates that are highlighted in yellow are computed using the same fishery mortalilty estimates, but use only the Interior Fraser Coho spawners not impacted by Big Bar as the escapement" )
+
+big.bar.footnote <- str_glue("Interior Fraser Coho ERs calculated using escapement without the {big.bar.mort.txt} Big Bar mortalities are highlighted in yellow")
 
 table1form <- kable(t1,  digits = c(0), format.args = list(big.mark =","), escape = T,
-                    col.names = c("Managment unit", "Status", "Cap", "Model", "Status",  "Cap", "Estd", "Pre", "Post", "Pre", "Post"), label = "GUYUYUYUYUY",
+                    col.names = c("Management unit", "Status", "Cap", "Model", "Status",  "Cap", "Estd", "Pre", "Post", "Pre", "Post"), label = "GUYUYUYUYUY",
                     booktabs = T, linesep = "", format = "latex") %>%
   # kable_styling(latex_options = "striped") %>%
   row_spec(c(seq(1, nrow(t1),2)), background = "gray!10") %>%
-  column_spec(1, width = "7em") %>%
   row_spec(4, background = "#eff2b6") %>%
-  add_header_above(c(" ", "Pre-Season total ER" = 3, "Post-Season total ER" = 3, "Escapement" = 2, "Recruitment\n(Ocean Age-3)" = 2))
-# footnote(symbol = c(big.bar.footnote), threeparttable = T)
+  add_header_above(c(" ", "Pre-Season total ER" = 3, "Post-Season total ER" = 3, "Escapement" = 2, "Recruitment\n(Ocean Age-3)" = 2)) %>%
+  footnote(symbol = c(big.bar.footnote), threeparttable = T)
 # column_spec(2, border_left = TRUE)%>%
 # column_spec(5, border_left = TRUE)%>%
 # column_spec(8, border_left = TRUE)%>%
@@ -116,6 +121,8 @@ print(table1form)
 ```
 
 \newpage 
+\thispagestyle{empty}
+
 **Table 2: Exploitation rates by country for the `r run.year` return year.**
 US Exploitation Rates: For US ER on Canadian Management Units (MU), a 10% ER Cap for Interior Fraser Coho is allowable under the PSC Coho agreement based on Low status. ER Caps are not defined for other Canadian MUs because status is not available.
 Canadian Exploitation Rates: For Canadian ER Caps on US MUs, the pre-season ER Caps are the total allowable ER under the PSC Coho agreement. For Canadian ER Caps on Canadian MUs, a 10% ER Cap for Interior Fraser Coho is allowable under the PSC Coho agreement.
@@ -147,7 +154,7 @@ big.bar.t2 <- filter(annual.tbl.first, management.unit == "Interior Fraser") %>%
   mutate(us.post.unused = us.post.cap - us.post.estd) %>%
   mutate(cdn.post.estd = ifc.cdn.bigbar.er) %>%
   mutate(cdn.post.unused = cdn.post.cap - cdn.post.estd) %>%
-  mutate(management.unit  = "Interior Fraser without Big Bar")
+  mutate(management.unit  = paste0("Interior Fraser w/o Big Bar morts",  footnote_marker_symbol(3, "latex")))
 
 
 t2 <- annual.tbl.first %>%
@@ -177,18 +184,18 @@ us_skag_cap <- annual.tbl.first$us.pre.cap[annual.tbl.first$management.unit == "
 footnote2 <- str_glue("Contains the base cap ER plus the unused portion of the intercepting party's ER. For example in the preseason, Skagit includes US share plus the unused {cdn_skag_unused} Canadian allocation, totalling {us_skag_cap} total US allocation.")
 
 table2form <-  kable(t2, digits = 1,
-                     col.names = c("Managment unit", "Cap", "Model", "Unused", "Cap", "Estd", "Unused", "Cap", "Model", "Unused", "Cap", "Estd","Unused"), escape = F, linesep = "", booktabs = T, format = "latex") %>%
+                     col.names = c("Management unit", "Cap", "Model", "Unused", "Cap", "Estd", "Unused", "Cap", "Model", "Unused", "Cap", "Estd","Unused"), escape = F, linesep = "", booktabs = T, format = "latex") %>%
   # column_spec(2, border_left = TRUE)%>%
   # column_spec(5, border_left = TRUE)%>%
   # column_spec(8, border_left = TRUE)%>%
   # column_spec(11, border_left = TRUE)%>%
   # column_spec(13, border_right  = TRUE)%>%
   row_spec(c(seq(1, nrow(t1),2)), background = "gray!10") %>%
-  column_spec(1, width = "7em") %>%
+  # column_spec(1, width = "7em") %>%
   row_spec(4, background = "#eff2b6") %>%
   add_header_above(c(" ", "Pre-Season" = 3, "Post-Season" = 3, "Pre-season" = 3, "Post-Season" = 3))%>%
   add_header_above(c(" ", "Southern U.S.* Exploitation Rate" = 6, "Canadian Exploitation Rate" = 6)) %>%
-  footnote(symbol = c("Southern U.S. is limited to US fisheries south of the Canadian border.", footnote2), threeparttable = T)
+  footnote(symbol = c("Southern U.S. is limited to US fisheries south of the Canadian border.", footnote2, big.bar.footnote), threeparttable = T)
 
 print(table2form)
 
@@ -196,6 +203,7 @@ print(table2form)
 ```
 
 \newpage
+\thispagestyle{empty}
 
 **Table 3: Post-season summary exploitation rates, escapements, and cohort abundances for naturally spawning Coho MUs in `r run.year`.**
 
@@ -230,15 +238,16 @@ t3 <- bind_rows(t3_per, t3_cnt) %>%
   select(1, 4, 2, 3, 14, everything())
 
 
-table3form <-  kable(t3, escape = F, booktabs= T, linesep = "", col.names = c(names(t3)[1:4], linebreak("Interior Fraser\nwithout bigbar"), names(t3)[6:14])) %>%
-# table3form <-  kable(t3, escape = F, booktabs= T, linesep = "") %>%
+table3form <-  kable(t3, escape = F, booktabs= T, linesep = "", 
+                     col.names = linebreak(c("Fishery name", "Georgia\nStrait", "Lower\nFraser","Interior\nFraser", paste0("Interior Fraser\nw/o Big Bar morts",  footnote_marker_symbol(4, "latex")), "Skagit", "Stillaguamish", "Snohomish", "Hood\nCanal", "US Strait\nJDF", "Quillayute", "Hoh", "Queets", "Grays\nHarbor"))) %>%
+  # table3form <-  kable(t3, escape = F, booktabs= T, linesep = "") %>%
   kable_styling(latex_options = c("scale_down")) %>%
   column_spec(1, bold = T) %>%
   row_spec(0, bold = TRUE) %>%
   row_spec(c(13, 23, 25), background = "#e3e7fc") %>%
   row_spec(c(seq(2, nrow(t3),2)), background = "#d6d6d6") %>%
   column_spec(5,background = "#eef58c") %>%
-  footnote(symbol = c("Modelled values of terminal run size occuring after lower Fraser in river fisheries", " Modelled values of terminal run size that are not directly estimated", "Modelled values that are not directly estimated"))
+  footnote(symbol = c("Modelled values of terminal run size occuring after lower Fraser in river fisheries", " Modelled values of terminal run size that are not directly estimated", "Modelled values that are not directly estimated", big.bar.footnote))
 
   
 print(table3form)

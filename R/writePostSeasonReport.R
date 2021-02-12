@@ -18,11 +18,11 @@
 #'
 #' @importFrom RODBC odbcConnectAccess odbcClose
 #' @importFrom rmarkdown render
-#' @importFrom dplyr mutate_if bind_rows rename first group_by summarise ungroup if_else filter slice
+#' @importFrom dplyr mutate_if bind_rows rename first group_by summarise ungroup if_else filter slice select everything
 #' @importFrom knitr kable
 #' @importFrom kableExtra add_header_above column_spec landscape kable_styling footnote footnote_marker_symbol row_spec
 #' @importFrom scales percent comma
-#' @importFrom stringr str_sub str_locate str_replace str_detect
+#' @importFrom stringr str_sub str_locate str_replace str_detect str_glue
 #' @importFrom readxl read_excel
 #' @importFrom tibble add_row
 #'
@@ -45,7 +45,8 @@ writeAnnualReport <- function(run.year, post.season.run.name, pre.season.run.nam
                               report.dir = "./report/",
                               data.dir = "./csv/",
                               combine.GS = NA,
-                              big.bar.esc = 39434) {
+                              big.bar.esc = 39434,
+                              big.bar.morts = 4392) {
 
 
 

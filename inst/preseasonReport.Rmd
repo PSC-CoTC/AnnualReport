@@ -9,7 +9,7 @@ output:
     keep_tex: FALSE
     latex_engine: xelatex
   html_document:
-    df_print: paged
+    df_print: 
 classoption: landscape
 urlcolor: blue
 ---
@@ -51,17 +51,24 @@ options(knitr.table.format = 'latex', knitr.kable.NA = '')
 
 ```{r firsttable, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 
+t2 <- CreateTable1(pre.season.data = pre.season.data, post.season.data = pre.season.data, run.year = run.year) %>%
+  select(management.unit, us.pre.model, cdn.pre.model)
+
 t1 <- CreateTable2(pre.season.data = pre.season.data, post.season.data = pre.season.data, run.year = run.year) %>%
   select(-post.cap, -post.estd, -post.ocean.age, -post.status ,-post.estd, -post.escapement) %>%
   mutate_if(colnames(.) %in% c("pre.cap", "pre.model",  "pre.escapement", "pre.ocean.age"), ~as.double(as.character(.))) %>%
-  mutate_if(colnames(.) %in% c("pre.cap", "pre.model"),  ~percent(.,accuracy = 0.1))
+  left_join(t2, "management.unit") %>%
+  mutate_if(colnames(.) %in% c("pre.cap", "pre.model", "us.pre.model", "cdn.pre.model"),  ~percent(.,accuracy = 0.1)) %>%
+  select(1:4, "us.pre.model", "cdn.pre.model", everything())
+
+
 
 table1form <- kable(t1, format = "latex", digits = c(0), format.args = list(big.mark =","), escape = T,
-                    col.names = c("Managment unit", "Status", "ER Cap", "ER Model", "Escapement", "Recruitment (Ocean Age-3)"), label = "GUYUYUYUYUY",
+                    col.names = c("Management unit", "Status", "ER Cap", "ER Model", "Southern US ER Model", "Cdn ER Model", "Escapement", "Recruitment (Ocean Age-3)"), label = "GUYUYUYUYUY",
                     booktabs = T, linesep = "") %>%
-  kableExtra::column_spec(6:6, "2.5cm") %>%
+  kableExtra::column_spec(8:8, "2.5cm") %>%
   kable_styling(latex_options = "striped") %>%
-  add_header_above(c(" ", "Pre-Season" = 5))
+  add_header_above(c(" ", "Pre-Season" = 7))
 
 print(table1form)
 
@@ -103,12 +110,13 @@ t3 <- bind_rows(t3_per, t3_cnt) %>%
   rename(`Fishery Name` = "psc.fishery.name") 
 
 
-table3form <-  kable(t3, escape = F, booktabs= T, linesep = "") %>%
-  kable_styling(latex_options = c("scale_down", "striped")) %>%
+table3form <-  kable(t3, escape = F, booktabs= T, linesep = "", col.names = linebreak(c("Fishery name", "Georgia\nStrait", "Lower\nFraser","Interior\nFraser", "Skagit", "Stillaguamish", "Snohomish", "Hood Canal", "US Strait\nJDF", "Quillayute", "Hoh", "Queets", "Grays\nHarbor"))) %>%
+  kable_styling(latex_options = c("scale_down")) %>%
   column_spec(1, bold = T) %>%
   row_spec(c(13, 23, 25), background = "#e3e7fc") %>%
-  row_spec(0, bold = TRUE, background = "#e3e7fc" ) %>%
-  footnote(symbol = c("Modelled values of terminal run size occuring after lower Fraser in river fisheries", " Modelled values of terminal run size that are not directly estimated", "Modelled values that are not directly estimated"))
+  row_spec(0, bold = TRUE) %>%
+  row_spec(c(seq(2, nrow(t3),2)), background = "#d6d6d6") %>%
+  footnote(symbol = c("Modelled values of terminal run size occuring after lower Fraser in river fisheries", " Modelled values of terminal run size that are not directly estimated", "Modelled values that are not directly estimated"),threeparttable = T)
 
 
 print(table3form)
