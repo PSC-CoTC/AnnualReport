@@ -1,6 +1,8 @@
 # AnnualReport
 Annual report R package for CoTC
 
+Stored on https://github.com/PSC-CoTC/AnnualReport
+
 Welcome to the new and improved CoTC annual report R-package
 
 ## Required Software
