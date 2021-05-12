@@ -48,7 +48,8 @@ exportFisheryERs <- function(fram.db = NA, run.names, report.dir = "./report/"){
 
     fishery.mortality <- left_join(fishery.mortality, escapement, by=c("fram.run.id", "run.year", "fram.stock.id")) %>%
       mutate(cohort.age.3 = total.fishery.mortality + escapement) %>%
-      mutate(fishery.er = fishery.mortality / cohort.age.3)
+      mutate(fishery.er = fishery.mortality / cohort.age.3) %>%
+      left_join(fisheries, by=c("fram.fishery.id"))
 
 
     if(exists("er.table")){
@@ -56,6 +57,10 @@ exportFisheryERs <- function(fram.db = NA, run.names, report.dir = "./report/"){
     }else{
       er.table <- fishery.mortality
     }
+
+    er.table <- er.table %>%
+      select(fram.run.id:fram.stock.id, fram.stock.name, fram.fishery.long.name, everything()) %>%
+      select(-fram.fishery.name)
 
     addWorksheet(wb = wb, sheetName = run.name)
     openxlsx::writeData(wb, run.name, fishery.mortality)

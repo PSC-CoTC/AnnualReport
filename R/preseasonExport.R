@@ -17,7 +17,7 @@
 #' @importFrom dplyr mutate_if bind_rows rename first group_by summarise ungroup if_else select arrange
 #' @importFrom tidyr pivot_wider
 #' @importFrom magrittr %>%
-#' @importFrom kableExtra add_header_above column_spec landscape kable_styling footnote footnote_marker_symbol row_spec column_spec
+#' @importFrom kableExtra add_header_above column_spec landscape kable_styling footnote footnote_marker_symbol row_spec column_spec linebreak
 #' @importFrom readxl read_excel
 #' @importFrom scales percent
 #' @importFrom tidyselect everything
@@ -81,12 +81,26 @@ getPreseasonERs <- function(run.year,
 
   run.name <- pre.season.run.name
 
-  run.info <- getFramRunInfo(pre.season.db.conn, run.name)
+  run.info <- getFramRunInfo(pre.season.db.conn, fram.run.name = run.name)
 
   run.year <- run.info$run.year
   run.id <- run.info$fram.run.id
 
   fishery.mortality <- getFramFisheryMortality(pre.season.db.conn, run.name, run.year)
+
+  if (is.null(pre.tamm.list) == FALSE) {
+    tamm.fishery <- pre.tamm.list$tamm.fishery.mortalities
+    fishery.mortality <- left_join(fishery.mortality,
+                                   tamm.fishery,
+                                   by=c("fram.fishery.id", "fram.stock.id"))
+    tamm.value.row <- !is.na(fishery.mortality$tamm.value)
+    fishery.mortality$total.mortality[tamm.value.row] <- fishery.mortality$tamm.value[tamm.value.row]
+    fishery.mortality <- select(fishery.mortality, -one_of("tamm.value")) %>%
+      mutate(fishery.mortality = if_else(!is.na(total.mortality), total.mortality, fishery.mortality)) %>%
+      select(-total.mortality)
+  }
+
+
 
   by.stock <- group_by(fishery.mortality, fram.stock.id)
   stock.mort <- summarise(by.stock, total.fishery.mortality = sum(fishery.mortality, na.rm=TRUE))

@@ -19,7 +19,9 @@ writeAnnualReport(
   template.dir = "./templates/",
   report.dir = "./report/",
   data.dir = "./csv/",
-  combine.GS = NA
+  combine.GS = NA,
+  big.bar.esc = 39434,
+  big.bar.morts = 4392
 )
 }
 \arguments{
