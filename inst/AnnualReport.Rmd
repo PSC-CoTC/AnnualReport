@@ -105,7 +105,7 @@ us_skag_cap <- annual.tbl.first$us.pre.cap[annual.tbl.first$management.unit == "
 footnote2 <- str_glue("Contains the base cap ER plus the unused portion of the intercepting party's ER. For example in the preseason, Skagit includes US share plus the unused {cdn_skag_unused} Canadian allocation, totalling {us_skag_cap} total US allocation.")
 
 table2form <-  kable(t2, digits = 1,
-                     col.names = c("Managment unit", "Cap", "Model", "Unused", "Cap", "Estd", "Unused", "Cap", "Model", "Unused", "Cap", "Estd","Unused"), escape = F, linesep = "", booktabs = T) %>%
+                     col.names = c("Managment unit", "Cap", "Model", "Unused", "Cap", "Estd", "Unused", "Cap", "Model", "Unused", "Cap", "Estd","Unused"), escape = F, linesep = "", booktabs = T, format = "latex") %>%
   kable_styling(latex_options = "striped") %>%
   # column_spec(2, border_left = TRUE)%>%
   # column_spec(5, border_left = TRUE)%>%
