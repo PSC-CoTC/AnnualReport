@@ -1,7 +1,7 @@
 Package: CotcAnnualReport
 Type: Package
 Title: Writes the Annual Report using a pre and post season FRAM DB.  
-Version: 1.0.0
+Version: 2.0.0
 Author: Michael O'Brien, Nick Komick
 Maintainer: Michael O'Brien <michael.o'brien@dfo-mpo.gc.ca>
 Description: First step is to creat the import templates.  After the scientists have updated their templates

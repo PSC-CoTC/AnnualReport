@@ -109,6 +109,16 @@ getPreseasonERs <- function(run.year,
     left_join(stock.mort, by=c("fram.stock.id")) %>%
     left_join(fram.stocks, by=c("fram.stock.id"))
 
+  if (is.null(pre.tamm.list) == FALSE) {
+    tamm.esc <- pre.tamm.list$tamm.escapement
+    escapement <- left_join(escapement,
+                            tamm.esc,
+                            by=c("fram.stock.id"))
+    tamm.value.row <- !is.na(escapement$tamm.value)
+    escapement$escapement[tamm.value.row] <- escapement$tamm.value[tamm.value.row]
+    escapement <- select(escapement, -one_of("tamm.value"))
+  }
+
   fishery.mortality <- left_join(fishery.mortality, escapement, by=c("fram.run.id", "run.year", "fram.stock.id")) %>%
     mutate(cohort.age.3 = total.fishery.mortality + escapement) %>%
     mutate(fishery.er = fishery.mortality / cohort.age.3) %>%
