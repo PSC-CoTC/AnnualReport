@@ -39,7 +39,9 @@ getPreseasonERs <- function(run.year,
                         template.dir = "./templates/",
                         report.dir = "./report/",
                         data.dir = "./csv/",
-                        combine.GS = TRUE) {
+                        combine.GS = TRUE,
+                        big.bar.esc = 34162,
+                        big.bar.morts = 4222) {
 
   wb <- openxlsx::createWorkbook()
 
@@ -186,9 +188,16 @@ getPreseasonERs <- function(run.year,
 
   output_file_name <- paste0(run.year, "_", "Preseason_report", "_", GetTimeStampText(), ".pdf")
 
-  system.file("preseasonReport.Rmd", package = packageName()) %>%
-    rmarkdown::render(.,
-                      output_file = output_file_name, output_dir = report.dir)
+  if(big.bar.esc == 0){
+    system.file("preseasonReport.Rmd", package = packageName()) %>%
+      rmarkdown::render(.,
+                        output_file = output_file_name, output_dir = report.dir)
+  }else{
+    system.file("PreseasonReport_BigBar.Rmd", package = packageName()) %>%
+      rmarkdown::render(.,
+                        output_file = output_file_name, output_dir = report.dir)
+
+  }
 
 
 }

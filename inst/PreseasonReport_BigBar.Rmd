@@ -1,0 +1,206 @@
+---
+fontsize: 12pt
+geometry: "left=1.5cm,right=1.5cm, top=2cm, bottom=2.75cm"
+mainfont: Calibri Light
+output:
+  pdf_document:
+    includes:
+      in_header: header.tex
+    keep_tex: FALSE
+    latex_engine: xelatex
+  html_document:
+    df_print: 
+classoption: landscape
+urlcolor: blue
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+options(knitr.table.format = 'latex', knitr.kable.NA = '')
+
+#load chunks from r script
+# knitr::read_chunk("AnnualReportChunks.R")
+
+
+```
+
+\thispagestyle{empty}
+
+**Pre-season DB:** `r pre.season.db.name` , **Pre-season run name:** `r run.name`  \newline
+
+
+ **Table 1: Summary of the `r run.year` pre-season return of natural spawning Coho Management Units.**
+                    Total pre-season exploitation rate (ER) represents the sum of US and Canadian exploitation rates on each
+                    Management Unit (MU). Pre-season status (i.e., "L"ow, "M"oderate, "A"bundant) is based on agency forecasts of MU cohort abundance.
+                    For Canadian ER Caps on US MUs, the pre‐season ER Caps are the total allowable ER
+under the PSC Coho agreement. For Canadian ER Caps on Canadian MUs, a 10% ER Cap for Interior Fraser Coho is allowable under the PSC Coho
+agreement. Pre‐season ERs reflect combined US and Canadian pre‐season planning processes and do not include estimates of impacts in Canadian
+freshwater fisheries. Pre‐season unused ERs are the difference between the ER Caps and modeled values.
+
+
+
+```{r firsttable, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+
+big.bar.mort.txt <- format(round(big.bar.morts, 0), big.mark = ",")
+
+t2 <- CreateTable1(pre.season.data = pre.season.data, post.season.data = pre.season.data, run.year = run.year) %>%
+  select(-contains('post'), -"cap.method")
+  # select(management.unit, us.pre.model, cdn.pre.model)
+
+t2.ifc <-  filter(t2, management.unit == "Interior Fraser") 
+
+
+t1.big.bar.row <-  CreateTable2(pre.season.data = pre.season.data, post.season.data = pre.season.data, run.year = run.year) %>%
+  filter(management.unit == "Interior Fraser") %>%
+  mutate(pre.escapement = as.character(big.bar.esc)) %>%
+  mutate(pre.ocean.age = as.numeric(pre.ocean.age) - big.bar.morts) %>%
+  mutate(pre.ocean.age = as.character(pre.ocean.age)) %>%
+  mutate(pre.model = 1-(big.bar.esc/as.numeric(pre.ocean.age))) %>%
+  mutate(pre.model = as.character(pre.model)) %>%
+  mutate(management.unit = paste("Interior Fraser w/o Big Bar morts", footnote_marker_symbol(4, format = "latex"), sep=" ")) %>%
+  select(-contains('post'))
+
+
+
+t1.ifc <- CreateTable2(pre.season.data = pre.season.data, post.season.data = pre.season.data, run.year = run.year) %>%
+  select(-contains('post')) %>%
+  filter(management.unit == 'Interior Fraser')
+
+ifc.oa <- t1.ifc$pre.ocean.age
+ifc.esc <- t1.ifc$pre.escapement
+
+ifc.bb.returns <- (as.numeric(ifc.oa) - big.bar.morts)
+
+us.ifc.catch <- as.numeric(ifc.oa)*t2.ifc$us.pre.model
+cdn.ifc.catch <- as.numeric(ifc.oa)*t2.ifc$cdn.pre.model
+bb.us.er <- us.ifc.catch/ifc.bb.returns
+bb.cdn.er <-  cdn.ifc.catch/ifc.bb.returns
+
+t2.big.bar.row <- t2.ifc %>%
+  mutate(us.pre.model = bb.us.er) %>%
+  mutate(cdn.pre.model  = bb.cdn.er) %>%
+  mutate(us.pre.unused = us.pre.cap - us.pre.model) %>%
+  mutate(cdn.pre.unused = cdn.pre.cap - cdn.pre.model) %>%
+  mutate(management.unit = paste("Interior Fraser w/o Big Bar morts", footnote_marker_symbol(4, format = "latex"), sep=" ")) 
+
+t2 <- add_row(t2, t2.big.bar.row)
+
+
+t1 <- CreateTable2(pre.season.data = pre.season.data, post.season.data = pre.season.data, run.year = run.year) %>%
+  select(-contains('post')) %>%
+  tibble::add_row(t1.big.bar.row) %>%
+  mutate_if(colnames(.) %in% c("pre.cap", "pre.model",  "pre.escapement", "pre.ocean.age"), ~as.double(as.character(.))) %>%
+  mutate(pre.escapement = format(round(pre.escapement,0), big.mark = ", ", trim = TRUE, na.encode = TRUE)) %>%
+  mutate(pre.ocean.age = format(round(pre.ocean.age,0), big.mark = ", ", trim = TRUE, na.encode = TRUE)) %>%
+  # left_join(t2.big.bar.row, "management.unit", copy = TRUE) %>%
+  left_join(t2, "management.unit") %>%
+  mutate_if(colnames(.) %in% c("pre.cap", "pre.model", "us.pre.cap", "us.pre.model",  "us.pre.unused",  "cdn.pre.cap", "cdn.pre.model", "cdn.pre.unused"),  ~percent(.,accuracy = 0.1, suffix = "\\%")) %>%
+  select(1:4, "us.pre.cap", "us.pre.model",  "us.pre.unused",  "cdn.pre.cap", "cdn.pre.model", "cdn.pre.unused", everything())%>%
+  mutate(us.pre.cap = if_else(management.unit %in% c("Skagit", "Stillaguamish", "Snohomish", "Hood Canal", "US Strait JDF", "Quillayute", "Hoh", "Queets", "Grays Harbor"), paste(us.pre.cap, footnote_marker_symbol(3, "latex",), sep = " "), us.pre.cap ))%>%
+  mutate(cdn.pre.cap = if_else(management.unit == "Interior Fraser", paste(cdn.pre.cap, footnote_marker_symbol(3, "latex"), sep = " "), cdn.pre.cap)) %>%
+  mutate(pre.escapement = ifelse(pre.escapement == "NA", NA, pre.escapement)) %>%
+  mutate(pre.ocean.age = ifelse(pre.ocean.age == "NA", NA, pre.ocean.age)) %>%
+  slice(3, 1:2, 13, 4:12)
+
+
+cdn_skag_unused <- t2$cdn.pre.unused[t1$management.unit == "Skagit"] %>%
+  percent(., accuracy = 0.1)
+
+us_skag_cap <- t2$us.pre.cap[t1$management.unit == "Skagit"] %>%
+  percent(., accuracy = 0.1)
+
+footnote3 <- "Including Southern Alaskan catch not included in this table (see table 2)."
+
+footnote2 <- str_glue("Contains the base cap ER plus the unused portion of the intercepting party's ER. For example in the preseason, Skagit includes US share plus the unused {cdn_skag_unused} Canadian allocation, totalling {us_skag_cap} total US allocation.")
+
+totalname <- paste("Total",footnote_marker_symbol(1, double_escape = T), sep=" ")
+SusName <- paste("Southern US",footnote_marker_symbol(2, double_escape = T), sep=" ")
+
+
+big.bar.footnote <- str_glue("Interior Fraser Coho ERs calculated using escapement without an estimated {big.bar.mort.txt} Big Bar mortalities are highlighted in yellow")
+
+
+table1form <- kbl(t1, digits = 1,
+                    col.names = c("Management unit", "Status", "ER Cap", "ER Model","US ER Cap", "US ER Model", "US Unused","Cdn Cap", "Cdn ER Model", "Cdn Unused",  "Escapement", "Recruitment (Ocean Age-3)"), escape = F,  linesep = "", booktabs = T, format = "latex") %>%
+  # kableExtra::column_spec(8:8, "2.5cm") %>%
+  kable_styling(latex_options = c("scale_down", "hold_position")) %>%
+  add_header_above(c(" " = 2, setNames(2, totalname),   setNames(3, SusName), "Canadian" = 3), escape = FALSE)  %>%
+  add_header_above(c(" ", "PreSeason" = 11)) %>%
+  row_spec(c(seq(1, nrow(t1),2)), background = "gray!10") %>%
+  row_spec(4, background = "#eff2b6") %>%
+  footnote(symbol = c(footnote3, "Southern U.S. is limited to US fisheries south of the Canadian border.", footnote2, big.bar.footnote), threeparttable = T)
+
+
+
+
+# table1form <- kable(t1, format = "latex", digits = c(0), format.args = list(big.mark =","), escape = T,
+#                     col.names = c("Management unit", "Status", "ER Cap", "ER Model", "Southern US ER Model", "Cdn ER Model", "Escapement", "Recruitment (Ocean Age-3)"), label = "GUYUYUYUYUY",
+#                     booktabs = T, linesep = "") %>%
+#   kableExtra::column_spec(8:8, "2.5cm") %>%
+#   kable_styling(latex_options = "striped") %>%
+#   add_header_above(c(" ", "Pre-Season" = 7))
+
+
+
+
+print(table1form)
+
+
+```
+
+
+\newpage 
+\thispagestyle{empty}
+
+**Table 2: Pre-season summary exploitation rates, escapements, and cohort abundances for naturally spawning Coho MUs in `r run.year`.**
+
+
+```{r thirdtable, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+
+t3_per <- CreateTable3(pre.season.data) %>%
+    filter(psc.fishery.name %notin% c("escapement", "cohort")) %>%
+    mutate(`Interior Fraser without Big Bar` = (`Interior Fraser`*as.numeric(ifc.oa))/ifc.bb.returns) %>%
+    mutate_if(is.numeric, ~percent(.,accuracy = 0.1, suffix = "\\%")) 
+
+t3_cnt <-CreateTable3(pre.season.data)%>%
+  filter(psc.fishery.name %in% c("escapement", "cohort")) %>%
+  mutate(`Interior Fraser without Big Bar` = c(big.bar.esc, ifc.bb.returns)) %>%
+  mutate_if(is.numeric, ~comma(.))
+
+
+t3_cnt_GS <- select(t3_cnt, c("psc.fishery.name", starts_with("Georgia")))
+
+t3_cnt_GS[1,2:ncol(t3_cnt_GS)] <- paste0(t3_cnt_GS[1,2:ncol(t3_cnt_GS)], footnote_marker_symbol(3))
+t3_cnt_GS[2,2:ncol(t3_cnt_GS)] <- paste0(t3_cnt_GS[2,2:ncol(t3_cnt_GS)], footnote_marker_symbol(2))
+
+t3_cnt_oth <- select(t3_cnt, -starts_with("Georgia")) %>%
+  mutate(`Lower Fraser` = if_else(psc.fishery.name == "escapement",
+                                  paste0(`Lower Fraser`, footnote_marker_symbol(1)," "),
+                                  paste0(`Lower Fraser`, footnote_marker_symbol(2))))
+
+t3_cnt <- left_join(t3_cnt_GS, t3_cnt_oth, "psc.fishery.name")
+
+
+t3 <- bind_rows(t3_per, t3_cnt) %>%
+  mutate(psc.fishery.name = str_replace(psc.fishery.name, "&", "\\\\&")) %>%
+  rename(`Fishery Name` = "psc.fishery.name") %>%
+    select(1, 4, 2, 3, 14, everything())
+
+
+table3form <-  kable(t3, escape = F, booktabs= T, linesep = "", row.names = FALSE,  col.names = linebreak(c("Fishery name", "Georgia\nStrait", "Lower\nFraser","Interior\nFraser", paste0("Interior Fraser\nw/o Big Bar morts",  footnote_marker_symbol(4, "latex")), "Skagit", "Stillaguamish", "Snohomish", "Hood\nCanal", "US Strait\nJDF", "Quillayute", "Hoh", "Queets", "Grays\nHarbor"))) %>%
+  kable_styling(latex_options = c("scale_down", "hold_position")) %>%
+  column_spec(1, bold = T) %>%
+  row_spec(c(13, 23, 25), background = "#e3e7fc") %>%
+  row_spec(0, bold = TRUE) %>%
+  row_spec(c(seq(2, nrow(t3),2)), background = "#d6d6d6") %>%
+  column_spec(5,background = "#eef58c") %>%
+  footnote(symbol = c("Modelled values of terminal run size occuring after lower Fraser in river fisheries", " Modelled values of terminal run size that are not directly estimated", "Modelled values that are not directly estimated", big.bar.footnote), threeparttable = T)
+
+
+print(table3form)
+
+```
+
