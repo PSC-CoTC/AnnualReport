@@ -29,7 +29,7 @@ options(knitr.table.format = 'latex', knitr.kable.NA = '')
 
 \thispagestyle{empty}
 
-**Pre-season DB:** `r pre.season.db.name` , **Pre-season run name:** `r run.name`  \newline
+**Pre-season DB:** `r pre.season.db.name`, **Pre-season run name:** `r run.name`  \newline
 
 
  **Table 1: Summary of the `r run.year` pre-season return of natural spawning Coho Management Units.**
@@ -84,6 +84,7 @@ t2.big.bar.row <- t2.ifc %>%
   mutate(cdn.pre.model  = bb.cdn.er) %>%
   mutate(us.pre.unused = us.pre.cap - us.pre.model) %>%
   mutate(cdn.pre.unused = cdn.pre.cap - cdn.pre.model) %>%
+  mutate(cdn.pre.cap = .10 + us.pre.unused) %>%
   mutate(management.unit = paste("Interior Fraser w/o Big Bar morts", footnote_marker_symbol(4, format = "latex"), sep=" ")) 
 
 t2 <- add_row(t2, t2.big.bar.row)
@@ -100,16 +101,16 @@ t1 <- CreateTable2(pre.season.data = pre.season.data, post.season.data = pre.sea
   mutate_if(colnames(.) %in% c("pre.cap", "pre.model", "us.pre.cap", "us.pre.model",  "us.pre.unused",  "cdn.pre.cap", "cdn.pre.model", "cdn.pre.unused"),  ~percent(.,accuracy = 0.1, suffix = "\\%")) %>%
   select(1:4, "us.pre.cap", "us.pre.model",  "us.pre.unused",  "cdn.pre.cap", "cdn.pre.model", "cdn.pre.unused", everything())%>%
   mutate(us.pre.cap = if_else(management.unit %in% c("Skagit", "Stillaguamish", "Snohomish", "Hood Canal", "US Strait JDF", "Quillayute", "Hoh", "Queets", "Grays Harbor"), paste(us.pre.cap, footnote_marker_symbol(3, "latex",), sep = " "), us.pre.cap ))%>%
-  mutate(cdn.pre.cap = if_else(management.unit == "Interior Fraser", paste(cdn.pre.cap, footnote_marker_symbol(3, "latex"), sep = " "), cdn.pre.cap)) %>%
+  mutate(cdn.pre.cap = if_else(management.unit %in% c("Interior Fraser",  paste("Interior Fraser w/o Big Bar morts", footnote_marker_symbol(4, format = "latex"), sep=" ")), paste(cdn.pre.cap, footnote_marker_symbol(3, "latex"), sep = " "), cdn.pre.cap)) %>%
   mutate(pre.escapement = ifelse(pre.escapement == "NA", NA, pre.escapement)) %>%
   mutate(pre.ocean.age = ifelse(pre.ocean.age == "NA", NA, pre.ocean.age)) %>%
   slice(3, 1:2, 13, 4:12)
 
 
-cdn_skag_unused <- t2$cdn.pre.unused[t1$management.unit == "Skagit"] %>%
+cdn_skag_unused <- t2$cdn.pre.unused[t2$management.unit == "Skagit"] %>%
   percent(., accuracy = 0.1)
 
-us_skag_cap <- t2$us.pre.cap[t1$management.unit == "Skagit"] %>%
+us_skag_cap <- t2$us.pre.cap[t2$management.unit == "Skagit"] %>%
   percent(., accuracy = 0.1)
 
 footnote3 <- "Including Southern Alaskan catch not included in this table (see table 2)."
@@ -120,7 +121,7 @@ totalname <- paste("Total",footnote_marker_symbol(1, double_escape = T), sep=" "
 SusName <- paste("Southern US",footnote_marker_symbol(2, double_escape = T), sep=" ")
 
 
-big.bar.footnote <- str_glue("Interior Fraser Coho ERs calculated using escapement without an estimated {big.bar.mort.txt} Big Bar mortalities are highlighted in yellow")
+big.bar.footnote <- str_glue("Interior Fraser Coho ERs calculated using escapement without a conservative estimated 4,222 Big Bar mortalities (representing a complete blockage) are highlighted in yellow")
 
 
 table1form <- kbl(t1, digits = 1,
@@ -190,7 +191,7 @@ t3 <- bind_rows(t3_per, t3_cnt) %>%
     select(1, 4, 2, 3, 14, everything())
 
 
-table3form <-  kable(t3, escape = F, booktabs= T, linesep = "", row.names = FALSE,  col.names = linebreak(c("Fishery name", "Georgia\nStrait", "Lower\nFraser","Interior\nFraser", paste0("Interior Fraser\nw/o Big Bar morts",  footnote_marker_symbol(4, "latex")), "Skagit", "Stillaguamish", "Snohomish", "Hood\nCanal", "US Strait\nJDF", "Quillayute", "Hoh", "Queets", "Grays\nHarbor"))) %>%
+table3form <-  kable(t3, escape = F, booktabs= T, linesep = "", align = c('l', rep('c', nrow(t3)-1)), row.names = FALSE,  col.names = linebreak(c("Fishery name", "Georgia\nStrait", "Lower\nFraser","Interior\nFraser", paste0("Interior Fraser\nw/o Big Bar morts",  footnote_marker_symbol(4, "latex")), "Skagit", "Stillaguamish", "Snohomish", "Hood\nCanal", "US Strait\nJDF", "Quillayute", "Hoh", "Queets", "Grays\nHarbor"))) %>%
   kable_styling(latex_options = c("scale_down", "hold_position")) %>%
   column_spec(1, bold = T) %>%
   row_spec(c(13, 23, 25), background = "#e3e7fc") %>%
