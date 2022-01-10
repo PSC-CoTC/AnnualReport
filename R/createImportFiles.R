@@ -19,6 +19,7 @@ createImportFiles <- function(fram.run.name, fram.db.name = NA, report.dir = "./
 
   if(version$arch != "i386"){
     cat("change to 32 bit R!")
+    stop()
   }
 
   if (is.na(fram.db.name)){
