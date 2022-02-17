@@ -126,7 +126,7 @@ print(table1form)
 **Table 2: Exploitation rates by country for the `r run.year` return year.**
 US Exploitation Rates: For US ER on Canadian Management Units (MU), a 10% ER Cap for Interior Fraser Coho is allowable under the PSC Coho agreement based on Low status. ER Caps are not defined for other Canadian MUs because status is not available.
 Canadian Exploitation Rates: For Canadian ER Caps on US MUs, the pre-season ER Caps are the total allowable ER under the PSC Coho agreement. For Canadian ER Caps on Canadian MUs, a 10% ER Cap for Interior Fraser Coho is allowable under the PSC Coho agreement.
-Pre-season ERs reflect combined US and Canadian pre-season planning processes and do not include estimates of impacts in Canadian freshwater fisheries. Pre-season unused ERs are the difference between the ER Caps and modelled values. Post-season ER Caps and unused ERs are comparable to pre-season values except that they are based on post-season cohort abundance and associated MU status. Post-season estimated ERs are generated from backwards Coho FRAM. A negative value for unused ERs indicates that the post-season estimate exceeded the allowable ER Cap.
+Pre-season ERs reflect combined US and Canadian pre-season planning processes and do not include estimates of impacts in Canadian freshwater fisheries. Pre-season unused ERs are the difference between the ER Caps and modelled values. Post-season ER Caps and unused ERs are comparable to pre-season values except that they are based on post-season cohort abundance and associated MU status. Post-season estimated ERs are generated from backwards Coho FRAM. *A negative value for unused ERs indicates that the post-season estimate exceeded the allowable ER Cap*.
  
 
 ```{r secondtable, echo=FALSE, warning=FALSE, results='asis'}
@@ -153,9 +153,11 @@ big.bar.t2 <- filter(annual.tbl.first, management.unit == "Interior Fraser") %>%
   mutate(us.post.estd = ifc.us.bigbar.er) %>%
   mutate(us.post.unused = us.post.cap - us.post.estd) %>%
   mutate(cdn.post.estd = ifc.cdn.bigbar.er) %>%
+  mutate(cdn.post.cap = if_else(us.post.unused < 0, cdn.post.cap, .10+us.post.unused)) %>%
   mutate(cdn.post.unused = cdn.post.cap - cdn.post.estd) %>%
-  mutate(management.unit  = paste0("Interior Fraser w/o Big Bar morts",  footnote_marker_symbol(3, "latex")))
-
+  mutate(management.unit  = paste0("Interior Fraser w/o Big Bar morts",  footnote_marker_symbol(3, "latex"))) 
+  # mutate(cdn.pre.cap =  paste(cdn.pre.cap, footnote_marker_symbol(2, "latex"))) %>%
+  # mutate(cdn.post.cap =  paste(cdn.post.cap, footnote_marker_symbol(2, "latex")))
 
 t2 <- annual.tbl.first %>%
   tibble::add_row(big.bar.t2) %>%
@@ -163,8 +165,8 @@ t2 <- annual.tbl.first %>%
   mutate_if(is.numeric, ~percent(.,accuracy = 0.1, suffix = "\\%")) %>%
   mutate(us.pre.cap = if_else(management.unit %in% c("Skagit", "Stillaguamish", "Snohomish", "Hood Canal", "US Strait JDF", "Quillayute", "Hoh", "Queets", "Grays Harbor"), paste(us.pre.cap, footnote_marker_symbol(2, "latex",), sep = " "), us.pre.cap )) %>%
   mutate(us.post.cap = if_else(management.unit %in% c("Skagit", "Stillaguamish", "Snohomish", "Hood Canal", "US Strait JDF", "Quillayute", "Hoh", "Queets", "Grays Harbor"), paste(us.post.cap, footnote_marker_symbol(2, "latex"), sep = " "), us.post.cap )) %>%
-  mutate(cdn.pre.cap = if_else(management.unit == "Interior Fraser", paste(cdn.pre.cap, footnote_marker_symbol(2, "latex"), sep = " "), cdn.pre.cap)) %>%
-  mutate(cdn.post.cap = if_else(management.unit == "Interior Fraser", paste(cdn.post.cap, footnote_marker_symbol(2, "latex"), sep = " "), cdn.post.cap)) %>%
+  mutate(cdn.pre.cap = if_else(str_detect(management.unit, "Interior Fraser"), paste(cdn.pre.cap, footnote_marker_symbol(2, "latex"), sep = " "), cdn.pre.cap)) %>%
+  mutate(cdn.post.cap = if_else(str_detect(management.unit, "Interior Fraser"), paste(cdn.post.cap, footnote_marker_symbol(2, "latex"), sep = " "), cdn.post.cap)) %>%
   slice(3, 1:2, 13, 4:12)
 
 
@@ -181,7 +183,7 @@ cdn_skag_unused <- annual.tbl.first$cdn.pre.unused[annual.tbl.first$management.u
 us_skag_cap <- annual.tbl.first$us.pre.cap[annual.tbl.first$management.unit == "Skagit"] %>%
    percent(., accuracy = 0.1)
 
-footnote2 <- str_glue("Contains the base cap ER plus the unused portion of the intercepting party's ER. For example in the preseason, Skagit includes US share plus the unused {cdn_skag_unused} Canadian allocation, totalling {us_skag_cap} total US allocation.")
+footnote2 <- str_glue("Contains the base cap ER plus the unused portion of the intercepting party's ER. For example in the pre-season, Skagit includes US share plus the unused {cdn_skag_unused} Canadian allocation, totalling {us_skag_cap} total US allocation.")
 
 table2form <-  kable(t2, digits = 1,
                      col.names = c("Management unit", "Cap", "Model", "Unused", "Cap", "Estd", "Unused", "Cap", "Model", "Unused", "Cap", "Estd","Unused"), escape = F, linesep = "", booktabs = T, format = "latex") %>%
@@ -193,7 +195,7 @@ table2form <-  kable(t2, digits = 1,
   row_spec(c(seq(1, nrow(t1),2)), background = "gray!10") %>%
   # column_spec(1, width = "7em") %>%
   row_spec(4, background = "#eff2b6") %>%
-  add_header_above(c(" ", "Pre-Season" = 3, "Post-Season" = 3, "Pre-season" = 3, "Post-Season" = 3))%>%
+  add_header_above(c(" ", "Pre-Season" = 3, "Post-Season" = 3, "Pre-Season" = 3, "Post-Season" = 3))%>%
   add_header_above(c(" ", "Southern U.S.* Exploitation Rate" = 6, "Canadian Exploitation Rate" = 6)) %>%
   footnote(symbol = c("Southern U.S. is limited to US fisheries south of the Canadian border.", footnote2, big.bar.footnote), threeparttable = T)
 
@@ -238,12 +240,12 @@ t3 <- bind_rows(t3_per, t3_cnt) %>%
   select(1, 4, 2, 3, 14, everything())
 
 
-table3form <-  kable(t3, escape = F, booktabs= T, linesep = "", 
+table3form <-  kable(t3, escape = F, booktabs= T, linesep = "", row.names = FALSE,
                      col.names = linebreak(c("Fishery name", "Georgia\nStrait", "Lower\nFraser","Interior\nFraser", paste0("Interior Fraser\nw/o Big Bar morts",  footnote_marker_symbol(4, "latex")), "Skagit", "Stillaguamish", "Snohomish", "Hood\nCanal", "US Strait\nJDF", "Quillayute", "Hoh", "Queets", "Grays\nHarbor"))) %>%
   # table3form <-  kable(t3, escape = F, booktabs= T, linesep = "") %>%
-  kable_styling(latex_options = c("scale_down")) %>%
+  kable_styling(latex_options = c("scale_down", "hold_position")) %>%
   column_spec(1, bold = T) %>%
-  row_spec(0, bold = TRUE) %>%
+  row_spec(c(0, nrow(t3), nrow(t3)-1), bold = TRUE) %>%
   row_spec(c(13, 23, 25), background = "#e3e7fc") %>%
   row_spec(c(seq(2, nrow(t3),2)), background = "#d6d6d6") %>%
   column_spec(5,background = "#eef58c") %>%
