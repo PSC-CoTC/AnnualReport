@@ -249,7 +249,7 @@ table3form <-  kable(t3, escape = F, booktabs= T, linesep = "", row.names = FALS
   row_spec(c(13, 23, 25), background = "#e3e7fc") %>%
   row_spec(c(seq(2, nrow(t3),2)), background = "#d6d6d6") %>%
   column_spec(5,background = "#eef58c") %>%
-  footnote(symbol = c("Modelled values of terminal run size occuring after lower Fraser in river fisheries", " Modelled values of terminal run size that are not directly estimated", "Modelled values that are not directly estimated", big.bar.footnote))
+  footnote(symbol = c("Modelled values of terminal run size occuring after lower Fraser in river fisheries.", " Modelled values of terminal run size that are not directly estimated.", "Modelled values that are not directly estimated.", big.bar.footnote))
 
   
 print(table3form)
