@@ -20,8 +20,9 @@ writeAnnualReport(
   report.dir = "./report/",
   data.dir = "./csv/",
   combine.GS = NA,
-  big.bar.esc = 39434,
-  big.bar.morts = 4392
+  big.bar.esc = 69436,
+  big.bar.morts = 1705,
+  connection_driver = "Driver={Microsoft Access Driver (*.mdb, *.accdb)};"
 )
 }
 \arguments{

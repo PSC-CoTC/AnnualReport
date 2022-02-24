@@ -61,14 +61,14 @@ TranslateDbColumnNames <- function(data) {
 #' @param params Parameters to insert into the SQL statement
 #'
 #' @importFrom magrittr %>%
-#' @importFrom RODBC sqlQuery
+#' @importFrom odbc dbGetQuery
 #'
 #' @export
 #'
 getFramData <- function(db_conn, sql_file_name, params = NULL, sql_dir = "sql", clean_sql = TRUE, package_name = packageName(parent.frame())) {
   sql <- formatSql(sql_file_name, params, sql_dir, clean_sql, package_name = package_name)
 
-  data_result <- sqlQuery(db_conn, sql) %>%
+  data_result <- odbc::dbGetQuery(conn = db_conn, statement = sql) %>%
     TranslateDbColumnNames()
 
   return(data_result)
@@ -81,27 +81,27 @@ getFramData <- function(db_conn, sql_file_name, params = NULL, sql_dir = "sql", 
 #'
 #' @param fram_db_conn An ODBC connection to the FRAM MS Access database
 #'
-#' @importFrom RODBC sqlColumns sqlQuery
+#' @importFrom odbc odbcListColumns dbGetQuery
 #'
 #' @export
 #'
 checkFramCommentCol <- function(fram_db_conn) {
   error <- FALSE
-  if ("Comment" %notin% sqlColumns(fram_db_conn, "FisheryScalers")$COLUMN_NAME) {
-    sqlQuery(fram_db_conn, "ALTER TABLE FisheryScalers ADD COLUMN Comment TEXT(255);")
+  if ("Comment" %notin% odbcListColumns(fram_db_conn, "FisheryScalers")$name) {
+    dbGetQuery(fram_db_conn, "ALTER TABLE FisheryScalers ADD COLUMN Comment TEXT(255);")
   }
 
-  if ("Comment" %notin% sqlColumns(fram_db_conn, "BackwardsFRAM")$COLUMN_NAME) {
-    sqlQuery(fram_db_conn, "ALTER TABLE BackwardsFRAM ADD COLUMN Comment TEXT(255);")
+  if ("Comment" %notin% odbcListColumns(fram_db_conn, "BackwardsFRAM")$name) {
+    dbGetQuery(fram_db_conn, "ALTER TABLE BackwardsFRAM ADD COLUMN Comment TEXT(255);")
   }
 
-  if ("Comment" %notin% sqlColumns(fram_db_conn, "NonRetention")$COLUMN_NAME) {
-    sqlQuery(fram_db_conn, "ALTER TABLE NonRetention ADD COLUMN Comment TEXT(255);")
+  if ("Comment" %notin% odbcListColumns(fram_db_conn, "NonRetention")$name) {
+    dbGetQuery(fram_db_conn, "ALTER TABLE NonRetention ADD COLUMN Comment TEXT(255);")
   }
 
 
-  if ("Comment" %notin% sqlColumns(fram_db_conn, "NonRetention")$COLUMN_NAME) {
-    sqlQuery(fram_db_conn, "ALTER TABLE NonRetention ADD COLUMN Comment TEXT(255);")
+  if ("Comment" %notin% odbcListColumns(fram_db_conn, "NonRetention")$name) {
+    dbGetQuery(fram_db_conn, "ALTER TABLE NonRetention ADD COLUMN Comment TEXT(255);")
   }
 
 
@@ -577,11 +577,11 @@ loadPscData <- function(data.dir) {
 #' @param db.conn An ODBC connection to the ODBC database
 #' @param file.name A file name that the SQL script is saved to
 #' @param variables An R list of variables, variable names in the list are matched to ones with the same name in
-#'       a format like %VARIABLENAME% (eg list(runid = 1) will replace %RUNID% in the SQL with 1)
+#'       a format like \%VARIABLENAME\% (eg list(runid = 1) will replace \%RUNID\% in the SQL with 1)
 #'
 #' @return A data frame with query results
 #'
-#' @section EXCEPTIONS
+#' @section EXCEPTIONS:
 #'   If a variable type is found that the function can't handle (e.g. a vector), the script
 #'   will throw an exception.
 #'
@@ -619,7 +619,7 @@ RunSqlFile <- function (db.conn, file.name, variables=NA) {
     stop(error.msg)
   }
 
-  data <- sqlQuery(db.conn, sql.text)
+  data <- dbGetQuery(db.conn, sql.text)
   data <- TranslateDbColumnNames(data)
   return (data)
 }

@@ -12,6 +12,9 @@ GetTammEscapement(tamm.filename, tamm.esc.ref.filename)
 
 \item{tamm.esc.ref.filename}{The file name of TAMM excel spreadsheet}
 }
+\value{
+A dataframe with the FRAM stock ID and associated TAMM escapement
+}
 \description{
 Reads the specific Escapement values from a TAMM model defined in the
 tamm.esc.ref.filename

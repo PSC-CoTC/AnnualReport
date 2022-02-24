@@ -16,7 +16,7 @@
 #' @param report.dir directory to write reports to
 #' @param data.dir folder containing the reference .csv files
 #'
-#' @importFrom RODBC odbcConnectAccess odbcClose
+#' @importFrom odbc dbConnect dbDisconnect
 #' @importFrom rmarkdown render
 #' @importFrom dplyr mutate_if bind_rows rename first group_by summarise ungroup if_else filter slice select everything
 #' @importFrom knitr kable
@@ -46,7 +46,8 @@ writeAnnualReport <- function(run.year, post.season.run.name, pre.season.run.nam
                               data.dir = "./csv/",
                               combine.GS = NA,
                               big.bar.esc = 69436,
-                              big.bar.morts = 1705) {
+                              big.bar.morts = 1705,
+                              connection_driver = "Driver={Microsoft Access Driver (*.mdb, *.accdb)};") {
 
 
 
@@ -84,7 +85,15 @@ writeAnnualReport <- function(run.year, post.season.run.name, pre.season.run.nam
 
   psc.data.list <- loadPscData(data.dir)
 
-  pre.season.db.conn <- odbcConnectAccess(pre.season.fram.db)
+  # pre.season.db.conn <- odbcConnectAccess(pre.season.fram.db)
+
+  pre.season.connect <-
+    paste0(connection_driver,
+           "DBQ=",
+           pre.season.fram.db)
+
+  pre.season.db.conn <- dbConnect(odbc(), .connection_string = pre.season.connect)
+
 
   if (!is.na(pre.season.tamm)) {
     pre.season.tamm <- normalizePath(pre.season.tamm)
@@ -108,9 +117,14 @@ writeAnnualReport <- function(run.year, post.season.run.name, pre.season.run.nam
   pre.season.data.orginal <-  CompilePscData(pre.season.db.conn, pre.season.run.name, run.year, psc.data.list, pre.tamm.list,
                                              report.dir, combine.GS = FALSE)
 
-  odbcClose(pre.season.db.conn)
+  odbc::dbDisconnect(pre.season.db.conn)
 
-  post.season.db.conn <- odbcConnectAccess(post.season.fram.db)
+  post.season.connect <-paste0(connection_driver,
+           "DBQ=",
+           post.season.fram.db)
+
+  post.season.db.conn <- dbConnect(odbc(), .connection_string = post.season.connect)
+
   if (!is.na(post.season.tamm)) {
     post.season.tamm <- normalizePath(post.season.tamm)
     if (!exists("post.season.tamm.fishery.ref")) {
@@ -132,7 +146,7 @@ writeAnnualReport <- function(run.year, post.season.run.name, pre.season.run.nam
   post.season.data.orginal <-  CompilePscData(post.season.db.conn, post.season.run.name, run.year, psc.data.list, post.tamm.list,
                                               report.dir = report.dir, combine.GS = FALSE)
 
-  odbcClose(post.season.db.conn)
+  dbDisconnect(post.season.db.conn)
 
   annual.tbl.third <- CreateTable3(post.season.data)
   report.filename <- file.path(report.dir, paste0(run.year, "_annual_table3.csv"))

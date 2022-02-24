@@ -20,7 +20,7 @@ kDecimalRegEx <- "^[0-9]*[.]?[0-9]+([eE][-+]?[0-9]+)?$"
 #' @param tamm.ref A data frame of cell references to load from the TAMM Excel document
 #' @param tamm.filename: The file name of the TAMM Excel document
 #'
-#' @NOTE If a cell reference is NA for the worksheet, column, and row, a zero value is automatically filled.
+#' @note  If a cell reference is NA for the worksheet, column, and row, a zero value is automatically filled.
 #'
 #' @return A dataframe with the FRAM fisheries and associated TAMM mortalties
 #'
@@ -106,7 +106,7 @@ GetTammFisheryMortality <- function (tamm.filename,
 #' @param tamm.filename The file name of TAMM excel spreadsheet
 #' @param tamm.esc.ref.filename The file name of TAMM excel spreadsheet
 #'
-#' @result A dataframe with the FRAM stock ID and associated TAMM escapement
+#' @returns  A dataframe with the FRAM stock ID and associated TAMM escapement
 #'
 #' @note The method checks that values read for the Excel spreadsheet are numeric values.
 #'

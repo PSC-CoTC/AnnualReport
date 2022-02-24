@@ -13,7 +13,7 @@ RunSqlFile(db.conn, file.name, variables = NA)
 \item{file.name}{A file name that the SQL script is saved to}
 
 \item{variables}{An R list of variables, variable names in the list are matched to ones with the same name in
-a format like %VARIABLENAME% (eg list(runid = 1) will replace %RUNID% in the SQL with 1)}
+a format like \%VARIABLENAME\% (eg list(runid = 1) will replace \%RUNID\% in the SQL with 1)}
 }
 \value{
 A data frame with query results
@@ -22,3 +22,9 @@ A data frame with query results
 A helper function that loads an SQL script, updates the variables in the script to values provide and
 formats the resulting data by renames columns to common R style.
 }
+\section{EXCEPTIONS}{
+
+  If a variable type is found that the function can't handle (e.g. a vector), the script
+  will throw an exception.
+}
+

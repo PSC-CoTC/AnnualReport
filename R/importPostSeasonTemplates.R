@@ -5,7 +5,8 @@
 #' @param sql_filename A text file containing SQL file
 #' @param params Parameters to insert into the SQL statement
 #'
-#' @importFrom RODBC odbcConnectAccess
+#' @importFrom odbc dbConnect
+#' @importFrom stringr str_replace_all
 #'
 #' @export
 #'
@@ -17,7 +18,10 @@ importFramTemplates <- function(template_file = NA,
                                 validate.mark.info = TRUE,
                                 validate.stocks = TRUE,
                                 validate.escapment.flags = TRUE,
-                                data.dir = "./csv/"){
+                                data.dir = "./csv/",
+                                connection_driver = "Driver={Microsoft Access Driver (*.mdb, *.accdb)};"){
+
+
 
 
 
@@ -27,12 +31,20 @@ importFramTemplates <- function(template_file = NA,
 
   import.data <- parseImportFile(import.file.name = template_file)
 
+  import.data$fishery.scalars$comment.catch <- str_replace_all(string = import.data$fishery.scalars$comment.catch, pattern =  "[,!$'[]]\\[]", replacement = "")
+  import.data$fishery.scalars$comment.cnr <- str_replace_all(string = import.data$fishery.scalars$comment.cnr, pattern =  "[,!$'[]]\\[]", replacement = "")
+  import.data$target.escapement$comment <- str_replace_all(string = import.data$target.escapement$comment, pattern =  "[,!$'[]]\\[]", replacement = "")
+
 
 
   fram.db.name <- import.data$header$variable.value[toupper(import.data$header$variable.name) == "FRAM DB NAME"]
   fram.run.name <- import.data$header$variable.value[toupper(import.data$header$variable.name) == "FRAM RUN NAME"]
   fram.run.id <- as.numeric(import.data$header$variable.value[toupper(import.data$header$variable.name) == "FRAM RUN ID"])
   person.name <- as.character(import.data$header$variable.value[toupper(import.data$header$variable.name) == "PERSON NAME"])
+
+  connect_string <- paste0(connection_driver,
+                           "DBQ=",
+                           fram.db.name)
 
   cat(sprintf("Updating FRAM database file:\n%s\n\n", fram.db.name))
   cat(sprintf("Updating FRAM run name: %s\n", fram.run.name))
@@ -63,7 +75,7 @@ importFramTemplates <- function(template_file = NA,
     }
   }
 
-  fram.db.conn <- odbcConnectAccess(fram.db.name)
+  fram.db.conn <-  dbConnect(odbc(), .connection_string = connect_string)
 
   checkFramCommentCol(fram_db_conn = fram.db.conn)
 
@@ -92,7 +104,7 @@ importFramTemplates <- function(template_file = NA,
   }
 
   if (error.found) {
-    odbcClose(fram.db.conn)
+    odbc::dbDisconnect(fram.db.conn)
     stop("Issues with the post season import file must be fixed before being imported")
   } else {
     if (!is.null(import.data$fishery.scalars)) {
@@ -104,7 +116,7 @@ importFramTemplates <- function(template_file = NA,
   }
 
   cat("\n\n :-)  Data was successfully imported.\n")
-  odbcClose(fram.db.conn)
+  odbc::dbDisconnect(fram.db.conn)
 
 
 }

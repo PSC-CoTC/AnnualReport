@@ -21,3 +21,6 @@ A helper function loading the total mortalities from the TAMM excel spreadsheet
 based on a the worksheet name, column, and row of the cell value defined in the tamm.ref
 data frame
 }
+\note{
+If a cell reference is NA for the worksheet, column, and row, a zero value is automatically filled.
+}

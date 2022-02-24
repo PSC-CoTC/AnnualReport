@@ -11,7 +11,8 @@ importFramTemplates(
   validate.mark.info = TRUE,
   validate.stocks = TRUE,
   validate.escapment.flags = TRUE,
-  data.dir = "./csv/"
+  data.dir = "./csv/",
+  connection_driver = "Driver={Microsoft Access Driver (*.mdb, *.accdb)};"
 )
 }
 \arguments{
