@@ -9,7 +9,8 @@
 #' @export
 
 
-exportFisheryERs <- function(fram.db = NA, run.names, report.dir = "./report/"){
+exportFisheryERs <- function(fram.db = NA, run.names, report.dir = "./report/",
+                             connection_driver = "Driver={Microsoft Access Driver (*.mdb, *.accdb)};"){
 
   if (exists("report.dir") == FALSE) {
     report.dir <- "./report/"
@@ -20,7 +21,13 @@ exportFisheryERs <- function(fram.db = NA, run.names, report.dir = "./report/"){
     fram.db <- choose.files(caption = "choose POSTSEASON FRAM DB")
   }
 
-  fram.db.conn <- odbcConnectAccess(normalizePath(fram.db))
+  # fram.db.conn <- odbcConnectAccess(normalizePath(fram.db))
+
+  db.connect <- paste0(connection_driver,
+                       "DBQ=",
+                       fram.db)
+
+  fram.db.conn <- dbConnect(odbc(), .connection_string = db.connect)
 
   fisheries <- getFramFisheries(fram.db.conn)
   fram.stocks <- getFramStocks(fram.db.conn)
@@ -70,7 +77,7 @@ exportFisheryERs <- function(fram.db = NA, run.names, report.dir = "./report/"){
 
   }
 
-  odbcClose(fram.db.conn)
+  odbc::dbDisconnect(fram.db.conn)
 
 
   file.name <- paste0(report.dir, "Fishery_ERs_", min.run.year, "-", max.run.year, "_", GetTimeStampText(), ".xlsx")

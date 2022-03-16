@@ -137,7 +137,7 @@ big.bar.t2 <- filter(annual.tbl.first, management.unit == "Interior Fraser") %>%
 t2 <- annual.tbl.first %>%
   tibble::add_row(big.bar.t2) %>%
   select(-cap.method) %>%
-  mutate_if(is.numeric, ~percent(.,accuracy = 0.1, suffix = "\\%")) %>%
+  mutate_if(is.numeric, ~percent(.,accuracy = 0.1, suffix = "\\%")) %>%  ##INVESTIGATE FORMATTABLE::PERCENT
   mutate(us.pre.cap = if_else(management.unit %in% c("Skagit", "Stillaguamish", "Snohomish", "Hood Canal", "US Strait JDF", "Quillayute", "Hoh", "Queets", "Grays Harbor"), paste(us.pre.cap, footnote_marker_symbol(2, "latex",), sep = " "), us.pre.cap )) %>%
   mutate(us.post.cap = if_else(management.unit %in% c("Skagit", "Stillaguamish", "Snohomish", "Hood Canal", "US Strait JDF", "Quillayute", "Hoh", "Queets", "Grays Harbor"), paste(us.post.cap, footnote_marker_symbol(2, "latex"), sep = " "), us.post.cap )) %>%
   mutate(cdn.pre.cap = if_else(str_detect(management.unit, "Interior Fraser"), paste(cdn.pre.cap, footnote_marker_symbol(2, "latex"), sep = " "), cdn.pre.cap)) %>%
@@ -147,10 +147,6 @@ t2 <- annual.tbl.first %>%
 
 
 
-# t2$us.pre.cap[5:13] <-  (paste0(t2$us.pre.cap[5:13], footnote_marker_symbol(2)))
-# t2$us.post.cap[5:13] <- (paste0(t2$us.post.cap[5:13], footnote_marker_symbol(2)))
-# t2$cdn.pre.cap[2] <- (paste0(t2$cdn.pre.cap[2], footnote_marker_symbol(2)))
-# t2$cdn.post.cap[2] <- (paste0(t2$cdn.pre.cap[2], footnote_marker_symbol(2)))
 
 cdn_skag_unused <- annual.tbl.first$cdn.pre.unused[annual.tbl.first$management.unit == "Skagit"] %>%
   percent(., accuracy = 0.1)
@@ -162,13 +158,7 @@ footnote2 <- str_glue("Contains the base cap ER plus the unused portion of the i
 
 table2form <-  kable(t2, digits = 1,
                      col.names = c("Management unit", "Cap", "Model", "Unused", "Cap", "Estd", "Unused", "Cap", "Model", "Unused", "Cap", "Estd","Unused"), escape = F, linesep = "", booktabs = T, format = "latex") %>%
-  # column_spec(2, border_left = TRUE)%>%
-  # column_spec(5, border_left = TRUE)%>%
-  # column_spec(8, border_left = TRUE)%>%
-  # column_spec(11, border_left = TRUE)%>%
-  # column_spec(13, border_right  = TRUE)%>%
   row_spec(c(seq(1, nrow(t1),2)), background = "gray!10") %>%
-  # column_spec(1, width = "7em") %>%
   row_spec(4, background = "#eff2b6") %>%
   add_header_above(c(" ", "Pre-Season" = 3, "Post-Season" = 3, "Pre-Season" = 3, "Post-Season" = 3))%>%
   add_header_above(c(" ", "Southern U.S.* Exploitation Rate" = 6, "Canadian Exploitation Rate" = 6)) %>%

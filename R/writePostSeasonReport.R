@@ -16,7 +16,7 @@
 #' @param report.dir directory to write reports to
 #' @param data.dir folder containing the reference .csv files
 #'
-#' @importFrom odbc dbConnect dbDisconnect
+#' @importFrom odbc dbConnect dbDisconnect odbc
 #' @importFrom rmarkdown render
 #' @importFrom dplyr mutate_if bind_rows rename first group_by summarise ungroup if_else filter slice select everything
 #' @importFrom knitr kable
