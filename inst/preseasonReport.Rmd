@@ -33,17 +33,12 @@ options(knitr.table.format = 'latex', knitr.kable.NA = '')
 
 
  **Table 1: Summary of the `r run.year` pre-season return of natural spawning Coho Management Units.**
-                    Total pre-season exploitation rate (ER) represents the sum of US and Canadian exploitation rates on each
-                    Management Unit (MU). Status (i.e., "L"ow, "M"oderate, "A"bundant) is based on cohort abundance.
-                    Pre-season status is based on agency forecasts of MU cohort abundance.
-                    The ER Cap on the Interior Fraser MU is 20% due to its Low MU status.
-                    ER Caps are not available for other Canadian MUs. ER Caps on each of the Inside US MUs
-                    (Skagit, Stillaguamish, Snohomish, Hood Canal, and US Strait JDF) are based on MU status,
-                    which is determined by cohort abundance. ER Caps on each of the Outside US MUs
-                    (Quillayute Fall, Queets, Hoh, Grays Harbor) are based on cohort abundance and the escapement goals
-                    for each MU. Outside US MUs are managed for an escapement range; the floor of the escapement range
-                    is used for MU status determination. Pre-season modelled ERs are the result of US and Canadian fishery planning                     processes. Cohort abundance is the ocean age-3 abundance and represents escapement plus fishery mortality, but                     not natural mortality.
-
+                        Total pre-season exploitation rate (ER) represents the sum of US and Canadian exploitation rates on each
+                    Management Unit (MU). Pre-season status (i.e., "L"ow, "M"oderate, "A"bundant) is based on agency forecasts of MU cohort abundance.
+                    For Canadian ER Caps on US MUs, the pre‐season ER Caps are the total allowable ER
+under the PSC Coho agreement. For Canadian ER Caps on Canadian MUs, a 10% ER Cap for Interior Fraser Coho is allowable under the PSC Coho
+agreement. Pre‐season ERs reflect combined US and Canadian pre‐season planning processes and do not include estimates of impacts in Canadian
+freshwater fisheries. Pre‐season unused ERs are the difference between the ER Caps and modeled values.
 
 
 
@@ -56,8 +51,8 @@ t2 <- CreateTable1(pre.season.data = pre.season.data, post.season.data = pre.sea
 t1 <- CreateTable2(pre.season.data = pre.season.data, post.season.data = pre.season.data, run.year = run.year) %>%
    select(-contains('post')) %>%
   mutate_if(colnames(.) %in% c("pre.cap", "pre.model",  "pre.escapement", "pre.ocean.age"), ~as.double(as.character(.))) %>%
-  mutate(pre.escapement = format(round(pre.escapement,0), big.mark = ", ", trim = TRUE, na.encode = TRUE)) %>%
-  mutate(pre.ocean.age = format(round(pre.ocean.age,0), big.mark = ", ", trim = TRUE, na.encode = TRUE)) %>%
+  mutate(pre.escapement = format(round(pre.escapement,0), big.mark = ",", trim = TRUE, na.encode = TRUE)) %>%
+  mutate(pre.ocean.age = format(round(pre.ocean.age,0), big.mark = ",", trim = TRUE, na.encode = TRUE)) %>%
   left_join(t2, "management.unit") %>%
   mutate_if(colnames(.) %in% c("pre.cap", "pre.model", "us.pre.cap", "us.pre.model",  "us.pre.unused",  "cdn.pre.cap", "cdn.pre.model", "cdn.pre.unused"),  ~percent(.,accuracy = 0.1, suffix = "\\%")) %>%
   select(1:4, "us.pre.cap", "us.pre.model",  "us.pre.unused",  "cdn.pre.cap", "cdn.pre.model", "cdn.pre.unused", everything())%>%

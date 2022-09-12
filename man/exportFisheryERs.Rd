@@ -4,7 +4,12 @@
 \alias{exportFisheryERs}
 \title{Writes .pdf document of the annual report}
 \usage{
-exportFisheryERs(fram.db = NA, run.names, report.dir = "./report/")
+exportFisheryERs(
+  fram.db = NA,
+  run.names,
+  report.dir = "./report/",
+  connection_driver = "Driver={Microsoft Access Driver (*.mdb, *.accdb)};"
+)
 }
 \arguments{
 \item{fram_db}{Data base with the FRAM runs}

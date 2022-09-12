@@ -94,8 +94,8 @@ t1 <- CreateTable2(pre.season.data = pre.season.data, post.season.data = pre.sea
   select(-contains('post')) %>%
   tibble::add_row(t1.big.bar.row) %>%
   mutate_if(colnames(.) %in% c("pre.cap", "pre.model",  "pre.escapement", "pre.ocean.age"), ~as.double(as.character(.))) %>%
-  mutate(pre.escapement = format(round(pre.escapement,0), big.mark = ", ", trim = TRUE, na.encode = TRUE)) %>%
-  mutate(pre.ocean.age = format(round(pre.ocean.age,0), big.mark = ", ", trim = TRUE, na.encode = TRUE)) %>%
+  mutate(pre.escapement = format(round(pre.escapement,0), big.mark = ",", trim = TRUE, na.encode = TRUE)) %>%
+  mutate(pre.ocean.age = format(round(pre.ocean.age,0), big.mark = ",", trim = TRUE, na.encode = TRUE)) %>%
   # left_join(t2.big.bar.row, "management.unit", copy = TRUE) %>%
   left_join(t2, "management.unit") %>%
   mutate_if(colnames(.) %in% c("pre.cap", "pre.model", "us.pre.cap", "us.pre.model",  "us.pre.unused",  "cdn.pre.cap", "cdn.pre.model", "cdn.pre.unused"),  ~percent(.,accuracy = 0.1, suffix = "\\%")) %>%

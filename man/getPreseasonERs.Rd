@@ -16,7 +16,8 @@ getPreseasonERs(
   data.dir = "./csv/",
   combine.GS = TRUE,
   big.bar.esc = 34162,
-  big.bar.morts = 4222
+  big.bar.morts = 4222,
+  connection_driver = "Driver={Microsoft Access Driver (*.mdb, *.accdb)};"
 )
 }
 \arguments{

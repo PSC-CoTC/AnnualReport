@@ -12,12 +12,13 @@
 #' @param data.dir folder containing the reference .csv files
 #' @param combine.GS logical if GS MUs should be combined
 #'
-#' @importFrom RODBC odbcConnectAccess odbcClose
+#' @importFrom odbc dbConnect dbDisconnect odbc
 #' @importFrom rmarkdown render
 #' @importFrom dplyr mutate_if bind_rows rename first group_by summarise ungroup if_else select arrange
 #' @importFrom tidyr pivot_wider
 #' @importFrom magrittr %>%
-#' @importFrom kableExtra add_header_above column_spec landscape kable_styling footnote footnote_marker_symbol row_spec column_spec linebreak
+#' @importFrom knitr kable
+#' @importFrom kableExtra add_header_above column_spec landscape kable_styling footnote footnote_marker_symbol row_spec column_spec linebreak kbl
 #' @importFrom readxl read_excel
 #' @importFrom scales percent
 #' @importFrom tidyselect everything
@@ -41,7 +42,8 @@ getPreseasonERs <- function(run.year,
                         data.dir = "./csv/",
                         combine.GS = TRUE,
                         big.bar.esc = 34162,
-                        big.bar.morts = 4222) {
+                        big.bar.morts = 4222,
+                        connection_driver = "Driver={Microsoft Access Driver (*.mdb, *.accdb)};") {
 
   wb <- openxlsx::createWorkbook()
 
@@ -56,7 +58,14 @@ getPreseasonERs <- function(run.year,
 
   psc.data.list <- loadPscData(data.dir)
 
-  pre.season.db.conn <- odbcConnectAccess(pre.season.fram.db)
+  pre.season.connect <-
+    paste0(connection_driver,
+           "DBQ=",
+           pre.season.fram.db)
+
+  pre.season.db.conn <- dbConnect(odbc(), .connection_string = pre.season.connect)
+
+
 
   pre.season.db.name <- basename(pre.season.fram.db)
 
