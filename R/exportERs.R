@@ -1,4 +1,4 @@
-#' Writes .pdf document of the annual report
+#' xlsx of fishery ers
 #'
 #'
 #' @param fram_db Data base with the FRAM runs

@@ -8,7 +8,8 @@ createImportFiles(
   fram.run.name,
   fram.db.name = NA,
   report.dir = "./import_files/",
-  data.dir = "./csv/"
+  data.dir = "./csv/",
+  connection_driver = "Driver={Microsoft Access Driver (*.mdb, *.accdb)};"
 )
 }
 \arguments{

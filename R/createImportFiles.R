@@ -4,7 +4,7 @@
 #' @param fram.run.name Preseason run name to use to
 #' @param report.dir the path where the import files are written to
 #' @param data.dir path where the .csv files for the package are located
-#' @importFrom RODBC odbcConnectAccess sqlColumns
+#' @importFrom odbc dbConnect dbDisconnect odbc
 #' @importFrom magrittr %>% %<>%
 #' @importFrom dplyr inner_join right_join left_join select filter if_else select arrange mutate
 #' @importFrom tidyselect one_of
@@ -14,19 +14,25 @@
 #'
 #' @export
 
-createImportFiles <- function(fram.run.name, fram.db.name = NA, report.dir = "./import_files/",  data.dir = "./csv/"){
+createImportFiles <- function(fram.run.name, fram.db.name = NA, report.dir = "./import_files/",  data.dir = "./csv/",   connection_driver = "Driver={Microsoft Access Driver (*.mdb, *.accdb)};"){
 
 
-  if(version$arch != "i386"){
-    cat("change to 32 bit R!")
-    stop()
-  }
+  # if(version$arch != "i386"){
+  #   cat("change to 32 bit R!")
+  #   stop()
+  # }
 
   if (is.na(fram.db.name)){
     fram.db.name <- file.choose()
   }
 
-  fram.db.conn <- odbcConnectAccess(fram.db.name)
+  connect <-
+    paste0(connection_driver,
+           "DBQ=",
+           fram.db.name)
+
+  fram.db.conn <- dbConnect(odbc(), .connection_string = connect)
+
 
   #~~~~~initialize fishery data
 

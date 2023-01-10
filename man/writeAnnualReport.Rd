@@ -20,8 +20,8 @@ writeAnnualReport(
   report.dir = "./report/",
   data.dir = "./csv/",
   combine.GS = NA,
-  big.bar.esc = 69436,
-  big.bar.morts = 1705,
+  big.bar.esc = 0,
+  big.bar.morts = 0,
   connection_driver = "Driver={Microsoft Access Driver (*.mdb, *.accdb)};"
 )
 }

@@ -31,9 +31,9 @@ importFramTemplates <- function(template_file = NA,
 
   import.data <- parseImportFile(import.file.name = template_file)
 
-  import.data$fishery.scalars$comment.catch <- str_replace_all(string = import.data$fishery.scalars$comment.catch, pattern =  "[,!$'[]]\\[]", replacement = "")
-  import.data$fishery.scalars$comment.cnr <- str_replace_all(string = import.data$fishery.scalars$comment.cnr, pattern =  "[,!$'[]]\\[]", replacement = "")
-  import.data$target.escapement$comment <- str_replace_all(string = import.data$target.escapement$comment, pattern =  "[,!$'[]]\\[]", replacement = "")
+  if(length(import.data$fishery.scalars)>0) {import.data$fishery.scalars$comment.catch <- str_replace_all(string = import.data$fishery.scalars$comment.catch, pattern =  "[,!$'[]]\\[]", replacement = "")}
+  if(length(import.data$fishery.scalars)>0)  {import.data$fishery.scalars$comment.cnr <- str_replace_all(string = import.data$fishery.scalars$comment.cnr, pattern =  "[,!$'[]]\\[]", replacement = "")}
+  if(length(import.data$target.escapement)>0)  import.data$target.escapement$comment <- str_replace_all(string = import.data$target.escapement$comment, pattern =  "[,!$'[]]\\[]", replacement = "")
 
 
 
