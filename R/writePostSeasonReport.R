@@ -188,7 +188,7 @@ writeAnnualReport <- function(run.year, post.season.run.name, pre.season.run.nam
   output_file_name <- paste0(run.year, "_", "annualreport", "_", GetTimeStampText(), ".pdf")
 
   if(big.bar.esc<=0){
-    system.file("AnnualReport.rmd", package = packageName()) %>%
+    system.file("testtbl22.rmd", package = packageName()) %>%
       rmarkdown::render(., output_file = output_file_name, output_dir = report.dir)
   }else{
     system.file("AnnualReportBigBar.rmd", package = packageName()) %>%

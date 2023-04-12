@@ -1,0 +1,81 @@
+---
+fontsize: 12pt
+geometry: "left=1.5cm,right=1.5cm, top=1.6cm, bottom=2.75cm"
+mainfont: Calibri Light
+output:
+  pdf_document:
+    includes:
+      in_header: header.tex
+    keep_tex: FALSE
+    latex_engine: xelatex
+  html_document:
+    df_print: paged
+classoption: landscape
+urlcolor: blue
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+options(knitr.table.format = 'latex', knitr.kable.NA = '')
+
+#load chunks from r script
+# knitr::read_chunk("AnnualReportChunks.R")
+
+
+```
+
+
+\newpage
+\thispagestyle{empty}
+**Table 2: Exploitation rates by country for the `r run.year` return year.**
+US Exploitation Rates: For US ER on Canadian Management Units (MU), a 10% ER Cap for Interior Fraser Coho is allowable under the PSC Coho agreement based on Low status. ER Caps are not defined for other Canadian MUs because status is not available.
+Canadian Exploitation Rates: For Canadian ER Caps on US MUs, the pre-season ER Caps are the total allowable ER under the PSC Coho agreement. For Canadian ER Caps on Canadian MUs, a 10% ER Cap for Interior Fraser Coho is allowable under the PSC Coho agreement.
+Pre-season ERs reflect combined US and Canadian pre-season planning processes and do not include estimates of impacts in Canadian freshwater fisheries. Pre-season unused ERs are the difference between the ER Caps and modelled values. Post-season ER Caps and unused ERs are comparable to pre-season values except that they are based on post-season cohort abundance and associated MU status. Post-season estimated ERs are generated from backwards Coho FRAM. *A negative value for unused ERs indicates that the post-season estimate exceeded the allowable ER Cap.*
+
+
+```{r secondtable, echo=FALSE, warning=FALSE, results='asis'}
+
+
+t2 <- annual.tbl.first %>%
+  select(-cap.method) %>%
+  mutate(base.pre.cap = if_else(management.unit %in% c("Skagit", "Stillaguamish", "Snohomish", "Hood Canal", "US Strait JDF", "Quillayute", "Hoh", "Queets", "Grays Harbor"), us.pre.cap - cdn.pre.unused, if_else(management.unit == "Interior Fraser", cdn.pre.cap - us.pre.unused, NA_real_))) %>%
+  mutate(base.post.cap = if_else(management.unit %in% c("Skagit", "Stillaguamish", "Snohomish", "Hood Canal", "US Strait JDF", "Quillayute", "Hoh", "Queets", "Grays Harbor"), us.post.cap - cdn.post.unused, if_else(management.unit == "Interior Fraser", cdn.post.cap - us.post.unused, NA_real_)))  %>%
+  mutate_if(is.numeric, ~percent(.,accuracy = 0.1, suffix = "\\%")) %>%
+  mutate(us.pre.cap = if_else(management.unit %in% c("Skagit", "Stillaguamish", "Snohomish", "Hood Canal", "US Strait JDF", "Quillayute", "Hoh", "Queets", "Grays Harbor"), paste(us.pre.cap, footnote_marker_symbol(2, "latex",), sep = " "), us.pre.cap )) %>%
+  mutate(us.post.cap = if_else(management.unit %in% c("Skagit", "Stillaguamish", "Snohomish", "Hood Canal", "US Strait JDF", "Quillayute", "Hoh", "Queets", "Grays Harbor"), paste(us.post.cap, footnote_marker_symbol(2, "latex"), sep = " "), us.post.cap )) %>%
+  mutate(cdn.pre.cap = if_else(management.unit == "Interior Fraser", paste(cdn.pre.cap, footnote_marker_symbol(2, "latex"), sep = " "), cdn.pre.cap)) %>%
+  mutate(cdn.post.cap = if_else(management.unit == "Interior Fraser", paste(cdn.post.cap, footnote_marker_symbol(2, "latex"), sep = " "), cdn.post.cap))
+
+
+
+# t2$us.pre.cap[5:13] <-  (paste0(t2$us.pre.cap[5:13], footnote_marker_symbol(2)))
+# t2$us.post.cap[5:13] <- (paste0(t2$us.post.cap[5:13], footnote_marker_symbol(2)))
+# t2$cdn.pre.cap[2] <- (paste0(t2$cdn.pre.cap[2], footnote_marker_symbol(2)))
+# t2$cdn.post.cap[2] <- (paste0(t2$cdn.pre.cap[2], footnote_marker_symbol(2)))
+
+cdn_skag_unused <- annual.tbl.first$cdn.pre.unused[annual.tbl.first$management.unit == "Skagit"] %>%
+  percent(., accuracy = 0.1)
+
+us_skag_cap <- annual.tbl.first$us.pre.cap[annual.tbl.first$management.unit == "Skagit"] %>%
+  percent(., accuracy = 0.1)
+
+footnote2 <- str_glue("Contains the base cap ER plus the unused portion of the intercepting party's ER. For example in the preseason, Skagit includes US share plus the unused {cdn_skag_unused} Canadian allocation, totalling {us_skag_cap} total US allocation.")
+
+table2form <-  kable(t2, digits = 1,
+                     col.names = c("Management unit", "Cap", "Model", "Unused", "Cap", "Estd", "Unused", "Cap", "Model", "Unused", "Cap", "Estd","Unused",  paste0("Pre Base Cap", footnote_marker_symbol(3)), paste0("Post Base Cap", footnote_marker_symbol(3))), escape = F, linesep = "", booktabs = T, format = "latex") %>%
+  kable_styling(latex_options = c("striped", "hold_position", "scale_down")) %>%
+  # column_spec(2, border_left = TRUE)%>%
+  # column_spec(5, border_left = TRUE)%>%
+  # column_spec(8, border_left = TRUE)%>%
+  # column_spec(11, border_left = TRUE)%>%
+  # column_spec(13, border_right  = TRUE)%>%
+  add_header_above(c(" ", "Pre-Season" = 3, "Post-Season" = 3, "Pre-Season" = 3, "Post-Season" = 3))%>%
+  add_header_above(c(" ", "Southern U.S.* Exploitation Rate" = 6, "Canadian Exploitation Rate" = 6)) %>%
+  footnote(symbol = c("Southern U.S. is limited to US fisheries south of the Canadian border.", footnote2, "ER Cap before the unused portion from the intercepting party is included. ERs shows are for those of the country of origin for each stock."), threeparttable = T)
+
+print(table2form)
+
+
+```
