@@ -1,0 +1,73 @@
+---
+title: "&nbsp;"
+output:
+  html_document: default
+---
+
+<style>
+.main-container {
+  max-width: unset;
+}
+</style>
+
+
+<style type="text/css">
+  body{
+  font-size: 24px;
+}
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+
+#load chunks from r script
+# knitr::read_chunk("AnnualReportChunks.R")
+
+```
+**Pre-season DB:** `r pre.season.db.name`, **Pre-season run name:** `r pre.season.run.name` \
+**Post-season DB:** `r post.season.db.name`, **Post-season run name:** `r post.season.run.name` \
+
+
+**Table 1: Summary of the `r run.year` return to natural spawning Coho Management Units.**
+Total exploitation rate (ER) represents the sum of US and Canadian exploitation rates on each Management Unit (MU). Status (i.e., "L"ow, "M"oderate, "A"bundant) is based on cohort abundance. Pre-season status is based on agency forecasts of MU cohort abundance and post-season status is based on backwards Coho FRAM run reconstruction of cohort abundances. The ER Cap on the Interior Fraser MU is 20% due to its Low MU status, which has a survival component in addition to escapement. ER Caps are not available for other Canadian MUs. ER Caps on each of the Inside US MUs (Skagit, Stillaguamish, Snohomish, Hood Canal, and US Strait JDF) are based on MU status, which is determined by cohort abundance. ER Caps on each of the Outside US MUs (Quillayute Fall, Queets, Hoh, Grays Harbor) are based on cohort abundance and the escapement goals for each MU. Outside US MUs are managed for an escapement range; the floor of the escapement range is used for MU status determination. Pre-season modelled ERs are the result of US and Canadian fishery planning processes. Post-season estimated ERs are generated from backwards Coho FRAM. Cohort abundance is the ocean age-3 abundance and represents escapement plus fishery mortality, but not natural mortality.
+
+
+```{r firsttable, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+
+t1 <- annual.tbl.first %>%
+  mutate_if(colnames(.) %in% c("pre.cap", "pre.model", "post.cap", "post.estd", "pre.escapement", "post.escapement", "pre.ocean.age", "post.ocean.age"), ~as.double(as.character(.))) %>%
+  mutate_if(colnames(.) %in% c("pre.cap", "pre.model", "post.cap", "post.estd"),  ~percent(.,accuracy = 0.1)) %>%
+  mutate(pre.cap = if_else(management.unit %in% c("Grays Harbor"), pre.cap, pre.cap ))
+
+
+run.year.text <- paste0("", as.character(run.year), "")
+
+tbl_width <- '1400px'
+
+t1_gt <- t1 %>%
+  gt() %>%
+  cols_align(align = 'center', columns = c(2,5)) %>%
+  tab_spanner(label = html(' <br>Pre-Season total ER'), columns = pre.status:pre.model) %>%
+  tab_spanner(label = html(' <br>Post-Season total ER'), columns = post.status:post.estd) %>%
+  tab_spanner(label = html(' <br>Escapement'), columns =pre.escapement:post.escapement) %>%
+  tab_spanner(label = html('Recruitment<br>(Ocean Age‐3)'), columns =pre.ocean.age:post.ocean.age) %>%
+  tab_options(table.width = '1400px', table.font.size = '24px') %>%
+  fmt_number(decimals = 0) %>%
+  sub_missing(missing_text = "") %>%
+  cols_label(management.unit = 'Management Unit', pre.status	= 'Status', pre.cap	= 'Cap', pre.model = 'Model', post.status	= 'Status', post.cap	= 'Cap', post.estd = 'Model', pre.escapement = "Pre", post.escapement = "Post", pre.ocean.age = "Pre", post.ocean.age = "Post") %>%
+  gt::opt_align_table_header('left') %>%
+  tab_style(style = cell_borders(sides = c('right'), weight = px(4)), locations = cells_body(columns = c(1,4,7,9, 11))) %>%
+  tab_style(style = cell_borders(sides = c('bottom'), weight = px(4)), locations = cells_column_labels(columns = c(2:11))) %>%
+  tab_style(style = cell_borders(sides = c('bottom'), weight = px(4)), locations = cells_body(columns = c(2:11), rows = 12)) %>%
+  opt_row_striping() %>%
+  tab_options(table_body.hlines.width = 0, column_labels.padding.horizontal = px(10), data_row.padding.horizontal = px(10)) %>%
+  tab_style(style =  "background-color:  #f0f0f0  !important;", locations = cells_body(rows=c(2,4,6,8,10,12))) 
+
+
+
+
+t1_gt
+
+```
+

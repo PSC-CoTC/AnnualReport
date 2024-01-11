@@ -31,7 +31,8 @@ kStatusAbundantCode <- "A"
 kStatusModerateCode <- "M"
 kStatusLowCode <- "L"
 
-
+kStatusNormalCpde <- "N"
+kStatusCompositeCode <- "C"
 
 #' Sum columns
 #'
@@ -425,6 +426,7 @@ GetPstStockCountryCap <- function(stock.status) {
     } else if (low.status.count == 1) {
       #Composite Low US Inside MU Condition (Canadian ER Cap = 0.13)
       stock.status$canada.cap[low.status] <- 0.12
+      stock.status$detail[low.status] <- 'Normal'
     }
 
     if (moderate.status.count > 1) {
@@ -546,19 +548,19 @@ GetPstStockStatusCap <- function(stock.summary, run.year) {
 
 
 
-#' Generate the Table 2 of the PSC Annual report for the specified run year
+#' Generate the Table 1 of the PSC Annual report for the specified run year
 #'
 #'
 #' @param pre.season.data PSC summarized data by fishery and stock from Pre-Season model run
 #' @param post.season.data PSC summarized data by fishery and stock from Post-Season model run
 #' @param run.year The run year that table is generated for
 #'
-#' @return Table 2 of the annual report as a data frame
+#' @return Table 1 of the annual report as a data frame
 #'
 #' @export
 
 
-CreateTable2 <- function(pre.season.data, post.season.data, run.year) {
+CreateTable1 <- function(pre.season.data, post.season.data, run.year) {
 
   pre.status <- GetPstStockStatusCap(pre.season.data$stock.summary, run.year)
 
@@ -581,19 +583,19 @@ CreateTable2 <- function(pre.season.data, post.season.data, run.year) {
   return (fmt.tbl)
 }
 
-#' Generate the Table 1 of the PSC Annual report for the specified run year
+#' Generate the Table 2 of the PSC Annual report for the specified run year
 #'
 #' @param pre.season.data PSC summarized data by fishery and stock from Pre-Season model run
 #' @param post.season.data PSC summarized data by fishery and stock from Post-Season model run
 #' @param run.year The run year that table is generated for
 #'
-#' @return Table 1 of the annual report as a data frame
+#' @return Table 2 of the annual report as a data frame
 #'
 #' @export
 #'
 
 
-CreateTable1 <- function(pre.season.data, post.season.data, run.year) {
+CreateTable2 <- function(pre.season.data, post.season.data, run.year) {
 
   pre.fishery <- pre.season.data$fishery.mortality
   pre.stock.summary <- pre.season.data$stock.summary
@@ -636,11 +638,13 @@ CreateTable1 <- function(pre.season.data, post.season.data, run.year) {
                    us.pre.unused=pre.stock.cap$us.cap - us.pre.er$er)
 
   fmt.tbl <- cbind(fmt.tbl,
+                   post.status=post.stock.cap$status,
                    us.post.cap=post.stock.cap$us.cap,
                    us.post.estd=us.post.er$er,
                    us.post.unused=post.stock.cap$us.cap - us.post.er$er)
 
   fmt.tbl <- cbind(fmt.tbl,
+                   pre.status = pre.stock.cap$status,
                    cdn.pre.cap=pre.stock.cap$canada.cap,
                    cdn.pre.model=canada.pre.er$er,
                    cdn.pre.unused=pre.stock.cap$canada.cap - canada.pre.er$er)

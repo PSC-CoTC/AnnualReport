@@ -25,6 +25,7 @@
 #' @importFrom stringr str_sub str_locate str_replace str_detect str_glue
 #' @importFrom readxl read_excel
 #' @importFrom tibble add_row
+#' @import gt
 #'
 #' @export
 #'
@@ -185,11 +186,22 @@ writeAnnualReport <- function(run.year, post.season.run.name, pre.season.run.nam
 
   WriteCsv(file = "report/fishery_mortalities.csv", fishery_morts)
 
-  output_file_name <- paste0(run.year, "_", "annualreport", "_", GetTimeStampText(), ".pdf")
+  output_file_name1 <- paste0(run.year, "_", "table_1", "_", GetTimeStampText(), ".html")
+  output_file_name2 <- paste0(run.year, "_", "table_2", "_", GetTimeStampText(), ".html")
+  output_file_name3 <- paste0(run.year, "_", "table_3", "_", GetTimeStampText(), ".html")
 
   if(big.bar.esc<=0){
-    system.file("testtbl22.rmd", package = packageName()) %>%
-      rmarkdown::render(., output_file = output_file_name, output_dir = report.dir)
+    # system.file("trygt.rmd", package ="CotcAnnualReport") %>%
+    rmarkdown::render("table_1_gt.rmd", output_file = output_file_name1, output_dir = report.dir)
+    rmarkdown::render("table_2_gt.rmd", output_file = output_file_name2, output_dir = report.dir)
+    rmarkdown::render("table_3_gt.rmd", output_file = output_file_name3, output_dir = report.dir)
+
+    pagedown::chrome_print(fs::path(report.dir, output_file_name1), output = 'report//table1.pdf', options = list(paperHeight = 8.5, paperWidth = 11, scale = .55))
+    pagedown::chrome_print(fs::path(report.dir, output_file_name2), output = 'report//table2.pdf', options = list(paperHeight = 8.5, paperWidth = 11, scale = .4))
+    pagedown::chrome_print(fs::path(report.dir, output_file_name3), output = 'report//table3.pdf', options = list(paperHeight = 8.5, paperWidth = 11, scale = .43))
+
+    qpdf::pdf_combine(c('report//table1.pdf',  'report//table2.pdf', 'report//table3.pdf'), 'qq.pdf')
+
   }else{
     system.file("AnnualReportBigBar.rmd", package = packageName()) %>%
       rmarkdown::render(.,output_file = output_file_name, output_dir = report.dir)
@@ -197,3 +209,4 @@ writeAnnualReport <- function(run.year, post.season.run.name, pre.season.run.nam
 
 
 }
+

@@ -2,7 +2,7 @@
 % Please edit documentation in R/exportERs.R
 \name{exportFisheryERs}
 \alias{exportFisheryERs}
-\title{Writes .pdf document of the annual report}
+\title{xlsx of fishery ers}
 \usage{
 exportFisheryERs(
   fram.db = NA,
@@ -17,5 +17,5 @@ exportFisheryERs(
 \item{run_names}{Vector of run names from the FRAM database}
 }
 \description{
-Writes .pdf document of the annual report
+xlsx of fishery ers
 }

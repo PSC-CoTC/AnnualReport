@@ -41,8 +41,8 @@ getPreseasonERs <- function(run.year,
                         report.dir = "./report/",
                         data.dir = "./csv/",
                         combine.GS = TRUE,
-                        big.bar.esc = 34162,
-                        big.bar.morts = 4222,
+                        big.bar.esc = 0,
+                        big.bar.morts = 0,
                         connection_driver = "Driver={Microsoft Access Driver (*.mdb, *.accdb)};") {
 
   wb <- openxlsx::createWorkbook()

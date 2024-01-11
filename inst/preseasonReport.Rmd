@@ -32,10 +32,10 @@ options(knitr.table.format = 'latex', knitr.kable.NA = '')
 **Pre-season DB:** `r pre.season.db.name` , **Pre-season run name:** `r run.name`  \newline
 
 
- **Table 1: Summary of the `r run.year` pre-season return of natural spawning Coho Management Units.**
-                        Total pre-season exploitation rate (ER) represents the sum of US and Canadian exploitation rates on each
-                    Management Unit (MU). Pre-season status (i.e., "L"ow, "M"oderate, "A"bundant) is based on agency forecasts of MU cohort abundance.
-                    For Canadian ER Caps on US MUs, the pre‐season ER Caps are the total allowable ER
+**Table 1: Summary of the `r run.year` pre-season return of natural spawning Coho Management Units.**
+Total pre-season exploitation rate (ER) represents the sum of US and Canadian exploitation rates on each
+Management Unit (MU). Pre-season status (i.e., "L"ow, "M"oderate, "A"bundant) is based on agency forecasts of MU cohort abundance.
+For Canadian ER Caps on US MUs, the pre‐season ER Caps are the total allowable ER
 under the PSC Coho agreement. For Canadian ER Caps on Canadian MUs, a 10% ER Cap for Interior Fraser Coho is allowable under the PSC Coho
 agreement. Pre‐season ERs reflect combined US and Canadian pre‐season planning processes and do not include estimates of impacts in Canadian
 freshwater fisheries. Pre‐season unused ERs are the difference between the ER Caps and modeled values.
@@ -46,20 +46,28 @@ freshwater fisheries. Pre‐season unused ERs are the difference between the ER 
 
 t2 <- CreateTable1(pre.season.data = pre.season.data, post.season.data = pre.season.data, run.year = run.year) %>%
   select(-contains('post'), -"cap.method")
-  # select(management.unit, us.pre.model, cdn.pre.model)
+# select(management.unit, us.pre.model, cdn.pre.model)
 
 t1 <- CreateTable2(pre.season.data = pre.season.data, post.season.data = pre.season.data, run.year = run.year) %>%
-   select(-contains('post')) %>%
+  select(-contains('post')) %>%
   mutate_if(colnames(.) %in% c("pre.cap", "pre.model",  "pre.escapement", "pre.ocean.age"), ~as.double(as.character(.))) %>%
   mutate(pre.escapement = format(round(pre.escapement,0), big.mark = ",", trim = TRUE, na.encode = TRUE)) %>%
   mutate(pre.ocean.age = format(round(pre.ocean.age,0), big.mark = ",", trim = TRUE, na.encode = TRUE)) %>%
   left_join(t2, "management.unit") %>%
-  mutate_if(colnames(.) %in% c("pre.cap", "pre.model", "us.pre.cap", "us.pre.model",  "us.pre.unused",  "cdn.pre.cap", "cdn.pre.model", "cdn.pre.unused"),  ~percent(.,accuracy = 0.1, suffix = "\\%")) %>%
-  select(1:4, "us.pre.cap", "us.pre.model",  "us.pre.unused",  "cdn.pre.cap", "cdn.pre.model", "cdn.pre.unused", everything())%>%
-  mutate(us.pre.cap = if_else(management.unit %in% c("Skagit", "Stillaguamish", "Snohomish", "Hood Canal", "US Strait JDF", "Quillayute", "Hoh", "Queets", "Grays Harbor"), paste(us.pre.cap, footnote_marker_symbol(3, "latex",), sep = " "), us.pre.cap ))%>%
-  mutate(cdn.pre.cap = if_else(management.unit == "Interior Fraser", paste(cdn.pre.cap, footnote_marker_symbol(3, "latex"), sep = " "), cdn.pre.cap)) %>%
+  
+  mutate(us.base.pre.cap = if_else(management.unit %in% c("Skagit", "Stillaguamish", "Snohomish", "Hood Canal", "US Strait JDF", "Quillayute", "Hoh", "Queets", "Grays Harbor"), us.pre.cap - cdn.pre.unused,  us.pre.cap)) %>%
+  
+  mutate(cdn.base.pre.cap = if_else(management.unit == "Interior Fraser", cdn.pre.cap - us.pre.unused, cdn.pre.cap))  %>%
+  
+  mutate_if(colnames(.) %in% c("pre.cap", "pre.model", "us.pre.cap", "us.pre.model",  "us.pre.unused",  "cdn.pre.cap", "cdn.pre.model", "cdn.pre.unused", "cdn.base.pre.cap", "us.base.pre.cap"),  ~percent(.,accuracy = 0.1, suffix = "\\%")) %>%
+  select(1:4,"us.base.pre.cap", "us.pre.cap", "us.pre.model",  "us.pre.unused", "cdn.base.pre.cap", "cdn.pre.cap", "cdn.pre.model", "cdn.pre.unused", everything())%>%
+  mutate(us.pre.cap = if_else(management.unit %in% c("Skagit", "Stillaguamish", "Snohomish", "Hood Canal", "US Strait JDF", "Quillayute", "Hoh", "Queets", "Grays Harbor"), paste(us.pre.cap, footnote_marker_symbol(4, "latex",), sep = " "), us.pre.cap ))%>%
+  mutate(cdn.pre.cap = if_else(management.unit == "Interior Fraser", paste(cdn.pre.cap, footnote_marker_symbol(4, "latex"), sep = " "), cdn.pre.cap)) %>%
   mutate(pre.escapement = ifelse(pre.escapement == "NA", NA, pre.escapement)) %>%
-  mutate(pre.ocean.age = ifelse(pre.ocean.age == "NA", NA, pre.ocean.age))
+  mutate(pre.ocean.age = ifelse(pre.ocean.age == "NA", NA, pre.ocean.age)) %>%
+  select(management.unit:us.pre.cap, us.base.pre.cap, everything()) %>%
+  select(management.unit:cdn.pre.cap, cdn.base.pre.cap, everything())
+
 
 cdn_skag_unused <- t2$cdn.pre.unused[t1$management.unit == "Skagit"] %>%
   percent(., accuracy = 0.1)
@@ -67,7 +75,7 @@ cdn_skag_unused <- t2$cdn.pre.unused[t1$management.unit == "Skagit"] %>%
 us_skag_cap <- t2$us.pre.cap[t1$management.unit == "Skagit"] %>%
   percent(., accuracy = 0.1)
 
-footnote3 <- "Including Southern Alaskan catch not included in this table (see table 2)."
+footnote3 <- "Including catch Southern Alaskan fisheries (see table 2 for details)."
 
 footnote2 <- str_glue("Contains the base cap ER plus the unused portion of the intercepting party's ER. For example in the preseason, Skagit includes US share plus the unused {cdn_skag_unused} Canadian allocation, totalling {us_skag_cap} total US allocation.")
 
@@ -77,12 +85,12 @@ SusName <- paste("Southern US",footnote_marker_symbol(2, double_escape = T), sep
 
 
 table1form <- kbl(t1, digits = 1,
-                    col.names = c("Management unit", "Status", "ER Cap", "ER Model","US ER Cap", "US ER Model", "US Unused","Cdn Cap", "Cdn ER Model", "Cdn Unused",  "Escapement", "Recruitment (Ocean Age-3)"), escape = F,  linesep = "", booktabs = T, format = "latex") %>%
+                  col.names = c("Management unit", "Status", "ER Cap", "ER Model", paste0("US Base Cap", footnote_marker_symbol(3)),"US ER Cap", "US ER Model", "US Unused", paste0("Cdn Base Cap",  footnote_marker_symbol(3)),"Cdn ER Cap", "Cdn ER Model", "Cdn Unused",  "Escapement", "Recruitment (Ocean Age-3)"), escape = F,  linesep = "", booktabs = T, format = "latex") %>%
   # kableExtra::column_spec(8:8, "2.5cm") %>%
   kable_styling(latex_options = c("striped", "scale_down", "hold_position")) %>%
-  add_header_above(c(" " = 2, setNames(2, totalname),   setNames(3, SusName), "Canadian" = 3), escape = FALSE)  %>%
-  add_header_above(c(" ", "PreSeason" = 11)) %>%
-  footnote(symbol = c(footnote3, "Southern U.S. is limited to US fisheries south of the Canadian border.", footnote2), threeparttable = T)
+  add_header_above(c(" " = 2, setNames(2, totalname),   setNames(4, SusName), "Canadian" = 4), escape = FALSE)  %>%
+  add_header_above(c(" ", "PreSeason" = 13)) %>%
+  footnote(symbol = c(footnote3, "Southern U.S. is limited to US fisheries south of the Canadian border.", "ER Cap before the unused portion from the intercepting party is included.",  footnote2), threeparttable = T)
 
 
 
@@ -112,8 +120,8 @@ print(table1form)
 ```{r thirdtable, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 
 t3_per <- CreateTable3(pre.season.data) %>%
-    filter(psc.fishery.name %notin% c("escapement", "cohort")) %>%
-    mutate_if(is.numeric, ~percent(.,accuracy = 0.1, suffix = "\\%"))
+  filter(psc.fishery.name %notin% c("escapement", "cohort")) %>%
+  mutate_if(is.numeric, ~percent(.,accuracy = 0.1, suffix = "\\%"))
 
 t3_cnt <-CreateTable3(pre.season.data)%>%
   filter(psc.fishery.name %in% c("escapement", "cohort")) %>%
