@@ -193,11 +193,11 @@ writeAnnualReport <- function(run.year, post.season.run.name, pre.season.run.nam
   if(big.bar.esc<=0){
     # system.file("trygt.rmd", package ="CotcAnnualReport") %>%
     rmarkdown::render("table_1_gt.rmd", output_file = output_file_name1, output_dir = report.dir)
-    rmarkdown::render("table_2_gt.rmd", output_file = output_file_name2, output_dir = report.dir)
+    rmarkdown::render("tbl2_capmethod.Rmd", output_file = output_file_name2, output_dir = report.dir)
     rmarkdown::render("table_3_gt.rmd", output_file = output_file_name3, output_dir = report.dir)
 
     pagedown::chrome_print(fs::path(report.dir, output_file_name1), output = 'report//table1.pdf', options = list(paperHeight = 8.5, paperWidth = 11, scale = .55))
-    pagedown::chrome_print(fs::path(report.dir, output_file_name2), output = 'report//table2.pdf', options = list(paperHeight = 8.5, paperWidth = 11, scale = .4))
+    pagedown::chrome_print(fs::path(report.dir, output_file_name2), output = 'report//table2.pdf', options = list(paperHeight = 11, paperWidth = 8.5, scale = .43))
     pagedown::chrome_print(fs::path(report.dir, output_file_name3), output = 'report//table3.pdf', options = list(paperHeight = 8.5, paperWidth = 11, scale = .43))
 
     qpdf::pdf_combine(c('report//table1.pdf',  'report//table2.pdf', 'report//table3.pdf'), 'qq.pdf')

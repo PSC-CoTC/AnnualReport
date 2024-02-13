@@ -426,7 +426,6 @@ GetPstStockCountryCap <- function(stock.status) {
     } else if (low.status.count == 1) {
       #Composite Low US Inside MU Condition (Canadian ER Cap = 0.13)
       stock.status$canada.cap[low.status] <- 0.12
-      stock.status$detail[low.status] <- 'Normal'
     }
 
     if (moderate.status.count > 1) {
