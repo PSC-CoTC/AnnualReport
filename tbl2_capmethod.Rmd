@@ -83,7 +83,7 @@ cdn_skag_unused <- annual.tbl.second$cdn.pre.unused[annual.tbl.second$management
 us_skag_cap <- annual.tbl.second$us.pre.cap[annual.tbl.second$management.unit == "Skagit"] %>%
   percent(., accuracy = 0.1)
 
-footnote2 <- str_glue("Contains the treaty ER cap plus the unused portion of the intercepting party's ER. For example in the preseason, Skagit includes US share plus the unused {cdn_skag_unused} Canadian allocation, totaling {us_skag_cap} total US allocation.")
+footnote2 <- str_glue("Contains the treaty ER cap plus the unused portion of the intercepting party's ER. For example, in the preseason, Skagit includes US share plus the unused {cdn_skag_unused} Canadian allocation, totaling {us_skag_cap} total US allocation.")
 
 
 t2_us <- t2 %>%
@@ -113,7 +113,7 @@ t2_gt_us <- t2_us %>%
   tab_options(table.width = tbl_width, table.font.size = '26px') %>%
   sub_missing(missing_text = "") %>%
   # text_transform(fn = function(x) {paste0(x, '<sup>&ddagger;</sup>')}, locations = cells_body(columns = c(us.pre.cap, us.post.cap), rows = 4:12)) %>%
-  cols_label(management.unit = 'Management Unit',  pre.status = md("Status<sup>&sect;</sup>"), us.base.pre.cap = md("Base Cap<sup>&dagger;</sup>"), cdn.pre.unused = 'CDN unused',	us.pre.cap = md('Cap + Unused<sup>&ddagger;</sup>'),	us.pre.model = 'Model',	us.pre.unused = 'Remaining', post.status= md("Status<sup>&sect;</sup>"),	us.base.post.cap = md("Base Cap<sup>&dagger;</sup>"),	cdn.post.unused = 'CDN Unused',	us.post.cap = md('Cap + Unused<sup>&ddagger;</sup>'),	us.post.estd = 'Model',	us.post.unused = 'Remaining') %>%
+  cols_label(management.unit = 'Management Unit',  pre.status = md("Status<sup>&sect;</sup>"), us.base.pre.cap = md("Base Cap<sup>&dagger;</sup>"), cdn.pre.unused = 'CDN unused',	us.pre.cap = md('Cap + Unused<sup>&ddagger;</sup>'),	us.pre.model = 'Model',	us.pre.unused = 'Unused', post.status= md("Status<sup>&sect;</sup>"),	us.base.post.cap = md("Base Cap<sup>&dagger;</sup>"),	cdn.post.unused = 'CDN Unused',	us.post.cap = md('Cap + Unused<sup>&ddagger;</sup>'),	us.post.estd = 'Model',	us.post.unused = 'Unused') %>%
   # gt::opt_align_table_header('left') %>%
   tab_style(style = cell_borders(sides = c('right'), weight = px(4)), locations = cells_body(columns = c(1,7,13))) %>%
   tab_style(style = cell_borders(sides = c('bottom'), weight = px(4)), locations = cells_column_labels(columns = c(2:13))) %>%
@@ -132,10 +132,10 @@ t2_gt_cdn <- t2_cdn %>%
   tab_options(table.width = tbl_width, table.font.size ='26px') %>%
   sub_missing(missing_text = "") %>%
   # text_transform(fn = function(x) {paste0(x, '<sup>&ddagger;</sup>')}, locations = cells_body(columns = c(cdn.pre.cap, cdn.post.cap), rows = 2)) %>%
-  cols_label(management.unit = 'Management Unit', pre.status = md("Status<sup>&sect;</sup>"), cdn.base.pre.cap	 = md("Base Cap<sup>&dagger;</sup>"), us.pre.unused	 = 'US unused',	cdn.pre.cap	 = md('Cap + Unused<sup>&ddagger;</sup>'),	cdn.pre.model = 'Model', cdn.pre.unused = 'Remaining', post.status= md("Status<sup>&sect;</sup>"),	cdn.base.post.cap	 = md("Base Cap<sup>&dagger;</sup>"),	us.post.unused = 'US Unused',	cdn.post.cap = md('Cap + Unused<sup>&ddagger;</sup>'), cdn.post.estd	 = 'Model',	cdn.post.unused = 'Remaining') %>%
+  cols_label(management.unit = 'Management Unit', pre.status = md("Status<sup>&sect;</sup>"), cdn.base.pre.cap	 = md("Base Cap<sup>&dagger;</sup>"), us.pre.unused	 = 'US unused',	cdn.pre.cap	 = md('Cap + Unused<sup>&ddagger;</sup>'),	cdn.pre.model = 'Model', cdn.pre.unused = 'Unused', post.status= md("Status<sup>&sect;</sup>"),	cdn.base.post.cap	 = md("Base Cap<sup>&dagger;</sup>"),	us.post.unused = 'US Unused',	cdn.post.cap = md('Cap + Unused<sup>&ddagger;</sup>'), cdn.post.estd	 = 'Model',	cdn.post.unused = 'Unused') %>%
   tab_footnote(footnote = ("*Southern U.S. is limited to US fisheries south of the Canadian border.")) %>%
-  tab_footnote(footnote = md('<sup>&sect;</sup>Southern US MUs that are in Low or Moderate status are assigned a "N"ormal or "C"omposite condition.  See [PST](https://www.psc.org/about-us/history-purpose/pacific-salmon-treaty/) chapter 5 paragraphs 9(b) and (c).')) %>%
-  tab_footnote(footnote = md("<sup>&dagger;</sup>The base ER cap before the unused portion from the intercepting party is included. See PST chapter 5 paragraphs 8 to 9.")) %>%
+  tab_footnote(footnote = md('<sup>&sect;</sup>Southern US MUs that are in Low or Moderate status are assigned a "N"ormal or "C"omposite condition.  See [PST](https://www.psc.org/about-us/history-purpose/pacific-salmon-treaty/) chapter 5 paragraphs 9 (b) and &#40;c).')) %>%
+  tab_footnote(footnote = md("<sup>&dagger;</sup>The base ER cap before the unused portion from the intercepting party is included. See PST chapter 5 paragraphs 8 through 9.")) %>%
   tab_footnote(footnote = md(paste0("<sup>&ddagger;</sup>", footnote2)))  %>%
   tab_style(style = cell_borders(sides = c('right'), weight = px(4)), locations = cells_body(columns = c(1,7,13))) %>%
   tab_style(style = cell_borders(sides = c('bottom'), weight = px(4)), locations = cells_column_labels(columns = c(2:13))) %>%

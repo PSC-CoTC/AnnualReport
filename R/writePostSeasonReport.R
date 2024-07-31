@@ -18,7 +18,7 @@
 #'
 #' @importFrom odbc dbConnect dbDisconnect odbc
 #' @importFrom rmarkdown render
-#' @importFrom dplyr mutate_if bind_rows rename first group_by summarise ungroup if_else filter slice select everything
+#' @importFrom dplyr mutate_if bind_rows rename first group_by summarise ungroup if_else filter slice select everything n case_when
 #' @importFrom knitr kable
 #' @importFrom kableExtra add_header_above column_spec landscape kable_styling footnote footnote_marker_symbol row_spec
 #' @importFrom scales percent comma
@@ -46,8 +46,6 @@ writeAnnualReport <- function(run.year, post.season.run.name, pre.season.run.nam
                               report.dir = "./report/",
                               data.dir = "./csv/",
                               combine.GS = NA,
-                              big.bar.esc = 0,
-                              big.bar.morts = 0,
                               connection_driver = "Driver={Microsoft Access Driver (*.mdb, *.accdb)};") {
 
 
@@ -190,7 +188,7 @@ writeAnnualReport <- function(run.year, post.season.run.name, pre.season.run.nam
   output_file_name2 <- paste0(run.year, "_", "table_2", "_", GetTimeStampText(), ".html")
   output_file_name3 <- paste0(run.year, "_", "table_3", "_", GetTimeStampText(), ".html")
 
-  if(big.bar.esc<=0){
+
     # system.file("trygt.rmd", package ="CotcAnnualReport") %>%
     rmarkdown::render("table_1_gt.rmd", output_file = output_file_name1, output_dir = report.dir)
     rmarkdown::render("tbl2_capmethod.Rmd", output_file = output_file_name2, output_dir = report.dir)
@@ -200,12 +198,7 @@ writeAnnualReport <- function(run.year, post.season.run.name, pre.season.run.nam
     pagedown::chrome_print(fs::path(report.dir, output_file_name2), output = 'report//table2.pdf', options = list(paperHeight = 11, paperWidth = 8.5, scale = .43))
     pagedown::chrome_print(fs::path(report.dir, output_file_name3), output = 'report//table3.pdf', options = list(paperHeight = 8.5, paperWidth = 11, scale = .43))
 
-    qpdf::pdf_combine(c('report//table1.pdf',  'report//table2.pdf', 'report//table3.pdf'), 'qq.pdf')
-
-  }else{
-    system.file("AnnualReportBigBar.rmd", package = packageName()) %>%
-      rmarkdown::render(.,output_file = output_file_name, output_dir = report.dir)
-  }
+    qpdf::pdf_combine(c('report//table1.pdf',  'report//table2.pdf', 'report//table3.pdf'), paste0(run.year, "_", "annualreport", "_", GetTimeStampText(), ".pdf"))
 
 
 }

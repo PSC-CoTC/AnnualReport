@@ -51,7 +51,7 @@ t1_gt <- t1 %>%
   tab_spanner(label = html(' <br>Pre-Season total ER'), columns = pre.status:pre.model) %>%
   tab_spanner(label = html(' <br>Post-Season total ER'), columns = post.status:post.estd) %>%
   tab_spanner(label = html(' <br>Escapement'), columns =pre.escapement:post.escapement) %>%
-  tab_spanner(label = html('Recruitment<br>(Ocean Age‐3)'), columns =pre.ocean.age:post.ocean.age) %>%
+  tab_spanner(label = html('Abundance<br>(Ocean Age‐3)'), columns =pre.ocean.age:post.ocean.age) %>%
   tab_options(table.width = '1400px', table.font.size = '24px') %>%
   fmt_number(decimals = 0) %>%
   sub_missing(missing_text = "") %>%
