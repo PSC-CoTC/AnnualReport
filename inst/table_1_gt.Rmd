@@ -47,6 +47,7 @@ tbl_width <- '1400px'
 
 t1_gt <- t1 %>%
   gt() %>%
+   text_transform(fn = function(x) {paste0(x, '<sup>*</sup>')}, locations = cells_body(columns = c(post.escapement, post.ocean.age), rows = 12)) %>%  #remove when finalized
   cols_align(align = 'center', columns = c(2,5)) %>%
   tab_spanner(label = html(' <br>Pre-Season total ER'), columns = pre.status:pre.model) %>%
   tab_spanner(label = html(' <br>Post-Season total ER'), columns = post.status:post.estd) %>%
@@ -62,7 +63,8 @@ t1_gt <- t1 %>%
   tab_style(style = cell_borders(sides = c('bottom'), weight = px(4)), locations = cells_body(columns = c(2:11), rows = 12)) %>%
   opt_row_striping() %>%
   tab_options(table_body.hlines.width = 0, column_labels.padding.horizontal = px(10), data_row.padding.horizontal = px(10)) %>%
-  tab_style(style =  "background-color:  #f0f0f0  !important;", locations = cells_body(rows=c(2,4,6,8,10,12))) 
+  tab_style(style =  "background-color:  #f0f0f0  !important;", locations = cells_body(rows=c(2,4,6,8,10,12))) %>%
+  tab_footnote(footnote = ("*Place holder value; non-final")) # remove when finalized
 
 
 

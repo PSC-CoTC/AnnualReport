@@ -148,17 +148,17 @@ writeAnnualReport <- function(run.year, post.season.run.name, pre.season.run.nam
   dbDisconnect(post.season.db.conn)
 
   annual.tbl.third <- CreateTable3(post.season.data)
-  report.filename <- file.path(report.dir, paste0(run.year, "_annual_table3.csv"))
+  report.filename <- file.path(report.dir, paste0(run.year, "_annual_table3", GetTimeStampText(),".csv"))
   WriteCsv(report.filename, annual.tbl.third)
   cat(sprintf("The annual report table 3 written to:\n\t%s\n\n", normalizePath(report.filename)))
 
   annual.tbl.second <- CreateTable2(pre.season.data, post.season.data, run.year)
-  report.filename <- file.path(report.dir, paste0(run.year, "_annual_table2.csv"))
+  report.filename <- file.path(report.dir, paste0(run.year, "_annual_table2", GetTimeStampText(),".csv"))
   WriteCsv(report.filename, annual.tbl.second)
   cat(sprintf("The annual report table 2 written to:\n\t%s\n\n", normalizePath(report.filename)))
 
   annual.tbl.first <- CreateTable1(pre.season.data, post.season.data, run.year)
-  report.filename <- file.path(report.dir, paste0(run.year, "_annual_table1.csv"))
+  report.filename <- file.path(report.dir, paste0(run.year, "_annual_table1", GetTimeStampText(),".csv"))
   WriteCsv(report.filename, annual.tbl.first)
   cat(sprintf("The annual report table 1 written to:\n\t%s\n\n", normalizePath(report.filename)))
 
@@ -176,13 +176,13 @@ writeAnnualReport <- function(run.year, post.season.run.name, pre.season.run.nam
     filter(psc.stock.name == "Georgia Strait") %>%
     bind_rows(post.season.data.orginal$stock.summary)
 
-  WriteCsv(file = "report/stock_summaries.csv", stock_summaries)
+  WriteCsv(file = paste0("report/stock_summaries",GetTimeStampText(),".csv"), stock_summaries)
 
   fishery_morts <- post.season.data$fishery.mortality %>%
     filter(psc.stock.name == "Georgia Strait") %>%
     bind_rows(post.season.data.orginal$fishery.mortality)
 
-  WriteCsv(file = "report/fishery_mortalities.csv", fishery_morts)
+  WriteCsv(file = paste0("report/fishery_mortalities", GetTimeStampText(),".csv"), fishery_morts)
 
   output_file_name1 <- paste0(run.year, "_", "table_1", "_", GetTimeStampText(), ".html")
   output_file_name2 <- paste0(run.year, "_", "table_2", "_", GetTimeStampText(), ".html")
@@ -190,15 +190,16 @@ writeAnnualReport <- function(run.year, post.season.run.name, pre.season.run.nam
 
 
     # system.file("trygt.rmd", package ="CotcAnnualReport") %>%
-    rmarkdown::render("table_1_gt.rmd", output_file = output_file_name1, output_dir = report.dir)
-    rmarkdown::render("tbl2_capmethod.Rmd", output_file = output_file_name2, output_dir = report.dir)
-    rmarkdown::render("table_3_gt.rmd", output_file = output_file_name3, output_dir = report.dir)
+    rmarkdown::render(system.file("table_1_gt.rmd", package = 'CotcAnnualReport'), output_file = output_file_name1, output_dir = report.dir)
+    rmarkdown::render(system.file("tbl2_capmethod.Rmd", package = 'CotcAnnualReport'), output_file = output_file_name2, output_dir = report.dir)
+    rmarkdown::render(system.file("table_3_gt.rmd", package = 'CotcAnnualReport'), output_file = output_file_name3, output_dir = report.dir)
 
     pagedown::chrome_print(fs::path(report.dir, output_file_name1), output = 'report//table1.pdf', options = list(paperHeight = 8.5, paperWidth = 11, scale = .55))
     pagedown::chrome_print(fs::path(report.dir, output_file_name2), output = 'report//table2.pdf', options = list(paperHeight = 11, paperWidth = 8.5, scale = .43))
     pagedown::chrome_print(fs::path(report.dir, output_file_name3), output = 'report//table3.pdf', options = list(paperHeight = 8.5, paperWidth = 11, scale = .43))
 
-    qpdf::pdf_combine(c('report//table1.pdf',  'report//table2.pdf', 'report//table3.pdf'), paste0(run.year, "_", "annualreport", "_", GetTimeStampText(), ".pdf"))
+    qpdf::pdf_combine(c('report//table1.pdf',  'report//table2.pdf', 'report//table3.pdf'),
+                      fs::path(report.dir, paste0(run.year, "_", "annualreport", "_", GetTimeStampText(), ".pdf")))
 
 
 }
