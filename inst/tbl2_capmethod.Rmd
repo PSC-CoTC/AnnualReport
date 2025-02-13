@@ -61,20 +61,12 @@ t2 <- annual.tbl.second %>%
   left_join(counts.pre, c("cap.method" , "pre.status")) %>%
   left_join(counts.post, c("cap.method" , "post.status")) %>%
   mutate(pre.status = if_else(N_pre > 1 & pre.status %in% c('L', 'M') & cap.method %in% c('imu', 'omu'), paste0('N', pre.status),  
-                              if_else(N_pre == 1 & pre.status %in% c('L', 'M') & cap.method %in% c('imu', 'omu'), paste0('C', pre.status), post.status))) %>%
-    mutate(post.status = if_else(N_post > 1 & post.status %in% c('L', 'M') & cap.method %in% c('imu', 'omu'), paste0('N', post.status),  
+                              if_else(N_pre == 1 & pre.status %in% c('L', 'M') & cap.method %in% c('imu', 'omu'), paste0('C', pre.status), pre.status))) %>%
+  
+  mutate(post.status = if_else(N_post > 1 & post.status %in% c('L', 'M') & cap.method %in% c('imu', 'omu'), paste0('N', post.status),  
                               if_else(N_post == 1 & post.status %in% c('L', 'M') & cap.method %in% c('imu', 'omu'), paste0('C', post.status), post.status))) %>%
   select(-N_pre, -N_post, -cap.method)
-# mutate(pre.status = case_when(
-  #   N_pre > 1 & pre.status %in% c('L', 'M') & cap.method %in% c('imu', 'omu')  ~ paste0('C', pre.status),
-  #   N_pre == 1 & pre.status %in% c('L', 'M') & cap.method %in% c('imu', 'omu') ~ paste0('N', pre.status))) %>%
-  # mutate(postsub = case_when(
-  #   N_post > 1 & post.status %in% c('L', 'M') ~ 'N',
-  #   N_post == 1 & post.status %in% c('L', 'M') ~ 'C')
-  # ) 
-  
-  
-# mutate(pre_sub = if_else(N_pre>1 & cap.method != 'fixed' & pre.status != 'A', 'C', 'N'))
+
 
 
 cdn_skag_unused <- annual.tbl.second$cdn.pre.unused[annual.tbl.second$management.unit == "Skagit"] %>%
