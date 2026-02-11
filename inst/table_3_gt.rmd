@@ -58,10 +58,10 @@ t3_gt <- t3 %>%
   tab_style(style =  "background-color: #E0FFFF !important;", locations = cells_body(row=12)) %>%
   tab_style(style  =  "background-color: #E0FFFF !important;", locations = cells_body(row=22)) %>%
   tab_style(style =  "background-color: #E0FFFF !important;", locations = cells_body(row=24))  %>%
-  text_transform(fn = function(x) {paste0(x, '<sup>*</sup>')}, locations = cells_body(columns = c(`Lower Fraser`), rows = 25)) %>%
+  # text_transform(fn = function(x) {paste0(x, '<sup>*</sup>')}, locations = cells_body(columns = c(`Lower Fraser`), rows = 25)) %>%
   text_transform(fn = function(x) {paste0(x, '<sup>&ddagger;</sup>')}, locations = cells_body(columns = c(`Georgia Strait`), rows = 25)) %>%
-  text_transform(fn = function(x) {paste0(x, '<sup>&dagger;</sup>')}, locations = cells_body(columns = c(`Lower Fraser`, `Georgia Strait`), rows = 26)) %>%
-  tab_footnote(footnote = ("*Modelled values of terminal run size occuring after lower Fraser in river fisheries.")) %>%
+  text_transform(fn = function(x) {paste0(x, '<sup>&dagger;</sup>')}, locations = cells_body(columns = c(`Georgia Strait`), rows = 26)) %>%
+  # tab_footnote(footnote = ("*Modelled values of terminal run size occuring after lower Fraser in river fisheries.")) %>%
   tab_footnote(footnote = md("<sup>&dagger;</sup>Modelled values of terminal run size that are not directly estimated.")) %>%
   tab_footnote(footnote = md("<sup>&ddagger;</sup>Modelled values that are not directly estimated."))
 

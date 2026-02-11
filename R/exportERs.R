@@ -111,7 +111,7 @@ postSeasonTable3Summary <- function(fram.db = NA, run.names, combine.GS = TRUE, 
     fram.db <- choose.files(caption = "choose POSTSEASON FRAM DB")
   }
 
-  fram.db.conn <- odbcConnectAccess(normalizePath(fram.db))
+  fram.db.conn <- dbConnect(odbc(), .connection_string = db.connect)
 
 
   psc.data.list <- loadPscData(data.dir)

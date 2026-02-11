@@ -574,10 +574,12 @@ CreateTable1 <- function(pre.season.data, post.season.data, run.year) {
 
   fmt.tbl <- as.data.frame(fmt.tbl)
 
-  no.status <- (fmt.tbl$pre.status=="")
+  gs.status <- (fmt.tbl$management.unit=="Georgia Strait")
+  lfc.status <- (fmt.tbl$pre.status=="Lower Fraser")
 
   #Remove ecapement and ocean age 3 totals for stocks that don't have a status
-  fmt.tbl[no.status,c("pre.escapement","pre.ocean.age", "post.escapement", "post.ocean.age")] <- NA
+  fmt.tbl[gs.status,c("pre.escapement","pre.ocean.age", "post.escapement", "post.ocean.age")] <- NA
+  fmt.tbl[lfc.status,c("post.escapement", "post.ocean.age")] <- NA
 
   return (fmt.tbl)
 }

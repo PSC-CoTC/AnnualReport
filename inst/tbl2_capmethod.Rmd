@@ -49,7 +49,7 @@ US Exploitation Rates: For US ER on Canadian Management Units (MU), a 10% ER Cap
 
 t2 <- annual.tbl.second %>%
   # select(cap.method) %>%
-  mutate(us.base.pre.cap = if_else(management.unit %in% c("Skagit", "Stillaguamish", "Snohomish", "Hood Canal", "US Strait JDF", "Quillayute", "Hoh", "Queets", "Grays Harbor"), us.pre.cap - cdn.pre.unused,  us.pre.cap)) %>%
+    mutate(us.base.pre.cap = if_else(management.unit %in% c("Skagit", "Stillaguamish", "Snohomish", "Hood Canal", "US Strait JDF", "Quillayute", "Hoh", "Queets", "Grays Harbor"), us.pre.cap - cdn.pre.unused,  us.pre.cap)) %>%
   mutate(us.base.post.cap = if_else(management.unit %in% c("Skagit", "Stillaguamish", "Snohomish", "Hood Canal", "US Strait JDF", "Quillayute", "Hoh", "Queets", "Grays Harbor"), us.post.cap - cdn.post.unused,  us.post.cap)) %>%
   mutate(cdn.base.pre.cap = if_else(management.unit == "Interior Fraser", cdn.pre.cap - us.pre.unused, cdn.pre.cap))  %>%
   mutate(cdn.base.post.cap = if_else(management.unit == "Interior Fraser", cdn.post.cap - us.post.unused, cdn.post.cap))  %>%
