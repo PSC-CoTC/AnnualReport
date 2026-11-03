@@ -55,12 +55,12 @@ t3_gt <- t3 %>%
     ') %>%
   tab_style(style = cell_text(weight = 'bold'), locations = cells_body(column=1)) %>%
   tab_style(style = cell_text(weight = 'bold'), locations =cells_column_labels()) %>%
-  tab_style(style =  "background-color: #E0FFFF !important;", locations = cells_body(row=12)) %>%
-  tab_style(style  =  "background-color: #E0FFFF !important;", locations = cells_body(row=22)) %>%
-  tab_style(style =  "background-color: #E0FFFF !important;", locations = cells_body(row=24))  %>%
+  tab_style(style =  "background-color: #E0FFFF !important;", locations = cells_body(row=nrow(t3)-14)) %>%
+  tab_style(style  =  "background-color: #E0FFFF !important;", locations = cells_body(row=nrow(t3)-4)) %>%
+  tab_style(style =  "background-color: #E0FFFF !important;", locations = cells_body(row=nrow(t3)-2))  %>%
   # text_transform(fn = function(x) {paste0(x, '<sup>*</sup>')}, locations = cells_body(columns = c(`Lower Fraser`), rows = 25)) %>%
-  text_transform(fn = function(x) {paste0(x, '<sup>&ddagger;</sup>')}, locations = cells_body(columns = c(`Georgia Strait`), rows = 25)) %>%
-  text_transform(fn = function(x) {paste0(x, '<sup>&dagger;</sup>')}, locations = cells_body(columns = c(`Georgia Strait`), rows = 26)) %>%
+  text_transform(fn = function(x) {paste0(x, '<sup>&ddagger;</sup>')}, locations = cells_body(columns = c(`Georgia Strait`), rows = nrow(t3)-1)) %>%
+  text_transform(fn = function(x) {paste0(x, '<sup>&dagger;</sup>')}, locations = cells_body(columns = c(`Georgia Strait`), rows = nrow(t3))) %>%
   # tab_footnote(footnote = ("*Modelled values of terminal run size occuring after lower Fraser in river fisheries.")) %>%
   tab_footnote(footnote = md("<sup>&dagger;</sup>Modelled values of terminal run size that are not directly estimated.")) %>%
   tab_footnote(footnote = md("<sup>&ddagger;</sup>Modelled values that are not directly estimated."))

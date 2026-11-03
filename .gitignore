@@ -32,3 +32,4 @@ fram db/
 # no pdfs
 *.pdf
 nul
+.positai
